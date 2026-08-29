@@ -1,4 +1,4 @@
-```html id="m2s7qk"
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,8 +25,6 @@
             background: #f5f6f8;
             color: #222;
         }
-
-        /* HEADER */
 
         header {
             background: white;
@@ -61,8 +59,6 @@
             border-radius: 6px;
         }
 
-        /* BREADCRUMB */
-
         .breadcrumb {
             width: 88%;
             max-width: 1200px;
@@ -71,8 +67,6 @@
             font-size: 14px;
         }
 
-        /* PROPERTY */
-
         .container {
             width: 88%;
             max-width: 1200px;
@@ -80,13 +74,22 @@
             padding-bottom: 60px;
         }
 
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 16px;
+            background: #1d3557;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
         .property-grid {
             display: grid;
             grid-template-columns: 1.5fr 1fr;
             gap: 25px;
         }
-
-        /* IMAGE */
 
         .main-image {
             height: 430px;
@@ -97,9 +100,8 @@
             justify-content: center;
             color: #777;
             font-size: 18px;
+            text-align: center;
         }
-
-        /* DETAILS */
 
         .details-box {
             background: white;
@@ -141,6 +143,7 @@
         .info strong {
             display: block;
             color: #1d3557;
+            margin-bottom: 3px;
         }
 
         .buttons {
@@ -169,8 +172,6 @@
             color: white;
         }
 
-        /* SECTIONS */
-
         .section-box {
             background: white;
             margin-top: 25px;
@@ -196,8 +197,6 @@
             border-radius: 6px;
         }
 
-        /* CTA */
-
         .cta {
             background: #e9ecef;
             text-align: center;
@@ -221,8 +220,6 @@
             font-weight: bold;
         }
 
-        /* FOOTER */
-
         footer {
             background: #1d3557;
             color: white;
@@ -233,8 +230,6 @@
         footer h3 {
             margin-bottom: 8px;
         }
-
-        /* MOBILE */
 
         @media (max-width: 800px) {
 
@@ -275,8 +270,6 @@
 <body>
 
 
-<!-- HEADER -->
-
 <header>
 
     <div class="logo">
@@ -304,45 +297,42 @@
 </header>
 
 
-<!-- BREADCRUMB -->
+<div class="breadcrumb" id="breadcrumb">
 
-<div class="breadcrumb">
-
-    Home / Buy / Property Details
+    Home / Property Details
 
 </div>
 
 
-<!-- PROPERTY -->
-
 <div class="container">
+
+    <a href="#" id="backButton" class="back-btn">
+        ← Back
+    </a>
+
 
     <div class="property-grid">
 
 
-        <!-- IMAGE -->
+        <div class="main-image" id="propertyImage">
 
-        <div class="main-image">
-
-            Property Main Image
+            Property Image
 
         </div>
 
 
-        <!-- DETAILS -->
-
         <div class="details-box">
 
-            <h1>
-                2 BHK Premium Apartment
+            <h1 id="propertyTitle">
+                Property
             </h1>
 
-            <p class="location">
-                Greater Noida West, Uttar Pradesh
+            <p class="location" id="propertyLocation">
+                Location
             </p>
 
-            <div class="price">
-                ₹80 Lakh
+            <div class="price" id="propertyPrice">
+                Price
             </div>
 
 
@@ -350,32 +340,32 @@
 
                 <div class="info">
                     <strong>Property Type</strong>
-                    Apartment
+                    <span id="propertyType"></span>
                 </div>
 
                 <div class="info">
                     <strong>BHK</strong>
-                    2 BHK
+                    <span id="propertyBhk"></span>
                 </div>
 
                 <div class="info">
                     <strong>Area</strong>
-                    1,050 sq.ft.
+                    <span id="propertyArea"></span>
                 </div>
 
                 <div class="info">
                     <strong>Floor</strong>
-                    8th Floor
+                    <span id="propertyFloor"></span>
                 </div>
 
                 <div class="info">
                     <strong>Parking</strong>
-                    1 Covered
+                    <span id="propertyParking"></span>
                 </div>
 
                 <div class="info">
                     <strong>Furnishing</strong>
-                    Semi Furnished
+                    <span id="propertyFurnishing"></span>
                 </div>
 
             </div>
@@ -390,8 +380,8 @@
 
                 </a>
 
-
-                <a href="https://wa.me/919999999999"
+                <a href="#"
+                   id="whatsappButton"
                    class="whatsapp-btn"
                    target="_blank">
 
@@ -406,30 +396,16 @@
     </div>
 
 
-    <!-- DESCRIPTION -->
-
     <div class="section-box">
 
         <h2>
             Property Description
         </h2>
 
-        <p>
-
-            Beautiful 2 BHK apartment located in a
-            well-developed residential community in
-            Greater Noida West.
-
-            The property offers comfortable living,
-            good connectivity and access to modern
-            society amenities.
-
-        </p>
+        <p id="propertyDescription"></p>
 
     </div>
 
-
-    <!-- AMENITIES -->
 
     <div class="section-box">
 
@@ -437,47 +413,10 @@
             Amenities
         </h2>
 
-
-        <div class="amenities">
-
-            <div class="amenity">
-                🏊 Swimming Pool
-            </div>
-
-            <div class="amenity">
-                🏋️ Gymnasium
-            </div>
-
-            <div class="amenity">
-                🌳 Landscaped Garden
-            </div>
-
-            <div class="amenity">
-                🔒 24x7 Security
-            </div>
-
-            <div class="amenity">
-                🚗 Covered Parking
-            </div>
-
-            <div class="amenity">
-                ⚡ Power Backup
-            </div>
-
-            <div class="amenity">
-                🛗 High-Speed Lifts
-            </div>
-
-            <div class="amenity">
-                🏠 Clubhouse
-            </div>
-
-        </div>
+        <div class="amenities" id="amenitiesList"></div>
 
     </div>
 
-
-    <!-- LOCATION -->
 
     <div class="section-box">
 
@@ -485,9 +424,7 @@
             Location
         </h2>
 
-        <p>
-            Greater Noida West, Uttar Pradesh
-        </p>
+        <p id="locationText"></p>
 
         <div style="
             margin-top:20px;
@@ -507,11 +444,8 @@
 
     </div>
 
-
 </div>
 
-
-<!-- CTA -->
 
 <section class="cta">
 
@@ -531,8 +465,6 @@
 </section>
 
 
-<!-- FOOTER -->
-
 <footer>
 
     <h3>
@@ -548,6 +480,393 @@
     </p>
 
 </footer>
+
+
+<script>
+
+
+const properties = {
+
+
+    /* ================= BUY ================= */
+
+
+    buy1: {
+
+        title: "2 BHK Apartment",
+
+        location: "Greater Noida West",
+
+        price: "₹80 Lakh onwards",
+
+        type: "Apartment",
+
+        bhk: "2 BHK",
+
+        area: "1,050 sq.ft.",
+
+        floor: "8th Floor",
+
+        parking: "1 Covered",
+
+        furnishing: "Semi Furnished",
+
+        description:
+        "Beautiful 2 BHK apartment available for sale in Greater Noida West. The property offers comfortable living space, good connectivity and access to modern society amenities.",
+
+        amenities: [
+            "🏊 Swimming Pool",
+            "🏋️ Gymnasium",
+            "🌳 Landscaped Garden",
+            "🔒 24x7 Security",
+            "🚗 Covered Parking",
+            "⚡ Power Backup",
+            "🛗 High-Speed Lifts",
+            "🏠 Clubhouse"
+        ]
+
+    },
+
+
+    buy2: {
+
+        title: "3 BHK Apartment",
+
+        location: "Noida",
+
+        price: "₹1.10 Crore onwards",
+
+        type: "Apartment",
+
+        bhk: "3 BHK",
+
+        area: "1,450 sq.ft.",
+
+        floor: "To be updated",
+
+        parking: "To be updated",
+
+        furnishing: "To be updated",
+
+        description:
+        "Spacious 3 BHK apartment available for sale in Noida. Contact RealtyAdda for complete property details, availability and site visit.",
+
+        amenities: [
+            "🏊 Swimming Pool",
+            "🏋️ Gymnasium",
+            "🌳 Garden",
+            "🔒 24x7 Security",
+            "🚗 Parking",
+            "⚡ Power Backup",
+            "🛗 Lifts",
+            "🏠 Clubhouse"
+        ]
+
+    },
+
+
+    buy3: {
+
+        title: "3 BHK Apartment",
+
+        location: "Greater Noida",
+
+        price: "₹1.20 Crore onwards",
+
+        type: "Apartment",
+
+        bhk: "3 BHK",
+
+        area: "1,600 sq.ft.",
+
+        floor: "To be updated",
+
+        parking: "To be updated",
+
+        furnishing: "To be updated",
+
+        description:
+        "Spacious 3 BHK residential apartment available for sale in Greater Noida. Contact RealtyAdda for complete property details and site visit.",
+
+        amenities: [
+            "🏊 Swimming Pool",
+            "🏋️ Gymnasium",
+            "🌳 Garden",
+            "🔒 24x7 Security",
+            "🚗 Parking",
+            "⚡ Power Backup",
+            "🛗 Lifts",
+            "🏠 Clubhouse"
+        ]
+
+    },
+
+
+    /* ================= RENT ================= */
+
+
+    rent1: {
+
+        title: "2 BHK Apartment",
+
+        location: "ATS Dolce, Greater Noida West",
+
+        price: "₹22,000 / Month",
+
+        type: "Apartment",
+
+        bhk: "2 BHK",
+
+        area: "1,050 sq.ft.",
+
+        floor: "To be updated",
+
+        parking: "1 Parking",
+
+        furnishing: "Semi Furnished",
+
+        description:
+        "Beautiful 2 BHK apartment available for rent in ATS Dolce, Greater Noida West. Suitable for families with semi-furnished interiors and dedicated parking.",
+
+        amenities: [
+            "🏊 Swimming Pool",
+            "🏋️ Gymnasium",
+            "🌳 Landscaped Garden",
+            "🔒 24x7 Security",
+            "🚗 Parking",
+            "⚡ Power Backup",
+            "🛗 Lifts",
+            "🏠 Clubhouse"
+        ]
+
+    },
+
+
+    rent2: {
+
+        title: "3 BHK Apartment",
+
+        location: "Gaur City, Greater Noida West",
+
+        price: "₹30,000 / Month",
+
+        type: "Apartment",
+
+        bhk: "3 BHK",
+
+        area: "1,450 sq.ft.",
+
+        floor: "To be updated",
+
+        parking: "1 Parking",
+
+        furnishing: "Semi Furnished",
+
+        description:
+        "Spacious 3 BHK apartment available for rent in Gaur City, Greater Noida West. The property offers comfortable living space and dedicated parking.",
+
+        amenities: [
+            "🏊 Swimming Pool",
+            "🏋️ Gymnasium",
+            "🌳 Garden",
+            "🔒 24x7 Security",
+            "🚗 Parking",
+            "⚡ Power Backup",
+            "🛗 Lifts",
+            "🏠 Clubhouse"
+        ]
+
+    },
+
+
+    rent3: {
+
+        title: "3 BHK Luxury Apartment",
+
+        location: "Mahagun Mywoods, Greater Noida West",
+
+        price: "₹38,000 / Month",
+
+        type: "Luxury Apartment",
+
+        bhk: "3 BHK",
+
+        area: "1,650 sq.ft.",
+
+        floor: "To be updated",
+
+        parking: "1 Parking",
+
+        furnishing: "Fully Furnished",
+
+        description:
+        "Premium fully furnished 3 BHK luxury apartment available for rent in Mahagun Mywoods, Greater Noida West. Ideal for families looking for a spacious and comfortable home.",
+
+        amenities: [
+            "🏊 Swimming Pool",
+            "🏋️ Gymnasium",
+            "🌳 Landscaped Garden",
+            "🔒 24x7 Security",
+            "🚗 Parking",
+            "⚡ Power Backup",
+            "🛗 High-Speed Lifts",
+            "🏠 Clubhouse"
+        ]
+
+    }
+
+};
+
+
+/* ================= GET PROPERTY ================= */
+
+
+const params = new URLSearchParams(window.location.search);
+
+const propertyId = params.get("id");
+
+const property = properties[propertyId];
+
+
+if (property) {
+
+
+    document.title =
+        property.title + " | RealtyAdda";
+
+
+    document.getElementById("propertyTitle").innerText =
+        property.title;
+
+
+    document.getElementById("propertyLocation").innerText =
+        property.location;
+
+
+    document.getElementById("propertyPrice").innerText =
+        property.price;
+
+
+    document.getElementById("propertyType").innerText =
+        property.type;
+
+
+    document.getElementById("propertyBhk").innerText =
+        property.bhk;
+
+
+    document.getElementById("propertyArea").innerText =
+        property.area;
+
+
+    document.getElementById("propertyFloor").innerText =
+        property.floor;
+
+
+    document.getElementById("propertyParking").innerText =
+        property.parking;
+
+
+    document.getElementById("propertyFurnishing").innerText =
+        property.furnishing;
+
+
+    document.getElementById("propertyDescription").innerText =
+        property.description;
+
+
+    document.getElementById("locationText").innerText =
+        property.location;
+
+
+    /* BREADCRUMB */
+
+
+    if (propertyId.startsWith("rent")) {
+
+        document.getElementById("breadcrumb").innerText =
+            "Home / Rent / Property Details";
+
+        document.getElementById("backButton").href =
+            "rent.html";
+
+    } else {
+
+        document.getElementById("breadcrumb").innerText =
+            "Home / Buy / Property Details";
+
+        document.getElementById("backButton").href =
+            "buy.html";
+
+    }
+
+
+    /* AMENITIES */
+
+
+    const amenitiesList =
+        document.getElementById("amenitiesList");
+
+
+    property.amenities.forEach(function(amenity) {
+
+        const div =
+            document.createElement("div");
+
+        div.className = "amenity";
+
+        div.innerText = amenity;
+
+        amenitiesList.appendChild(div);
+
+    });
+
+
+    /* WHATSAPP */
+
+
+    const whatsappText =
+        "Hello RealtyAdda, I am interested in " +
+        property.title +
+        " at " +
+        property.location +
+        ". Please share more details.";
+
+
+    document.getElementById("whatsappButton").href =
+        "https://wa.me/?text=" +
+        encodeURIComponent(whatsappText);
+
+
+    /* IMAGE PLACEHOLDER */
+
+
+    document.getElementById("propertyImage").innerText =
+        "Property Image";
+
+
+} else {
+
+
+    document.getElementById("propertyTitle").innerText =
+        "Property Not Found";
+
+
+    document.getElementById("propertyLocation").innerText =
+        "Please return to Buy or Rent and select a property.";
+
+
+    document.getElementById("propertyPrice").innerText =
+        "";
+
+
+    document.getElementById("propertyDescription").innerText =
+        "The property you are looking for is not available.";
+
+}
+
+
+</script>
 
 
 </body>
