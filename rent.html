@@ -1,0 +1,368 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent Properties | RealtyAdda</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f6f8;
+            color: #222;
+        }
+
+        header {
+            background: #ffffff;
+            padding: 18px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #e63946;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            margin-left: 22px;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            color: #e63946;
+        }
+
+        .hero {
+            background: #1d3557;
+            color: white;
+            padding: 55px 6%;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 18px;
+        }
+
+        .filters {
+            background: white;
+            margin: -25px auto 35px;
+            width: 88%;
+            padding: 22px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 12px;
+        }
+
+        .filters input,
+        .filters select {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            width: 100%;
+        }
+
+        .search-btn {
+            background: #e63946;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 12px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .search-btn:hover {
+            background: #c92f3b;
+        }
+
+        .container {
+            width: 88%;
+            margin: auto;
+        }
+
+        .section-title {
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+
+        .properties {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 22px;
+            padding-bottom: 50px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+        }
+
+        .property-img {
+            height: 190px;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            font-size: 16px;
+        }
+
+        .card-content {
+            padding: 18px;
+        }
+
+        .card h3 {
+            margin-bottom: 8px;
+            font-size: 20px;
+        }
+
+        .rent {
+            color: #e63946;
+            font-size: 21px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .details {
+            color: #666;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .view-btn,
+        .whatsapp-btn {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .view-btn {
+            background: #1d3557;
+            color: white;
+        }
+
+        .whatsapp-btn {
+            background: #25d366;
+            color: white;
+        }
+
+        footer {
+            background: #1d3557;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            nav a {
+                margin-left: 8px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">RealtyAdda</div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="buy.html">Buy</a>
+        <a href="rent.html">Rent</a>
+        <a href="#">Sell</a>
+        <a href="#">Contact</a>
+    </nav>
+</header>
+
+
+<section class="hero">
+    <h1>Find Your Perfect Rental Property</h1>
+    <p>Flats, apartments and homes for rent across Noida & Greater Noida</p>
+</section>
+
+
+<div class="filters">
+
+    <input type="text" placeholder="Location">
+
+    <input type="text" placeholder="Society / Project">
+
+    <select>
+        <option>Select BHK</option>
+        <option>1 BHK</option>
+        <option>2 BHK</option>
+        <option>3 BHK</option>
+        <option>4 BHK</option>
+        <option>5+ BHK</option>
+    </select>
+
+    <select>
+        <option>Monthly Rent</option>
+        <option>Below ₹15,000</option>
+        <option>₹15,000 - ₹25,000</option>
+        <option>₹25,000 - ₹40,000</option>
+        <option>₹40,000 - ₹60,000</option>
+        <option>Above ₹60,000</option>
+    </select>
+
+    <select>
+        <option>Furnishing</option>
+        <option>Unfurnished</option>
+        <option>Semi Furnished</option>
+        <option>Fully Furnished</option>
+    </select>
+
+    <select>
+        <option>Parking</option>
+        <option>1 Parking</option>
+        <option>2 Parking</option>
+        <option>Multiple Parking</option>
+    </select>
+
+    <button class="search-btn">Search</button>
+
+</div>
+
+
+<div class="container">
+
+    <h2 class="section-title">Properties Available for Rent</h2>
+
+    <div class="properties">
+
+        <div class="card">
+
+            <div class="property-img">
+                Property Image
+            </div>
+
+            <div class="card-content">
+
+                <h3>2 BHK Apartment</h3>
+
+                <div class="rent">₹22,000 / Month</div>
+
+                <div class="details">
+                    <strong>ATS Dolce</strong><br>
+                    Greater Noida West<br>
+                    2 BHK • 1,050 sq.ft.<br>
+                    Semi Furnished • 1 Parking
+                </div>
+
+                <div class="buttons">
+                    <a href="#" class="view-btn">View</a>
+                    <a href="#" class="whatsapp-btn">WhatsApp</a>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="property-img">
+                Property Image
+            </div>
+
+            <div class="card-content">
+
+                <h3>3 BHK Apartment</h3>
+
+                <div class="rent">₹30,000 / Month</div>
+
+                <div class="details">
+                    <strong>Gaur City</strong><br>
+                    Greater Noida West<br>
+                    3 BHK • 1,450 sq.ft.<br>
+                    Semi Furnished • 1 Parking
+                </div>
+
+                <div class="buttons">
+                    <a href="#" class="view-btn">View</a>
+                    <a href="#" class="whatsapp-btn">WhatsApp</a>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="property-img">
+                Property Image
+            </div>
+
+            <div class="card-content">
+
+                <h3>3 BHK Luxury Apartment</h3>
+
+                <div class="rent">₹38,000 / Month</div>
+
+                <div class="details">
+                    <strong>Mahagun Mywoods</strong><br>
+                    Greater Noida West<br>
+                    3 BHK • 1,650 sq.ft.<br>
+                    Fully Furnished • 1 Parking
+                </div>
+
+                <div class="buttons">
+                    <a href="#" class="view-btn">View</a>
+                    <a href="#" class="whatsapp-btn">WhatsApp</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<footer>
+    © 2026 RealtyAdda.in | Your Trusted Real Estate Platform
+</footer>
+
+</body>
+</html>
+```
