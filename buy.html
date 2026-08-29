@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Buy Property in Noida & Greater Noida | RealtyAdda</title>
+
+    <meta name="description"
+          content="Find apartments, villas, plots and residential properties for sale in Noida, Greater Noida and Greater Noida West.">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f7f7;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        header {
+            background: white;
+            padding: 18px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #222;
+            margin-left: 18px;
+            font-weight: 600;
+        }
+
+        .hero {
+            background: #eeeeee;
+            padding: 60px 6%;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+
+        .filters {
+            max-width: 1000px;
+            margin: 30px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filters select,
+        .filters input,
+        .filters button {
+            padding: 13px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .filters button {
+            background: #111;
+            color: white;
+            cursor: pointer;
+        }
+
+        section {
+            padding: 50px 6%;
+        }
+
+        section h2 {
+            margin-bottom: 30px;
+        }
+
+        .properties {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .property {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        .property-image {
+            height: 180px;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+
+        .property-content {
+            padding: 20px;
+        }
+
+        .property-content h3 {
+            margin-bottom: 8px;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .property a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 15px;
+            background: #111;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        footer {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 35px;
+        }
+
+        @media(max-width:768px) {
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 5px;
+            }
+
+            .hero h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">RealtyAdda</div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="buy.html">Buy</a>
+        <a href="rent.html">Rent</a>
+        <a href="projects.html">Projects</a>
+        <a href="societies.html">Societies</a>
+        <a href="post-property.html">Post Property</a>
+    </nav>
+
+</header>
+
+
+<div class="hero">
+
+    <h1>Buy Property in NCR</h1>
+
+    <p>
+        Find apartments, villas, plots and properties for sale
+        in Noida, Greater Noida and Greater Noida West.
+    </p>
+
+    <div class="filters">
+
+        <select>
+            <option>Location</option>
+            <option>Noida</option>
+            <option>Greater Noida</option>
+            <option>Greater Noida West</option>
+            <option>Ghaziabad</option>
+            <option>Yamuna Expressway</option>
+        </select>
+
+        <select>
+            <option>Property Type</option>
+            <option>Apartment</option>
+            <option>Villa</option>
+            <option>Plot</option>
+            <option>Commercial</option>
+        </select>
+
+        <select>
+            <option>BHK</option>
+            <option>1 BHK</option>
+            <option>2 BHK</option>
+            <option>3 BHK</option>
+            <option>4 BHK</option>
+            <option>5+ BHK</option>
+        </select>
+
+        <select>
+            <option>Budget</option>
+            <option>Under ₹50 Lakh</option>
+            <option>₹50 Lakh - ₹1 Crore</option>
+            <option>₹1 - ₹2 Crore</option>
+            <option>Above ₹2 Crore</option>
+        </select>
+
+        <button>SEARCH</button>
+
+    </div>
+
+</div>
+
+
+<section>
+
+    <h2>Properties for Sale</h2>
+
+    <div class="properties">
+
+        <div class="property">
+
+            <div class="property-image">
+                Property Image
+            </div>
+
+            <div class="property-content">
+
+                <h3>2 BHK Apartment</h3>
+
+                <p>Greater Noida West</p>
+
+                <p>Approx. 1050 sq.ft.</p>
+
+                <div class="price">
+                    ₹80 Lakh onwards
+                </div>
+
+                <a href="#">View Property</a>
+
+            </div>
+
+        </div>
+
+
+        <div class="property">
+
+            <div class="property-image">
+                Property Image
+            </div>
+
+            <div class="property-content">
+
+                <h3>3 BHK Apartment</h3>
+
+                <p>Noida</p>
+
+                <p>Approx. 1450 sq.ft.</p>
+
+                <div class="price">
+                    ₹1.10 Crore onwards
+                </div>
+
+                <a href="#">View Property</a>
+
+            </div>
+
+        </div>
+
+
+        <div class="property">
+
+            <div class="property-image">
+                Property Image
+            </div>
+
+            <div class="property-content">
+
+                <h3>3 BHK Apartment</h3>
+
+                <p>Greater Noida</p>
+
+                <p>Approx. 1600 sq.ft.</p>
+
+                <div class="price">
+                    ₹1.20 Crore onwards
+                </div>
+
+                <a href="#">View Property</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <h3>RealtyAdda</h3>
+
+    <p>Find. Compare. Connect.</p>
+
+    <p>© 2026 RealtyAdda. All Rights Reserved.</p>
+
+</footer>
+
+</body>
+</html>
