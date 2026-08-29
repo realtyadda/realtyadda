@@ -1,15 +1,18 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>RealtyAdda | Buy, Rent & New Projects in NCR</title>
 
     <meta name="description"
-          content="Find properties, apartments, new projects and rental properties in Noida, Greater Noida, Greater Noida West and NCR with RealtyAdda.">
+          content="Find properties, apartments, new projects and rental properties in Noida, Greater Noida and NCR with RealtyAdda.">
 
     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -30,53 +33,64 @@
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .logo {
-            font-size: 28px;
+            font-size: 29px;
             font-weight: bold;
+            color: #e63946;
         }
 
         nav a {
             text-decoration: none;
             color: #222;
-            margin-left: 22px;
+            margin-left: 20px;
             font-weight: 600;
         }
 
+        nav a:hover {
+            color: #e63946;
+        }
+
         .post-btn {
-            background: #111;
+            background: #e63946;
             color: #fff !important;
             padding: 10px 16px;
             border-radius: 6px;
         }
 
+        /* HERO */
+
         .hero {
-            padding: 80px 6%;
+            padding: 85px 6%;
             text-align: center;
-            background: #eeeeee;
+            background: #1d3557;
+            color: white;
         }
 
         .hero h1 {
             font-size: 44px;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .hero p {
             font-size: 19px;
-            margin-bottom: 30px;
+            margin-bottom: 32px;
         }
 
         .search-box {
             background: #fff;
-            max-width: 950px;
+            max-width: 1050px;
             margin: auto;
             padding: 20px;
             border-radius: 10px;
             display: flex;
             gap: 10px;
             flex-wrap: wrap;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.20);
         }
 
         .search-box select,
@@ -87,14 +101,22 @@
             border-radius: 6px;
             flex: 1;
             min-width: 160px;
+            font-size: 15px;
         }
 
         .search-box button {
-            background: #111;
+            background: #e63946;
             color: #fff;
             cursor: pointer;
             font-weight: bold;
+            border: none;
         }
+
+        .search-box button:hover {
+            background: #c92f3b;
+        }
+
+        /* GENERAL SECTIONS */
 
         section {
             padding: 60px 6%;
@@ -104,12 +126,15 @@
             text-align: center;
             margin-bottom: 35px;
             font-size: 32px;
+            color: #1d3557;
         }
 
         .cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 20px;
+            max-width: 1200px;
+            margin: auto;
         }
 
         .card {
@@ -117,41 +142,122 @@
             padding: 25px;
             border-radius: 10px;
             box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+            transition: 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
         }
 
         .card h3 {
             margin-bottom: 10px;
+            color: #1d3557;
         }
+
+        .card p {
+            color: #555;
+        }
+
+        /* LOCATION CARDS */
+
+        .location-card {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .location-card h3 {
+            color: #e63946;
+        }
+
+        /* PROPERTY CARDS */
 
         .property-card {
-            min-height: 180px;
+            padding: 0;
+            overflow: hidden;
         }
 
+        .property-image {
+            height: 180px;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+        }
+
+        .property-content {
+            padding: 20px;
+        }
+
+        .price {
+            color: #e63946;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 8px 0;
+        }
+
+        .view-btn {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 9px 15px;
+            background: #1d3557;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        /* SERVICES */
+
+        .services {
+            background: #ffffff;
+        }
+
+        /* CTA */
+
         .cta {
-            background: #eeeeee;
+            background: #e9ecef;
             text-align: center;
         }
 
         .cta h2 {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
+        }
+
+        .cta p {
+            margin-bottom: 20px;
         }
 
         .cta a {
             display: inline-block;
-            margin-top: 20px;
-            padding: 14px 24px;
-            background: #111;
+            padding: 14px 25px;
+            background: #e63946;
             color: #fff;
             text-decoration: none;
             border-radius: 6px;
+            font-weight: bold;
         }
 
+        /* FOOTER */
+
         footer {
-            background: #111;
+            background: #1d3557;
             color: #fff;
             padding: 40px 6%;
             text-align: center;
         }
+
+        footer h3 {
+            font-size: 25px;
+            margin-bottom: 8px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        /* MOBILE */
 
         @media (max-width: 768px) {
 
@@ -160,23 +266,47 @@
                 gap: 15px;
             }
 
+            nav {
+                text-align: center;
+            }
+
             nav a {
                 margin: 5px;
                 display: inline-block;
+                font-size: 14px;
+            }
+
+            .hero {
+                padding: 60px 5%;
             }
 
             .hero h1 {
                 font-size: 32px;
             }
 
-            .hero {
-                padding: 55px 5%;
+            .hero p {
+                font-size: 17px;
             }
+
+            section {
+                padding: 45px 5%;
+            }
+
+            section h2 {
+                font-size: 27px;
+            }
+
         }
+
     </style>
+
 </head>
 
+
 <body>
+
+
+<!-- HEADER -->
 
 <header>
 
@@ -185,55 +315,92 @@
     </div>
 
     <nav>
-        <a href="#">Home</a>
-        <a href="#">Buy</a>
-        <a href="#">Rent</a>
+
+        <a href="index.html">Home</a>
+
+        <a href="buy.html">Buy</a>
+
+        <a href="rent.html">Rent</a>
+
         <a href="#">Projects</a>
+
         <a href="#">Societies</a>
-        <a href="#" class="post-btn">Post Property</a>
+
+        <a href="sell.html" class="post-btn">
+            Post Property
+        </a>
+
     </nav>
 
 </header>
 
 
+<!-- HERO -->
+
 <section class="hero">
 
-    <h1>Find Your Dream Property in NCR</h1>
+    <h1>
+        Find Your Dream Property in NCR
+    </h1>
 
     <p>
         Buy • Rent • New Projects • Resale Properties
     </p>
 
+
     <div class="search-box">
 
         <select>
+
             <option>Buy</option>
+
             <option>Rent</option>
+
             <option>New Projects</option>
+
         </select>
+
 
         <input
             type="text"
-            placeholder="Noida / Greater Noida / Ghaziabad">
+            placeholder="Search Noida, Greater Noida, Ghaziabad...">
+
 
         <select>
+
             <option>Property Type</option>
+
             <option>Apartment</option>
+
             <option>Villa</option>
+
+            <option>Independent House</option>
+
             <option>Plot</option>
+
             <option>Commercial</option>
+
         </select>
+
 
         <select>
+
             <option>BHK</option>
+
             <option>1 BHK</option>
+
             <option>2 BHK</option>
+
             <option>3 BHK</option>
+
             <option>4 BHK</option>
+
             <option>5+ BHK</option>
+
         </select>
 
-        <button>
+
+        <button onclick="searchProperty()">
             SEARCH
         </button>
 
@@ -242,135 +409,375 @@
 </section>
 
 
+<!-- POPULAR LOCATIONS -->
+
 <section>
 
-    <h2>Explore Popular Locations</h2>
+    <h2>
+        Explore Popular Locations
+    </h2>
+
 
     <div class="cards">
 
-        <div class="card">
-            <h3>Noida</h3>
-            <p>
-                Explore residential and commercial properties
-                across prime sectors of Noida.
-            </p>
-        </div>
 
-        <div class="card">
-            <h3>Greater Noida West</h3>
-            <p>
-                Discover apartments, societies, resale
-                properties and new projects.
-            </p>
-        </div>
+        <a href="buy.html" class="card location-card">
 
-        <div class="card">
-            <h3>Greater Noida</h3>
-            <p>
-                Find homes, plots and investment opportunities
-                across Greater Noida.
-            </p>
-        </div>
+            <h3>
+                Noida
+            </h3>
 
-        <div class="card">
-            <h3>Ghaziabad</h3>
+            <p>
+                Explore residential and commercial
+                properties across prime sectors of Noida.
+            </p>
+
+        </a>
+
+
+        <a href="buy.html" class="card location-card">
+
+            <h3>
+                Greater Noida West
+            </h3>
+
+            <p>
+                Discover apartments, societies,
+                resale properties and new projects.
+            </p>
+
+        </a>
+
+
+        <a href="buy.html" class="card location-card">
+
+            <h3>
+                Greater Noida
+            </h3>
+
+            <p>
+                Find homes, plots and investment
+                opportunities across Greater Noida.
+            </p>
+
+        </a>
+
+
+        <a href="buy.html" class="card location-card">
+
+            <h3>
+                Ghaziabad
+            </h3>
+
             <p>
                 Explore residential and commercial
                 properties across Ghaziabad.
             </p>
-        </div>
+
+        </a>
+
 
     </div>
 
 </section>
 
 
+<!-- FEATURED PROPERTIES -->
+
 <section>
 
-    <h2>Featured Properties</h2>
+    <h2>
+        Featured Properties
+    </h2>
+
 
     <div class="cards">
 
-        <div class="card property-card">
-            <h3>2 BHK Apartment</h3>
-            <p>Greater Noida West</p>
-            <p>₹80 Lakh onwards</p>
-        </div>
 
         <div class="card property-card">
-            <h3>3 BHK Apartment</h3>
-            <p>Noida</p>
-            <p>₹1.10 Crore onwards</p>
+
+            <div class="property-image">
+                Property Image
+            </div>
+
+            <div class="property-content">
+
+                <h3>
+                    2 BHK Apartment
+                </h3>
+
+                <p>
+                    Greater Noida West
+                </p>
+
+                <div class="price">
+                    ₹80 Lakh onwards
+                </div>
+
+                <p>
+                    Spacious apartment • Residential Society
+                </p>
+
+                <a href="buy.html" class="view-btn">
+                    View Property
+                </a>
+
+            </div>
+
         </div>
 
+
         <div class="card property-card">
-            <h3>2 BHK for Rent</h3>
-            <p>Greater Noida West</p>
-            <p>₹20,000/month onwards</p>
+
+            <div class="property-image">
+                Property Image
+            </div>
+
+            <div class="property-content">
+
+                <h3>
+                    3 BHK Apartment
+                </h3>
+
+                <p>
+                    Noida
+                </p>
+
+                <div class="price">
+                    ₹1.10 Crore onwards
+                </div>
+
+                <p>
+                    Premium location • Ready to move
+                </p>
+
+                <a href="buy.html" class="view-btn">
+                    View Property
+                </a>
+
+            </div>
+
         </div>
+
+
+        <div class="card property-card">
+
+            <div class="property-image">
+                Property Image
+            </div>
+
+            <div class="property-content">
+
+                <h3>
+                    2 BHK for Rent
+                </h3>
+
+                <p>
+                    Greater Noida West
+                </p>
+
+                <div class="price">
+                    ₹20,000/month onwards
+                </div>
+
+                <p>
+                    Semi furnished • 1 Parking
+                </p>
+
+                <a href="rent.html" class="view-btn">
+                    View Rental
+                </a>
+
+            </div>
+
+        </div>
+
 
     </div>
 
 </section>
 
 
-<section>
+<!-- SERVICES -->
 
-    <h2>Why Choose RealtyAdda?</h2>
+<section class="services">
+
+    <h2>
+        What Can You Do on RealtyAdda?
+    </h2>
+
 
     <div class="cards">
+
+
+        <a href="buy.html" class="card location-card">
+
+            <h3>
+                🏠 Buy Property
+            </h3>
+
+            <p>
+                Search apartments, villas, plots
+                and commercial properties.
+            </p>
+
+        </a>
+
+
+        <a href="rent.html" class="card location-card">
+
+            <h3>
+                🔑 Rent Property
+            </h3>
+
+            <p>
+                Find homes and apartments
+                available for rent.
+            </p>
+
+        </a>
+
+
+        <a href="sell.html" class="card location-card">
+
+            <h3>
+                📢 Sell Property
+            </h3>
+
+            <p>
+                List your property and reach
+                potential buyers.
+            </p>
+
+        </a>
+
+
+        <a href="contact.html" class="card location-card">
+
+            <h3>
+                🤝 Contact RealtyAdda
+            </h3>
+
+            <p>
+                Talk to our team regarding
+                your property requirement.
+            </p>
+
+        </a>
+
+
+    </div>
+
+</section>
+
+
+<!-- WHY REALTYADDA -->
+
+<section>
+
+    <h2>
+        Why Choose RealtyAdda?
+    </h2>
+
+
+    <div class="cards">
+
 
         <div class="card">
-            <h3>Verified Listings</h3>
+
+            <h3>
+                Verified Listings
+            </h3>
+
             <p>
                 We aim to provide reliable property
                 information and reduce fake listings.
             </p>
+
         </div>
 
+
         <div class="card">
-            <h3>NCR Expertise</h3>
+
+            <h3>
+                NCR Expertise
+            </h3>
+
             <p>
                 Focused initially on Noida,
                 Greater Noida and surrounding NCR markets.
             </p>
+
         </div>
 
+
         <div class="card">
-            <h3>Easy Enquiries</h3>
+
+            <h3>
+                Easy Enquiries
+            </h3>
+
             <p>
                 Connect easily with owners,
                 agents and developers.
             </p>
+
         </div>
+
+
+        <div class="card">
+
+            <h3>
+                Property Discovery
+            </h3>
+
+            <p>
+                Search residential, commercial,
+                resale and rental opportunities.
+            </p>
+
+        </div>
+
 
     </div>
 
 </section>
 
 
+<!-- CTA -->
+
 <section class="cta">
 
-    <h2>Sell or Rent Your Property</h2>
+    <h2>
+        Sell or Rent Your Property
+    </h2>
 
     <p>
         List your property with RealtyAdda
         and reach potential buyers and tenants.
     </p>
 
-    <a href="#">
+    <a href="sell.html">
         POST YOUR PROPERTY
     </a>
 
 </section>
 
 
+<!-- FOOTER -->
+
 <footer>
 
-    <h3>RealtyAdda</h3>
+    <h3>
+        RealtyAdda
+    </h3>
 
     <p>
         Find. Compare. Connect.
+    </p>
+
+    <p>
+        Buy • Rent • Sell • New Projects
     </p>
 
     <p>
@@ -379,5 +786,33 @@
 
 </footer>
 
+
+<script>
+
+    function searchProperty() {
+
+        const searchType =
+            document.querySelector(".search-box select").value;
+
+        if (searchType === "Rent") {
+
+            window.location.href = "rent.html";
+
+        } else if (searchType === "Buy") {
+
+            window.location.href = "buy.html";
+
+        } else if (searchType === "New Projects") {
+
+            alert("New Projects section will be available in the next step.");
+
+        }
+
+    }
+
+</script>
+
+
 </body>
 </html>
+```
