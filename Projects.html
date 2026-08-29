@@ -1,0 +1,758 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>New Projects | RealtyAdda</title>
+
+    <meta name="description"
+          content="Explore new residential and commercial real estate projects in Noida, Greater Noida and NCR with RealtyAdda.">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f6f8;
+            color: #222;
+        }
+
+        /* HEADER */
+
+        header {
+            background: #ffffff;
+            padding: 18px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            font-size: 29px;
+            font-weight: bold;
+            color: #e63946;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #222;
+            margin-left: 18px;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            color: #e63946;
+        }
+
+        .post-btn {
+            background: #e63946;
+            color: #fff !important;
+            padding: 10px 15px;
+            border-radius: 6px;
+        }
+
+        /* HERO */
+
+        .hero {
+            background: #1d3557;
+            color: white;
+            text-align: center;
+            padding: 65px 20px;
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            font-size: 18px;
+        }
+
+        /* FILTERS */
+
+        .filters {
+            background: white;
+            width: 88%;
+            max-width: 1100px;
+            margin: -25px auto 40px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 12px;
+        }
+
+        .filters input,
+        .filters select,
+        .filters button {
+            width: 100%;
+            padding: 13px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+
+        .filters button {
+            background: #e63946;
+            color: white;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* PROJECTS */
+
+        .container {
+            width: 88%;
+            max-width: 1200px;
+            margin: auto;
+            padding-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            color: #1d3557;
+            margin-bottom: 22px;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 22px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.10);
+        }
+
+        .project-image {
+            height: 190px;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-content h3 {
+            color: #1d3557;
+            margin-bottom: 8px;
+        }
+
+        .location {
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .price {
+            color: #e63946;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .details {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .enquiry-btn,
+        .details-btn {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .enquiry-btn {
+            background: #e63946;
+            color: white;
+        }
+
+        .details-btn {
+            background: #1d3557;
+            color: white;
+        }
+
+        /* CTA */
+
+        .cta {
+            background: #e9ecef;
+            text-align: center;
+            padding: 55px 20px;
+        }
+
+        .cta h2 {
+            color: #1d3557;
+            margin-bottom: 12px;
+        }
+
+        .cta a {
+            display: inline-block;
+            margin-top: 18px;
+            background: #e63946;
+            color: white;
+            text-decoration: none;
+            padding: 13px 22px;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #1d3557;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        footer h3 {
+            margin-bottom: 8px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            header {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav {
+                text-align: center;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 5px;
+                font-size: 14px;
+            }
+
+            .hero h1 {
+                font-size: 30px;
+            }
+
+            .filters {
+                width: 92%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<header>
+
+    <div class="logo">
+        RealtyAdda
+    </div>
+
+    <nav>
+
+        <a href="index.html">Home</a>
+
+        <a href="buy.html">Buy</a>
+
+        <a href="rent.html">Rent</a>
+
+        <a href="projects.html">Projects</a>
+
+        <a href="#">Societies</a>
+
+        <a href="sell.html" class="post-btn">
+            Post Property
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <h1>
+        Explore New Projects
+    </h1>
+
+    <p>
+        Discover upcoming and newly launched properties across NCR
+    </p>
+
+</section>
+
+
+<!-- FILTERS -->
+
+<div class="filters">
+
+    <input
+        type="text"
+        placeholder="Search project or location">
+
+
+    <select>
+
+        <option>Location</option>
+
+        <option>Noida</option>
+
+        <option>Greater Noida West</option>
+
+        <option>Greater Noida</option>
+
+        <option>Ghaziabad</option>
+
+    </select>
+
+
+    <select>
+
+        <option>Property Type</option>
+
+        <option>Apartment</option>
+
+        <option>Villa</option>
+
+        <option>Plot</option>
+
+        <option>Commercial</option>
+
+    </select>
+
+
+    <select>
+
+        <option>BHK</option>
+
+        <option>1 BHK</option>
+
+        <option>2 BHK</option>
+
+        <option>3 BHK</option>
+
+        <option>4 BHK</option>
+
+        <option>5+ BHK</option>
+
+    </select>
+
+
+    <select>
+
+        <option>Budget</option>
+
+        <option>Below ₹50 Lakh</option>
+
+        <option>₹50 Lakh - ₹1 Crore</option>
+
+        <option>₹1 - ₹2 Crore</option>
+
+        <option>₹2 - ₹3 Crore</option>
+
+        <option>Above ₹3 Crore</option>
+
+    </select>
+
+
+    <button onclick="searchProjects()">
+        SEARCH
+    </button>
+
+</div>
+
+
+<!-- PROJECT LIST -->
+
+<div class="container">
+
+    <h2 class="section-title">
+        Featured New Projects
+    </h2>
+
+
+    <div class="projects">
+
+
+        <!-- PROJECT 1 -->
+
+        <div class="project-card">
+
+            <div class="project-image">
+                Project Image
+            </div>
+
+            <div class="project-content">
+
+                <h3>
+                    Premium Residential Project
+                </h3>
+
+                <p class="location">
+                    Greater Noida West
+                </p>
+
+                <div class="price">
+                    ₹75 Lakh onwards
+                </div>
+
+                <p class="details">
+                    2 & 3 BHK Apartments<br>
+                    Modern amenities • Clubhouse<br>
+                    Possession details available on enquiry
+                </p>
+
+                <div class="buttons">
+
+                    <a href="contact.html"
+                       class="enquiry-btn">
+                        Enquire
+                    </a>
+
+                    <a href="contact.html"
+                       class="details-btn">
+                        View Details
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROJECT 2 -->
+
+        <div class="project-card">
+
+            <div class="project-image">
+                Project Image
+            </div>
+
+            <div class="project-content">
+
+                <h3>
+                    Luxury Apartments
+                </h3>
+
+                <p class="location">
+                    Noida
+                </p>
+
+                <div class="price">
+                    ₹1.20 Crore onwards
+                </div>
+
+                <p class="details">
+                    2, 3 & 4 BHK Apartments<br>
+                    Premium location • Modern clubhouse<br>
+                    Multiple lifestyle amenities
+                </p>
+
+                <div class="buttons">
+
+                    <a href="contact.html"
+                       class="enquiry-btn">
+                        Enquire
+                    </a>
+
+                    <a href="contact.html"
+                       class="details-btn">
+                        View Details
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROJECT 3 -->
+
+        <div class="project-card">
+
+            <div class="project-image">
+                Project Image
+            </div>
+
+            <div class="project-content">
+
+                <h3>
+                    New Launch Residences
+                </h3>
+
+                <p class="location">
+                    Greater Noida
+                </p>
+
+                <div class="price">
+                    ₹60 Lakh onwards
+                </div>
+
+                <p class="details">
+                    2 & 3 BHK Apartments<br>
+                    Swimming pool • Gym • Security<br>
+                    New launch project
+                </p>
+
+                <div class="buttons">
+
+                    <a href="contact.html"
+                       class="enquiry-btn">
+                        Enquire
+                    </a>
+
+                    <a href="contact.html"
+                       class="details-btn">
+                        View Details
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROJECT 4 -->
+
+        <div class="project-card">
+
+            <div class="project-image">
+                Project Image
+            </div>
+
+            <div class="project-content">
+
+                <h3>
+                    Premium High-Rise Living
+                </h3>
+
+                <p class="location">
+                    Greater Noida West
+                </p>
+
+                <div class="price">
+                    ₹90 Lakh onwards
+                </div>
+
+                <p class="details">
+                    3 & 4 BHK Apartments<br>
+                    High-rise towers • Clubhouse<br>
+                    Family-oriented community
+                </p>
+
+                <div class="buttons">
+
+                    <a href="contact.html"
+                       class="enquiry-btn">
+                        Enquire
+                    </a>
+
+                    <a href="contact.html"
+                       class="details-btn">
+                        View Details
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROJECT 5 -->
+
+        <div class="project-card">
+
+            <div class="project-image">
+                Project Image
+            </div>
+
+            <div class="project-content">
+
+                <h3>
+                    Residential Township
+                </h3>
+
+                <p class="location">
+                    Noida Extension
+                </p>
+
+                <div class="price">
+                    ₹55 Lakh onwards
+                </div>
+
+                <p class="details">
+                    2 & 3 BHK Apartments<br>
+                    Landscaped areas • Security<br>
+                    Multiple amenities
+                </p>
+
+                <div class="buttons">
+
+                    <a href="contact.html"
+                       class="enquiry-btn">
+                        Enquire
+                    </a>
+
+                    <a href="contact.html"
+                       class="details-btn">
+                        View Details
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROJECT 6 -->
+
+        <div class="project-card">
+
+            <div class="project-image">
+                Project Image
+            </div>
+
+            <div class="project-content">
+
+                <h3>
+                    Commercial Project
+                </h3>
+
+                <p class="location">
+                    Noida
+                </p>
+
+                <div class="price">
+                    ₹35 Lakh onwards
+                </div>
+
+                <p class="details">
+                    Retail shops • Office spaces<br>
+                    Prime commercial location<br>
+                    Suitable for investment
+                </p>
+
+                <div class="buttons">
+
+                    <a href="contact.html"
+                       class="enquiry-btn">
+                        Enquire
+                    </a>
+
+                    <a href="contact.html"
+                       class="details-btn">
+                        View Details
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<!-- CTA -->
+
+<section class="cta">
+
+    <h2>
+        Looking for a Specific Project?
+    </h2>
+
+    <p>
+        Tell RealtyAdda what you're looking for
+        and our team can help you find suitable options.
+    </p>
+
+    <a href="contact.html">
+        Send Your Requirement
+    </a>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <h3>
+        RealtyAdda
+    </h3>
+
+    <p>
+        Find. Compare. Connect.
+    </p>
+
+    <p>
+        © 2026 RealtyAdda. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+<script>
+
+    function searchProjects() {
+
+        alert(
+            "Project search will become fully functional when the RealtyAdda property database is connected."
+        );
+
+    }
+
+</script>
+
+
+</body>
+
+</html>
+```
