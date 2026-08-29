@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RealtyAdda | Buy, Rent & New Projects in NCR</title>
+
+    <meta name="description"
+          content="Find properties, apartments, new projects and rental properties in Noida, Greater Noida, Greater Noida West and NCR with RealtyAdda.">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            color: #222;
+            background: #f7f7f7;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #ffffff;
+            padding: 18px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #222;
+            margin-left: 22px;
+            font-weight: 600;
+        }
+
+        .post-btn {
+            background: #111;
+            color: #fff !important;
+            padding: 10px 16px;
+            border-radius: 6px;
+        }
+
+        .hero {
+            padding: 80px 6%;
+            text-align: center;
+            background: #eeeeee;
+        }
+
+        .hero h1 {
+            font-size: 44px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 19px;
+            margin-bottom: 30px;
+        }
+
+        .search-box {
+            background: #fff;
+            max-width: 950px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+        }
+
+        .search-box select,
+        .search-box input,
+        .search-box button {
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            flex: 1;
+            min-width: 160px;
+        }
+
+        .search-box button {
+            background: #111;
+            color: #fff;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        section {
+            padding: 60px 6%;
+        }
+
+        section h2 {
+            text-align: center;
+            margin-bottom: 35px;
+            font-size: 32px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+        }
+
+        .property-card {
+            min-height: 180px;
+        }
+
+        .cta {
+            background: #eeeeee;
+            text-align: center;
+        }
+
+        .cta h2 {
+            margin-bottom: 15px;
+        }
+
+        .cta a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 24px;
+            background: #111;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        footer {
+            background: #111;
+            color: #fff;
+            padding: 40px 6%;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 5px;
+                display: inline-block;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero {
+                padding: 55px 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        RealtyAdda
+    </div>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Buy</a>
+        <a href="#">Rent</a>
+        <a href="#">Projects</a>
+        <a href="#">Societies</a>
+        <a href="#" class="post-btn">Post Property</a>
+    </nav>
+
+</header>
+
+
+<section class="hero">
+
+    <h1>Find Your Dream Property in NCR</h1>
+
+    <p>
+        Buy • Rent • New Projects • Resale Properties
+    </p>
+
+    <div class="search-box">
+
+        <select>
+            <option>Buy</option>
+            <option>Rent</option>
+            <option>New Projects</option>
+        </select>
+
+        <input
+            type="text"
+            placeholder="Noida / Greater Noida / Ghaziabad">
+
+        <select>
+            <option>Property Type</option>
+            <option>Apartment</option>
+            <option>Villa</option>
+            <option>Plot</option>
+            <option>Commercial</option>
+        </select>
+
+        <select>
+            <option>BHK</option>
+            <option>1 BHK</option>
+            <option>2 BHK</option>
+            <option>3 BHK</option>
+            <option>4 BHK</option>
+            <option>5+ BHK</option>
+        </select>
+
+        <button>
+            SEARCH
+        </button>
+
+    </div>
+
+</section>
+
+
+<section>
+
+    <h2>Explore Popular Locations</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Noida</h3>
+            <p>
+                Explore residential and commercial properties
+                across prime sectors of Noida.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Greater Noida West</h3>
+            <p>
+                Discover apartments, societies, resale
+                properties and new projects.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Greater Noida</h3>
+            <p>
+                Find homes, plots and investment opportunities
+                across Greater Noida.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Ghaziabad</h3>
+            <p>
+                Explore residential and commercial
+                properties across Ghaziabad.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section>
+
+    <h2>Featured Properties</h2>
+
+    <div class="cards">
+
+        <div class="card property-card">
+            <h3>2 BHK Apartment</h3>
+            <p>Greater Noida West</p>
+            <p>₹80 Lakh onwards</p>
+        </div>
+
+        <div class="card property-card">
+            <h3>3 BHK Apartment</h3>
+            <p>Noida</p>
+            <p>₹1.10 Crore onwards</p>
+        </div>
+
+        <div class="card property-card">
+            <h3>2 BHK for Rent</h3>
+            <p>Greater Noida West</p>
+            <p>₹20,000/month onwards</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section>
+
+    <h2>Why Choose RealtyAdda?</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Verified Listings</h3>
+            <p>
+                We aim to provide reliable property
+                information and reduce fake listings.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>NCR Expertise</h3>
+            <p>
+                Focused initially on Noida,
+                Greater Noida and surrounding NCR markets.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Easy Enquiries</h3>
+            <p>
+                Connect easily with owners,
+                agents and developers.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="cta">
+
+    <h2>Sell or Rent Your Property</h2>
+
+    <p>
+        List your property with RealtyAdda
+        and reach potential buyers and tenants.
+    </p>
+
+    <a href="#">
+        POST YOUR PROPERTY
+    </a>
+
+</section>
+
+
+<footer>
+
+    <h3>RealtyAdda</h3>
+
+    <p>
+        Find. Compare. Connect.
+    </p>
+
+    <p>
+        © 2026 RealtyAdda. All Rights Reserved.
+    </p>
+
+</footer>
+
+</body>
+</html>
