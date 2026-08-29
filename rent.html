@@ -166,6 +166,8 @@
             text-decoration: none;
             border-radius: 5px;
             font-weight: bold;
+            border: none;
+            cursor: pointer;
         }
 
         .view-btn {
@@ -173,9 +175,122 @@
             color: white;
         }
 
+        .view-btn:hover {
+            background: #14253d;
+        }
+
         .whatsapp-btn {
             background: #25d366;
             color: white;
+        }
+
+        .whatsapp-btn:hover {
+            background: #1ebe5d;
+        }
+
+        /* PROPERTY DETAILS */
+
+        .property-details-page {
+            display: none;
+            width: 88%;
+            margin: 35px auto 50px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: #1d3557;
+            color: white;
+            padding: 11px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .back-btn:hover {
+            background: #14253d;
+        }
+
+        .property-detail-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.12);
+        }
+
+        .detail-image {
+            height: 330px;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            font-size: 20px;
+        }
+
+        .detail-content {
+            padding: 30px;
+        }
+
+        .detail-content h1 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .detail-rent {
+            color: #e63946;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .property-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .info-box {
+            background: #f5f6f8;
+            padding: 15px;
+            border-radius: 7px;
+        }
+
+        .info-box strong {
+            display: block;
+            color: #1d3557;
+            margin-bottom: 5px;
+        }
+
+        .description {
+            margin-top: 25px;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .contact-whatsapp,
+        .contact-btn {
+            padding: 13px 22px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .contact-whatsapp {
+            background: #25d366;
+        }
+
+        .contact-btn {
+            background: #e63946;
         }
 
         footer {
@@ -186,6 +301,12 @@
         }
 
         @media (max-width: 600px) {
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
             .hero h1 {
                 font-size: 28px;
             }
@@ -193,6 +314,22 @@
             nav a {
                 margin-left: 8px;
                 font-size: 14px;
+            }
+
+            .detail-image {
+                height: 220px;
+            }
+
+            .detail-content {
+                padding: 20px;
+            }
+
+            .detail-content h1 {
+                font-size: 25px;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
             }
         }
     </style>
@@ -213,142 +350,276 @@
 </header>
 
 
-<section class="hero">
-    <h1>Find Your Perfect Rental Property</h1>
-    <p>Flats, apartments and homes for rent across Noida & Greater Noida</p>
-</section>
+<!-- RENT LISTING PAGE -->
+
+<div id="rentPage">
+
+    <section class="hero">
+        <h1>Find Your Perfect Rental Property</h1>
+        <p>Flats, apartments and homes for rent across Noida & Greater Noida</p>
+    </section>
 
 
-<div class="filters">
+    <div class="filters">
 
-    <input type="text" placeholder="Location">
+        <input type="text" placeholder="Location">
 
-    <input type="text" placeholder="Society / Project">
+        <input type="text" placeholder="Society / Project">
 
-    <select>
-        <option>Select BHK</option>
-        <option>1 BHK</option>
-        <option>2 BHK</option>
-        <option>3 BHK</option>
-        <option>4 BHK</option>
-        <option>5+ BHK</option>
-    </select>
+        <select>
+            <option>Select BHK</option>
+            <option>1 BHK</option>
+            <option>2 BHK</option>
+            <option>3 BHK</option>
+            <option>4 BHK</option>
+            <option>5+ BHK</option>
+        </select>
 
-    <select>
-        <option>Monthly Rent</option>
-        <option>Below ₹15,000</option>
-        <option>₹15,000 - ₹25,000</option>
-        <option>₹25,000 - ₹40,000</option>
-        <option>₹40,000 - ₹60,000</option>
-        <option>Above ₹60,000</option>
-    </select>
+        <select>
+            <option>Monthly Rent</option>
+            <option>Below ₹15,000</option>
+            <option>₹15,000 - ₹25,000</option>
+            <option>₹25,000 - ₹40,000</option>
+            <option>₹40,000 - ₹60,000</option>
+            <option>Above ₹60,000</option>
+        </select>
 
-    <select>
-        <option>Furnishing</option>
-        <option>Unfurnished</option>
-        <option>Semi Furnished</option>
-        <option>Fully Furnished</option>
-    </select>
+        <select>
+            <option>Furnishing</option>
+            <option>Unfurnished</option>
+            <option>Semi Furnished</option>
+            <option>Fully Furnished</option>
+        </select>
 
-    <select>
-        <option>Parking</option>
-        <option>1 Parking</option>
-        <option>2 Parking</option>
-        <option>Multiple Parking</option>
-    </select>
+        <select>
+            <option>Parking</option>
+            <option>1 Parking</option>
+            <option>2 Parking</option>
+            <option>Multiple Parking</option>
+        </select>
 
-    <button class="search-btn">Search</button>
+        <button class="search-btn">Search</button>
+
+    </div>
+
+
+    <div class="container">
+
+        <h2 class="section-title">Properties Available for Rent</h2>
+
+        <div class="properties">
+
+            <!-- PROPERTY 1 -->
+
+            <div class="card">
+
+                <div class="property-img">
+                    Property Image
+                </div>
+
+                <div class="card-content">
+
+                    <h3>2 BHK Apartment</h3>
+
+                    <div class="rent">₹22,000 / Month</div>
+
+                    <div class="details">
+                        <strong>ATS Dolce</strong><br>
+                        Greater Noida West<br>
+                        2 BHK • 1,050 sq.ft.<br>
+                        Semi Furnished • 1 Parking
+                    </div>
+
+                    <div class="buttons">
+
+                        <button
+                            class="view-btn"
+                            onclick="showProperty(1)">
+                            View
+                        </button>
+
+                        <a
+                            href="https://wa.me/?text=I%20am%20interested%20in%20the%202%20BHK%20rental%20property%20at%20ATS%20Dolce."
+                            class="whatsapp-btn"
+                            target="_blank">
+                            WhatsApp
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROPERTY 2 -->
+
+            <div class="card">
+
+                <div class="property-img">
+                    Property Image
+                </div>
+
+                <div class="card-content">
+
+                    <h3>3 BHK Apartment</h3>
+
+                    <div class="rent">₹30,000 / Month</div>
+
+                    <div class="details">
+                        <strong>Gaur City</strong><br>
+                        Greater Noida West<br>
+                        3 BHK • 1,450 sq.ft.<br>
+                        Semi Furnished • 1 Parking
+                    </div>
+
+                    <div class="buttons">
+
+                        <button
+                            class="view-btn"
+                            onclick="showProperty(2)">
+                            View
+                        </button>
+
+                        <a
+                            href="https://wa.me/?text=I%20am%20interested%20in%20the%203%20BHK%20rental%20property%20at%20Gaur%20City."
+                            class="whatsapp-btn"
+                            target="_blank">
+                            WhatsApp
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROPERTY 3 -->
+
+            <div class="card">
+
+                <div class="property-img">
+                    Property Image
+                </div>
+
+                <div class="card-content">
+
+                    <h3>3 BHK Luxury Apartment</h3>
+
+                    <div class="rent">₹38,000 / Month</div>
+
+                    <div class="details">
+                        <strong>Mahagun Mywoods</strong><br>
+                        Greater Noida West<br>
+                        3 BHK • 1,650 sq.ft.<br>
+                        Fully Furnished • 1 Parking
+                    </div>
+
+                    <div class="buttons">
+
+                        <button
+                            class="view-btn"
+                            onclick="showProperty(3)">
+                            View
+                        </button>
+
+                        <a
+                            href="https://wa.me/?text=I%20am%20interested%20in%20the%203%20BHK%20rental%20property%20at%20Mahagun%20Mywoods."
+                            class="whatsapp-btn"
+                            target="_blank">
+                            WhatsApp
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
 
 
-<div class="container">
+<!-- PROPERTY DETAILS PAGE -->
 
-    <h2 class="section-title">Properties Available for Rent</h2>
+<div id="propertyDetails" class="property-details-page">
 
-    <div class="properties">
+    <a href="#" class="back-btn" onclick="showRentPage()">
+        ← Back to Rental Properties
+    </a>
 
-        <div class="card">
+    <div class="property-detail-card">
 
-            <div class="property-img">
-                Property Image
-            </div>
-
-            <div class="card-content">
-
-                <h3>2 BHK Apartment</h3>
-
-                <div class="rent">₹22,000 / Month</div>
-
-                <div class="details">
-                    <strong>ATS Dolce</strong><br>
-                    Greater Noida West<br>
-                    2 BHK • 1,050 sq.ft.<br>
-                    Semi Furnished • 1 Parking
-                </div>
-
-                <div class="buttons">
-                    <a href="#" class="view-btn">View</a>
-                    <a href="#" class="whatsapp-btn">WhatsApp</a>
-                </div>
-
-            </div>
-
+        <div class="detail-image" id="detailImage">
+            Property Image
         </div>
 
+        <div class="detail-content">
 
-        <div class="card">
+            <h1 id="detailTitle">Property</h1>
 
-            <div class="property-img">
-                Property Image
+            <div class="detail-rent" id="detailRent">
+                ₹0 / Month
             </div>
 
-            <div class="card-content">
+            <div class="property-info">
 
-                <h3>3 BHK Apartment</h3>
-
-                <div class="rent">₹30,000 / Month</div>
-
-                <div class="details">
-                    <strong>Gaur City</strong><br>
-                    Greater Noida West<br>
-                    3 BHK • 1,450 sq.ft.<br>
-                    Semi Furnished • 1 Parking
+                <div class="info-box">
+                    <strong>Project / Society</strong>
+                    <span id="detailSociety"></span>
                 </div>
 
-                <div class="buttons">
-                    <a href="#" class="view-btn">View</a>
-                    <a href="#" class="whatsapp-btn">WhatsApp</a>
+                <div class="info-box">
+                    <strong>Location</strong>
+                    <span id="detailLocation"></span>
+                </div>
+
+                <div class="info-box">
+                    <strong>Configuration</strong>
+                    <span id="detailBhk"></span>
+                </div>
+
+                <div class="info-box">
+                    <strong>Area</strong>
+                    <span id="detailArea"></span>
+                </div>
+
+                <div class="info-box">
+                    <strong>Furnishing</strong>
+                    <span id="detailFurnishing"></span>
+                </div>
+
+                <div class="info-box">
+                    <strong>Parking</strong>
+                    <span id="detailParking"></span>
                 </div>
 
             </div>
 
-        </div>
-
-
-        <div class="card">
-
-            <div class="property-img">
-                Property Image
+            <div class="description">
+                <h2>Property Description</h2>
+                <p id="detailDescription"></p>
             </div>
 
-            <div class="card-content">
+            <div class="contact-buttons">
 
-                <h3>3 BHK Luxury Apartment</h3>
+                <a
+                    id="detailWhatsapp"
+                    href="#"
+                    class="contact-whatsapp"
+                    target="_blank">
+                    WhatsApp Owner
+                </a>
 
-                <div class="rent">₹38,000 / Month</div>
-
-                <div class="details">
-                    <strong>Mahagun Mywoods</strong><br>
-                    Greater Noida West<br>
-                    3 BHK • 1,650 sq.ft.<br>
-                    Fully Furnished • 1 Parking
-                </div>
-
-                <div class="buttons">
-                    <a href="#" class="view-btn">View</a>
-                    <a href="#" class="whatsapp-btn">WhatsApp</a>
-                </div>
+                <a
+                    href="#"
+                    class="contact-btn">
+                    Contact RealtyAdda
+                </a>
 
             </div>
 
@@ -362,6 +633,115 @@
 <footer>
     © 2026 RealtyAdda.in | Your Trusted Real Estate Platform
 </footer>
+
+
+<script>
+
+    const properties = {
+
+        1: {
+            title: "2 BHK Apartment",
+            rent: "₹22,000 / Month",
+            society: "ATS Dolce",
+            location: "Greater Noida West",
+            bhk: "2 BHK",
+            area: "1,050 sq.ft.",
+            furnishing: "Semi Furnished",
+            parking: "1 Parking",
+            description:
+                "Beautiful 2 BHK apartment available for rent in ATS Dolce, Greater Noida West. The property is suitable for families and offers comfortable living space with semi-furnished interiors and dedicated parking.",
+            image: "Property Image",
+            whatsapp:
+                "https://wa.me/?text=I%20am%20interested%20in%20the%202%20BHK%20rental%20property%20at%20ATS%20Dolce."
+        },
+
+        2: {
+            title: "3 BHK Apartment",
+            rent: "₹30,000 / Month",
+            society: "Gaur City",
+            location: "Greater Noida West",
+            bhk: "3 BHK",
+            area: "1,450 sq.ft.",
+            furnishing: "Semi Furnished",
+            parking: "1 Parking",
+            description:
+                "Spacious 3 BHK apartment available for rent in Gaur City, Greater Noida West. The apartment offers a comfortable layout, semi-furnished interiors and dedicated parking.",
+            image: "Property Image",
+            whatsapp:
+                "https://wa.me/?text=I%20am%20interested%20in%20the%203%20BHK%20rental%20property%20at%20Gaur%20City."
+        },
+
+        3: {
+            title: "3 BHK Luxury Apartment",
+            rent: "₹38,000 / Month",
+            society: "Mahagun Mywoods",
+            location: "Greater Noida West",
+            bhk: "3 BHK",
+            area: "1,650 sq.ft.",
+            furnishing: "Fully Furnished",
+            parking: "1 Parking",
+            description:
+                "Premium fully furnished 3 BHK luxury apartment available for rent in Mahagun Mywoods, Greater Noida West. Ideal for families looking for a spacious and comfortable home.",
+            image: "Property Image",
+            whatsapp:
+                "https://wa.me/?text=I%20am%20interested%20in%20the%203%20BHK%20rental%20property%20at%20Mahagun%20Mywoods."
+        }
+
+    };
+
+
+    function showProperty(id) {
+
+        const property = properties[id];
+
+        document.getElementById("rentPage").style.display = "none";
+
+        document.getElementById("propertyDetails").style.display = "block";
+
+        document.getElementById("detailTitle").innerText = property.title;
+
+        document.getElementById("detailRent").innerText = property.rent;
+
+        document.getElementById("detailSociety").innerText = property.society;
+
+        document.getElementById("detailLocation").innerText = property.location;
+
+        document.getElementById("detailBhk").innerText = property.bhk;
+
+        document.getElementById("detailArea").innerText = property.area;
+
+        document.getElementById("detailFurnishing").innerText = property.furnishing;
+
+        document.getElementById("detailParking").innerText = property.parking;
+
+        document.getElementById("detailDescription").innerText = property.description;
+
+        document.getElementById("detailImage").innerText = property.image;
+
+        document.getElementById("detailWhatsapp").href = property.whatsapp;
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+
+    function showRentPage() {
+
+        event.preventDefault();
+
+        document.getElementById("propertyDetails").style.display = "none";
+
+        document.getElementById("rentPage").style.display = "block";
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+</script>
 
 </body>
 </html>
