@@ -1,0 +1,556 @@
+```html id="m2s7qk"
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Property Details | RealtyAdda</title>
+
+    <meta name="description"
+          content="View property details, price, location, amenities and enquiry options on RealtyAdda.">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f6f8;
+            color: #222;
+        }
+
+        /* HEADER */
+
+        header {
+            background: white;
+            padding: 18px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            font-size: 29px;
+            font-weight: bold;
+            color: #e63946;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #222;
+            margin-left: 18px;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            color: #e63946;
+        }
+
+        .post-btn {
+            background: #e63946;
+            color: white !important;
+            padding: 10px 15px;
+            border-radius: 6px;
+        }
+
+        /* BREADCRUMB */
+
+        .breadcrumb {
+            width: 88%;
+            max-width: 1200px;
+            margin: 20px auto;
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* PROPERTY */
+
+        .container {
+            width: 88%;
+            max-width: 1200px;
+            margin: auto;
+            padding-bottom: 60px;
+        }
+
+        .property-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 25px;
+        }
+
+        /* IMAGE */
+
+        .main-image {
+            height: 430px;
+            background: #ddd;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            font-size: 18px;
+        }
+
+        /* DETAILS */
+
+        .details-box {
+            background: white;
+            padding: 28px;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.10);
+        }
+
+        .details-box h1 {
+            color: #1d3557;
+            margin-bottom: 8px;
+        }
+
+        .location {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            color: #e63946;
+            font-size: 27px;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .property-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .info {
+            background: #f5f6f8;
+            padding: 12px;
+            border-radius: 6px;
+        }
+
+        .info strong {
+            display: block;
+            color: #1d3557;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .contact-btn,
+        .whatsapp-btn {
+            flex: 1;
+            padding: 13px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .contact-btn {
+            background: #1d3557;
+            color: white;
+        }
+
+        .whatsapp-btn {
+            background: #25d366;
+            color: white;
+        }
+
+        /* SECTIONS */
+
+        .section-box {
+            background: white;
+            margin-top: 25px;
+            padding: 28px;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        .section-box h2 {
+            color: #1d3557;
+            margin-bottom: 18px;
+        }
+
+        .amenities {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+        }
+
+        .amenity {
+            background: #f5f6f8;
+            padding: 12px;
+            border-radius: 6px;
+        }
+
+        /* CTA */
+
+        .cta {
+            background: #e9ecef;
+            text-align: center;
+            padding: 50px 20px;
+            margin-top: 30px;
+        }
+
+        .cta h2 {
+            color: #1d3557;
+            margin-bottom: 10px;
+        }
+
+        .cta a {
+            display: inline-block;
+            margin-top: 18px;
+            padding: 13px 22px;
+            background: #e63946;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #1d3557;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        footer h3 {
+            margin-bottom: 8px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 800px) {
+
+            header {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav {
+                text-align: center;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 5px;
+                font-size: 14px;
+            }
+
+            .property-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .main-image {
+                height: 280px;
+            }
+
+            .property-info {
+                grid-template-columns: 1fr 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<header>
+
+    <div class="logo">
+        RealtyAdda
+    </div>
+
+    <nav>
+
+        <a href="index.html">Home</a>
+
+        <a href="buy.html">Buy</a>
+
+        <a href="rent.html">Rent</a>
+
+        <a href="projects.html">Projects</a>
+
+        <a href="societies.html">Societies</a>
+
+        <a href="sell.html" class="post-btn">
+            Post Property
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- BREADCRUMB -->
+
+<div class="breadcrumb">
+
+    Home / Buy / Property Details
+
+</div>
+
+
+<!-- PROPERTY -->
+
+<div class="container">
+
+    <div class="property-grid">
+
+
+        <!-- IMAGE -->
+
+        <div class="main-image">
+
+            Property Main Image
+
+        </div>
+
+
+        <!-- DETAILS -->
+
+        <div class="details-box">
+
+            <h1>
+                2 BHK Premium Apartment
+            </h1>
+
+            <p class="location">
+                Greater Noida West, Uttar Pradesh
+            </p>
+
+            <div class="price">
+                ₹80 Lakh
+            </div>
+
+
+            <div class="property-info">
+
+                <div class="info">
+                    <strong>Property Type</strong>
+                    Apartment
+                </div>
+
+                <div class="info">
+                    <strong>BHK</strong>
+                    2 BHK
+                </div>
+
+                <div class="info">
+                    <strong>Area</strong>
+                    1,050 sq.ft.
+                </div>
+
+                <div class="info">
+                    <strong>Floor</strong>
+                    8th Floor
+                </div>
+
+                <div class="info">
+                    <strong>Parking</strong>
+                    1 Covered
+                </div>
+
+                <div class="info">
+                    <strong>Furnishing</strong>
+                    Semi Furnished
+                </div>
+
+            </div>
+
+
+            <div class="buttons">
+
+                <a href="contact.html"
+                   class="contact-btn">
+
+                    Contact
+
+                </a>
+
+
+                <a href="https://wa.me/919999999999"
+                   class="whatsapp-btn"
+                   target="_blank">
+
+                    WhatsApp
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- DESCRIPTION -->
+
+    <div class="section-box">
+
+        <h2>
+            Property Description
+        </h2>
+
+        <p>
+
+            Beautiful 2 BHK apartment located in a
+            well-developed residential community in
+            Greater Noida West.
+
+            The property offers comfortable living,
+            good connectivity and access to modern
+            society amenities.
+
+        </p>
+
+    </div>
+
+
+    <!-- AMENITIES -->
+
+    <div class="section-box">
+
+        <h2>
+            Amenities
+        </h2>
+
+
+        <div class="amenities">
+
+            <div class="amenity">
+                🏊 Swimming Pool
+            </div>
+
+            <div class="amenity">
+                🏋️ Gymnasium
+            </div>
+
+            <div class="amenity">
+                🌳 Landscaped Garden
+            </div>
+
+            <div class="amenity">
+                🔒 24x7 Security
+            </div>
+
+            <div class="amenity">
+                🚗 Covered Parking
+            </div>
+
+            <div class="amenity">
+                ⚡ Power Backup
+            </div>
+
+            <div class="amenity">
+                🛗 High-Speed Lifts
+            </div>
+
+            <div class="amenity">
+                🏠 Clubhouse
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- LOCATION -->
+
+    <div class="section-box">
+
+        <h2>
+            Location
+        </h2>
+
+        <p>
+            Greater Noida West, Uttar Pradesh
+        </p>
+
+        <div style="
+            margin-top:20px;
+            height:220px;
+            background:#ddd;
+            border-radius:8px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            color:#666;
+            text-align:center;
+        ">
+
+            Google Maps location will be connected later.
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<!-- CTA -->
+
+<section class="cta">
+
+    <h2>
+        Interested in This Property?
+    </h2>
+
+    <p>
+        Contact RealtyAdda to enquire about
+        availability, price and property details.
+    </p>
+
+    <a href="contact.html">
+        Send Enquiry
+    </a>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <h3>
+        RealtyAdda
+    </h3>
+
+    <p>
+        Find. Compare. Connect.
+    </p>
+
+    <p>
+        © 2026 RealtyAdda. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>
+```
