@@ -27,8 +27,6 @@
             line-height: 1.6;
         }
 
-        /* ================= HEADER ================= */
-
         header {
             background: #ffffff;
             padding: 18px 6%;
@@ -65,9 +63,6 @@
             border-radius: 6px;
         }
 
-
-        /* ================= HERO ================= */
-
         .hero {
             background: #1d3557;
             color: white;
@@ -85,9 +80,6 @@
             opacity: 0.95;
         }
 
-
-        /* ================= MAIN ================= */
-
         .container {
             width: 90%;
             max-width: 1000px;
@@ -101,9 +93,6 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.10);
         }
 
-
-        /* ================= SECTION ================= */
-
         .form-section {
             margin-bottom: 35px;
         }
@@ -115,9 +104,6 @@
             padding-bottom: 10px;
             border-bottom: 2px solid #eee;
         }
-
-
-        /* ================= OPTION CARDS ================= */
 
         .option-grid {
             display: grid;
@@ -154,9 +140,6 @@
             background: #fff4f5;
             color: #e63946;
         }
-
-
-        /* ================= FORM GRID ================= */
 
         .form-grid {
             display: grid;
@@ -207,17 +190,11 @@
             resize: vertical;
         }
 
-
-        /* ================= PRICE ================= */
-
         .price-row {
             display: grid;
             grid-template-columns: 1fr 160px;
             gap: 10px;
         }
-
-
-        /* ================= PHOTO UPLOAD ================= */
 
         .upload-box {
             border: 2px dashed #bbb;
@@ -288,9 +265,6 @@
             font-size: 14px;
         }
 
-
-        /* ================= NOTICE ================= */
-
         .notice {
             background: #fff8e6;
             border-left: 4px solid #f0ad00;
@@ -300,9 +274,6 @@
             font-size: 14px;
             color: #665000;
         }
-
-
-        /* ================= TERMS ================= */
 
         .terms {
             display: flex;
@@ -321,9 +292,6 @@
             color: #e63946;
         }
 
-
-        /* ================= BUTTON ================= */
-
         .submit-btn {
             width: 100%;
             margin-top: 25px;
@@ -339,6 +307,11 @@
 
         .submit-btn:hover {
             background: #c92f3b;
+        }
+
+        .submit-btn:disabled {
+            background: #999;
+            cursor: not-allowed;
         }
 
         .whatsapp-submit {
@@ -358,9 +331,6 @@
             background: #1ebe5b;
         }
 
-
-        /* ================= SUCCESS ================= */
-
         .success-message {
             display: none;
             background: #e8f8ee;
@@ -372,8 +342,16 @@
             text-align: center;
         }
 
-
-        /* ================= FOOTER ================= */
+        .error-message {
+            display: none;
+            background: #fdecec;
+            border: 1px solid #e2a3a3;
+            color: #a32929;
+            padding: 18px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
 
         footer {
             background: #1d3557;
@@ -385,9 +363,6 @@
         footer h3 {
             margin-bottom: 8px;
         }
-
-
-        /* ================= MOBILE ================= */
 
         @media (max-width: 768px) {
 
@@ -448,11 +423,7 @@
 
 </head>
 
-
 <body>
-
-
-<!-- ================= HEADER ================= -->
 
 <header>
 
@@ -463,13 +434,9 @@
     <nav>
 
         <a href="index.html">Home</a>
-
         <a href="buy.html">Buy</a>
-
         <a href="rent.html">Rent</a>
-
         <a href="projects.html">Projects</a>
-
         <a href="societies.html">Societies</a>
 
         <a href="post-property.html" class="post-btn">
@@ -479,9 +446,6 @@
     </nav>
 
 </header>
-
-
-<!-- ================= HERO ================= -->
 
 <section class="hero">
 
@@ -495,13 +459,9 @@
 
 </section>
 
-
-<!-- ================= MAIN ================= -->
-
 <div class="container">
 
     <div class="form-box">
-
 
         <div
             class="success-message"
@@ -511,26 +471,32 @@
 
             <br>
 
-            Our RealtyAdda team will review your property
-            details and contact you shortly.
+            Your property has been received by RealtyAdda.
+            Our team will review your details and contact you shortly.
 
         </div>
 
+        <div
+            class="error-message"
+            id="errorMessage">
+
+            <strong>Submission failed.</strong>
+
+            <br>
+
+            Please check your internet connection and try again.
+
+        </div>
 
         <form id="propertyForm">
 
-
-            <!-- ================= LISTING TYPE ================= -->
+            <!-- LISTING TYPE -->
 
             <div class="form-section">
 
-                <h2>
-                    1. Listing Type
-                </h2>
-
+                <h2>1. Listing Type</h2>
 
                 <div class="option-grid two">
-
 
                     <div class="option">
 
@@ -547,7 +513,6 @@
 
                     </div>
 
-
                     <div class="option">
 
                         <input
@@ -562,23 +527,17 @@
 
                     </div>
 
-
                 </div>
 
             </div>
 
-
-            <!-- ================= SELLER TYPE ================= -->
+            <!-- SELLER TYPE -->
 
             <div class="form-section">
 
-                <h2>
-                    2. You Are
-                </h2>
-
+                <h2>2. You Are</h2>
 
                 <div class="option-grid">
-
 
                     <div class="option">
 
@@ -595,7 +554,6 @@
 
                     </div>
 
-
                     <div class="option">
 
                         <input
@@ -609,7 +567,6 @@
                         </label>
 
                     </div>
-
 
                     <div class="option">
 
@@ -625,32 +582,22 @@
 
                     </div>
 
-
                 </div>
 
             </div>
 
-
-            <!-- ================= CONTACT DETAILS ================= -->
+            <!-- CONTACT -->
 
             <div class="form-section">
 
-                <h2>
-                    3. Contact Details
-                </h2>
-
+                <h2>3. Contact Details</h2>
 
                 <div class="form-grid">
 
-
                     <div class="form-group">
 
-                        <label
-                            class="field-label"
-                            for="name">
-
+                        <label class="field-label" for="name">
                             Name <span class="required">*</span>
-
                         </label>
 
                         <input
@@ -661,15 +608,10 @@
 
                     </div>
 
-
                     <div class="form-group">
 
-                        <label
-                            class="field-label"
-                            for="mobile">
-
+                        <label class="field-label" for="mobile">
                             Mobile Number <span class="required">*</span>
-
                         </label>
 
                         <input
@@ -682,15 +624,10 @@
 
                     </div>
 
-
                     <div class="form-group">
 
-                        <label
-                            class="field-label"
-                            for="email">
-
+                        <label class="field-label" for="email">
                             Email
-
                         </label>
 
                         <input
@@ -700,55 +637,38 @@
 
                     </div>
 
-
                     <div class="form-group">
 
-                        <label
-                            class="field-label"
-                            for="preferredContact">
-
+                        <label class="field-label" for="preferredContact">
                             Preferred Contact
-
                         </label>
 
                         <select id="preferredContact">
 
                             <option>Phone Call</option>
-
                             <option>WhatsApp</option>
-
                             <option>Email</option>
 
                         </select>
 
                     </div>
 
-
                 </div>
 
             </div>
 
-
-            <!-- ================= PROPERTY LOCATION ================= -->
+            <!-- LOCATION -->
 
             <div class="form-section">
 
-                <h2>
-                    4. Property Location
-                </h2>
-
+                <h2>4. Property Location</h2>
 
                 <div class="form-grid">
 
-
                     <div class="form-group">
 
-                        <label
-                            class="field-label"
-                            for="city">
-
+                        <label class="field-label" for="city">
                             City <span class="required">*</span>
-
                         </label>
 
                         <select id="city" required>
@@ -757,47 +677,22 @@
                                 Select City
                             </option>
 
-                            <option>
-                                Noida
-                            </option>
-
-                            <option>
-                                Greater Noida
-                            </option>
-
-                            <option>
-                                Greater Noida West
-                            </option>
-
-                            <option>
-                                Ghaziabad
-                            </option>
-
-                            <option>
-                                Delhi
-                            </option>
-
-                            <option>
-                                Yamuna Expressway
-                            </option>
-
-                            <option>
-                                Other NCR
-                            </option>
+                            <option>Noida</option>
+                            <option>Greater Noida</option>
+                            <option>Greater Noida West</option>
+                            <option>Ghaziabad</option>
+                            <option>Delhi</option>
+                            <option>Yamuna Expressway</option>
+                            <option>Other NCR</option>
 
                         </select>
 
                     </div>
 
-
                     <div class="form-group">
 
-                        <label
-                            class="field-label"
-                            for="locality">
-
+                        <label class="field-label" for="locality">
                             Locality / Sector <span class="required">*</span>
-
                         </label>
 
                         <input
@@ -808,15 +703,10 @@
 
                     </div>
 
-
                     <div class="form-group">
 
-                        <label
-                            class="field-label"
-                            for="society">
-
+                        <label class="field-label" for="society">
                             Society / Project
-
                         </label>
 
                         <input
@@ -826,15 +716,10 @@
 
                     </div>
 
-
                     <div class="form-group">
 
-                        <label
-                            class="field-label"
-                            for="address">
-
+                        <label class="field-label" for="address">
                             Property Address
-
                         </label>
 
                         <input
@@ -844,32 +729,22 @@
 
                     </div>
 
-
                 </div>
 
             </div>
 
-
-            <!-- ================= PROPERTY DETAILS ================= -->
+            <!-- PROPERTY DETAILS -->
 
             <div class="form-section">
 
-                <h2>
-                    5. Property Details
-                </h2>
-
+                <h2>5. Property Details</h2>
 
                 <div class="form-grid">
 
-
                     <div class="form-group">
 
-                        <label
-                            class="field-label"
-                            for="propertyType">
-
+                        <label class="field-label" for="propertyType">
                             Property Type <span class="required">*</span>
-
                         </label>
 
                         <select id="propertyType" required>
@@ -878,92 +753,42 @@
                                 Select Property Type
                             </option>
 
-                            <option>
-                                Apartment
-                            </option>
-
-                            <option>
-                                Villa
-                            </option>
-
-                            <option>
-                                Independent House
-                            </option>
-
-                            <option>
-                                Plot
-                            </option>
-
-                            <option>
-                                Builder Floor
-                            </option>
-
-                            <option>
-                                Commercial
-                            </option>
-
-                            <option>
-                                Office
-                            </option>
-
-                            <option>
-                                Shop
-                            </option>
+                            <option>Apartment</option>
+                            <option>Villa</option>
+                            <option>Independent House</option>
+                            <option>Plot</option>
+                            <option>Builder Floor</option>
+                            <option>Commercial</option>
+                            <option>Office</option>
+                            <option>Shop</option>
 
                         </select>
 
                     </div>
 
-
                     <div class="form-group">
 
-                        <label
-                            class="field-label"
-                            for="bhk">
-
+                        <label class="field-label" for="bhk">
                             BHK
-
                         </label>
 
                         <select id="bhk">
 
-                            <option>
-                                Not Applicable
-                            </option>
-
-                            <option>
-                                1 BHK
-                            </option>
-
-                            <option>
-                                2 BHK
-                            </option>
-
-                            <option>
-                                3 BHK
-                            </option>
-
-                            <option>
-                                4 BHK
-                            </option>
-
-                            <option>
-                                5+ BHK
-                            </option>
+                            <option>Not Applicable</option>
+                            <option>1 BHK</option>
+                            <option>2 BHK</option>
+                            <option>3 BHK</option>
+                            <option>4 BHK</option>
+                            <option>5+ BHK</option>
 
                         </select>
 
                     </div>
 
-
                     <div class="form-group">
 
-                        <label
-                            class="field-label"
-                            for="area">
-
+                        <label class="field-label" for="area">
                             Area <span class="required">*</span>
-
                         </label>
 
                         <div class="price-row">
@@ -976,21 +801,10 @@
 
                             <select id="areaUnit">
 
-                                <option>
-                                    sq.ft.
-                                </option>
-
-                                <option>
-                                    sq.yd.
-                                </option>
-
-                                <option>
-                                    sq.m.
-                                </option>
-
-                                <option>
-                                    acres
-                                </option>
+                                <option>sq.ft.</option>
+                                <option>sq.yd.</option>
+                                <option>sq.m.</option>
+                                <option>acres</option>
 
                             </select>
 
@@ -998,160 +812,81 @@
 
                     </div>
 
-
                     <div class="form-group">
 
-                        <label
-                            class="field-label"
-                            for="floor">
-
+                        <label class="field-label" for="floor">
                             Floor
-
                         </label>
 
                         <select id="floor">
 
-                            <option>
-                                Select Floor
-                            </option>
-
-                            <option>
-                                Ground Floor
-                            </option>
-
-                            <option>
-                                1st Floor
-                            </option>
-
-                            <option>
-                                2nd Floor
-                            </option>
-
-                            <option>
-                                3rd Floor
-                            </option>
-
-                            <option>
-                                4th Floor
-                            </option>
-
-                            <option>
-                                5th Floor
-                            </option>
-
-                            <option>
-                                6th Floor
-                            </option>
-
-                            <option>
-                                7th Floor
-                            </option>
-
-                            <option>
-                                8th Floor
-                            </option>
-
-                            <option>
-                                9th Floor
-                            </option>
-
-                            <option>
-                                10th Floor+
-                            </option>
+                            <option>Select Floor</option>
+                            <option>Ground Floor</option>
+                            <option>1st Floor</option>
+                            <option>2nd Floor</option>
+                            <option>3rd Floor</option>
+                            <option>4th Floor</option>
+                            <option>5th Floor</option>
+                            <option>6th Floor</option>
+                            <option>7th Floor</option>
+                            <option>8th Floor</option>
+                            <option>9th Floor</option>
+                            <option>10th Floor+</option>
 
                         </select>
 
                     </div>
 
-
                     <div class="form-group">
 
-                        <label
-                            class="field-label"
-                            for="furnishing">
-
+                        <label class="field-label" for="furnishing">
                             Furnishing
-
                         </label>
 
                         <select id="furnishing">
 
-                            <option>
-                                Unfurnished
-                            </option>
-
-                            <option>
-                                Semi Furnished
-                            </option>
-
-                            <option>
-                                Fully Furnished
-                            </option>
+                            <option>Unfurnished</option>
+                            <option>Semi Furnished</option>
+                            <option>Fully Furnished</option>
 
                         </select>
 
                     </div>
 
-
                     <div class="form-group">
 
-                        <label
-                            class="field-label"
-                            for="parking">
-
+                        <label class="field-label" for="parking">
                             Parking
-
                         </label>
 
                         <select id="parking">
 
-                            <option>
-                                No Parking
-                            </option>
-
-                            <option>
-                                1 Parking
-                            </option>
-
-                            <option>
-                                2 Parking
-                            </option>
-
-                            <option>
-                                Multiple Parking
-                            </option>
+                            <option>No Parking</option>
+                            <option>1 Parking</option>
+                            <option>2 Parking</option>
+                            <option>Multiple Parking</option>
 
                         </select>
 
                     </div>
-
 
                 </div>
 
             </div>
 
-
-            <!-- ================= PRICE ================= -->
+            <!-- PRICE -->
 
             <div class="form-section">
 
-                <h2>
-                    6. Price / Rent
-                </h2>
-
+                <h2>6. Price / Rent</h2>
 
                 <div class="form-grid">
 
-
                     <div class="form-group">
 
-                        <label
-                            class="field-label"
-                            for="price">
-
+                        <label class="field-label" for="price">
                             Expected Price / Monthly Rent
                             <span class="required">*</span>
-
                         </label>
 
                         <input
@@ -1162,49 +897,27 @@
 
                     </div>
 
-
                     <div class="form-group">
 
-                        <label
-                            class="field-label"
-                            for="priceUnit">
-
+                        <label class="field-label" for="priceUnit">
                             Price Unit
-
                         </label>
 
                         <select id="priceUnit">
 
-                            <option>
-                                ₹
-                            </option>
-
-                            <option>
-                                ₹ Lakh
-                            </option>
-
-                            <option>
-                                ₹ Crore
-                            </option>
-
-                            <option>
-                                ₹ / Month
-                            </option>
+                            <option>₹</option>
+                            <option>₹ Lakh</option>
+                            <option>₹ Crore</option>
+                            <option>₹ / Month</option>
 
                         </select>
 
                     </div>
 
+                    <div class="form-group full">
 
-                    <div
-                        class="form-group full">
-
-                        <label
-                            class="field-label"
-                            for="maintenance">
-
+                        <label class="field-label" for="maintenance">
                             Maintenance Charges
-
                         </label>
 
                         <input
@@ -1214,29 +927,20 @@
 
                     </div>
 
-
                 </div>
 
             </div>
 
-
-            <!-- ================= DESCRIPTION ================= -->
+            <!-- DESCRIPTION -->
 
             <div class="form-section">
 
-                <h2>
-                    7. Property Description
-                </h2>
-
+                <h2>7. Property Description</h2>
 
                 <div class="form-group">
 
-                    <label
-                        class="field-label"
-                        for="description">
-
+                    <label class="field-label" for="description">
                         Description <span class="required">*</span>
-
                     </label>
 
                     <textarea
@@ -1248,19 +952,13 @@
 
             </div>
 
-
-            <!-- ================= PHOTOS ================= -->
+            <!-- PHOTOS -->
 
             <div class="form-section">
 
-                <h2>
-                    8. Property Photos
-                </h2>
+                <h2>8. Property Photos</h2>
 
-
-                <label
-                    class="upload-box"
-                    for="propertyPhotos">
+                <label class="upload-box" for="propertyPhotos">
 
                     <div class="upload-icon">
                         📷
@@ -1276,19 +974,16 @@
 
                 </label>
 
-
                 <input
                     type="file"
                     id="propertyPhotos"
                     accept="image/*"
                     multiple>
 
-
                 <div
                     class="photo-preview"
                     id="photoPreview">
                 </div>
-
 
                 <div class="notice">
 
@@ -1301,91 +996,53 @@
 
             </div>
 
-
-            <!-- ================= ADDITIONAL ================= -->
+            <!-- ADDITIONAL -->
 
             <div class="form-section">
 
-                <h2>
-                    9. Additional Information
-                </h2>
-
+                <h2>9. Additional Information</h2>
 
                 <div class="form-grid">
 
-
                     <div class="form-group">
 
-                        <label
-                            class="field-label"
-                            for="availability">
-
+                        <label class="field-label" for="availability">
                             Property Availability
-
                         </label>
 
                         <select id="availability">
 
-                            <option>
-                                Immediately Available
-                            </option>
-
-                            <option>
-                                Available Soon
-                            </option>
-
-                            <option>
-                                Currently Occupied
-                            </option>
-
-                            <option>
-                                Under Construction
-                            </option>
+                            <option>Immediately Available</option>
+                            <option>Available Soon</option>
+                            <option>Currently Occupied</option>
+                            <option>Under Construction</option>
 
                         </select>
 
                     </div>
 
-
                     <div class="form-group">
 
-                        <label
-                            class="field-label"
-                            for="ownership">
-
+                        <label class="field-label" for="ownership">
                             Ownership
-
                         </label>
 
                         <select id="ownership">
 
-                            <option>
-                                Freehold
-                            </option>
-
-                            <option>
-                                Leasehold
-                            </option>
-
-                            <option>
-                                Builder / Developer
-                            </option>
-
-                            <option>
-                                Not Sure
-                            </option>
+                            <option>Freehold</option>
+                            <option>Leasehold</option>
+                            <option>Builder / Developer</option>
+                            <option>Not Sure</option>
 
                         </select>
 
                     </div>
-
 
                 </div>
 
             </div>
 
-
-            <!-- ================= TERMS ================= -->
+            <!-- TERMS -->
 
             <div class="terms">
 
@@ -1404,17 +1061,16 @@
 
             </div>
 
-
-            <!-- ================= SUBMIT ================= -->
+            <!-- SUBMIT -->
 
             <button
                 type="submit"
-                class="submit-btn">
+                class="submit-btn"
+                id="submitBtn">
 
                 SUBMIT PROPERTY
 
             </button>
-
 
             <button
                 type="button"
@@ -1425,21 +1081,15 @@
 
             </button>
 
-
         </form>
 
     </div>
 
 </div>
 
-
-<!-- ================= FOOTER ================= -->
-
 <footer>
 
-    <h3>
-        RealtyAdda
-    </h3>
+    <h3>RealtyAdda</h3>
 
     <p>
         Find. Compare. Connect.
@@ -1454,11 +1104,17 @@
 
 <script>
 
+/* =====================================================
+   GOOGLE APPS SCRIPT URL
+   ===================================================== */
+
+const GOOGLE_SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbwP732q39-gDS9grCmWBg_Yn5gOxm4c_XyHuvorh0n25hcMcQZRk3rBJ7MpevZrQp7_/exec";
+
 
 /* =====================================================
    PHOTO PREVIEW
    ===================================================== */
-
 
 const photoInput =
     document.getElementById("propertyPhotos");
@@ -1466,16 +1122,12 @@ const photoInput =
 const photoPreview =
     document.getElementById("photoPreview");
 
-
 let selectedFiles = [];
 
 
 photoInput.addEventListener("change", function() {
 
-
-    const files =
-        Array.from(this.files);
-
+    const files = Array.from(this.files);
 
     if (selectedFiles.length + files.length > 10) {
 
@@ -1485,10 +1137,8 @@ photoInput.addEventListener("change", function() {
 
     }
 
-
     selectedFiles =
         selectedFiles.concat(files);
-
 
     displayPhotos();
 
@@ -1497,28 +1147,21 @@ photoInput.addEventListener("change", function() {
 
 function displayPhotos() {
 
-
     photoPreview.innerHTML = "";
 
-
     selectedFiles.forEach(function(file, index) {
-
 
         const reader =
             new FileReader();
 
-
         reader.onload =
             function(event) {
-
 
                 const item =
                     document.createElement("div");
 
-
                 item.className =
                     "photo-item";
-
 
                 item.innerHTML = `
 
@@ -1537,11 +1180,9 @@ function displayPhotos() {
 
                 `;
 
-
                 photoPreview.appendChild(item);
 
             };
-
 
         reader.readAsDataURL(file);
 
@@ -1560,24 +1201,48 @@ function removePhoto(index) {
 
 
 /* =====================================================
-   FORM SUBMISSION
+   NORMAL FORM SUBMISSION
    ===================================================== */
 
-
 document.getElementById("propertyForm")
-.addEventListener("submit", function(event) {
-
+.addEventListener("submit", async function(event) {
 
     event.preventDefault();
 
+    const form = this;
+
+    const submitBtn =
+        document.getElementById("submitBtn");
+
+    const successMessage =
+        document.getElementById("successMessage");
+
+    const errorMessage =
+        document.getElementById("errorMessage");
+
+
+    /* VALIDATION */
+
+    if (!form.checkValidity()) {
+
+        form.reportValidity();
+
+        return;
+
+    }
+
 
     const mobile =
-        document.getElementById("mobile").value.trim();
+        document.getElementById("mobile")
+        .value
+        .trim();
 
 
     if (!/^[0-9]{10}$/.test(mobile)) {
 
-        alert("Please enter a valid 10 digit mobile number.");
+        alert(
+            "Please enter a valid 10 digit mobile number."
+        );
 
         return;
 
@@ -1586,31 +1251,172 @@ document.getElementById("propertyForm")
 
     if (!document.getElementById("terms").checked) {
 
-        alert("Please accept the terms.");
+        alert(
+            "Please accept the terms."
+        );
 
         return;
 
     }
 
 
-    document.getElementById("successMessage").style.display =
-        "block";
+    /* COLLECT DATA */
+
+    const propertyData = {
+
+        name:
+            document.getElementById("name").value.trim(),
+
+        phone:
+            mobile,
+
+        email:
+            document.getElementById("email").value.trim(),
+
+        listingType:
+            document.querySelector(
+                'input[name="listingType"]:checked'
+            ).value,
+
+        sellerType:
+            document.querySelector(
+                'input[name="sellerType"]:checked'
+            ).value,
+
+        preferredContact:
+            document.getElementById("preferredContact").value,
+
+        city:
+            document.getElementById("city").value,
+
+        locality:
+            document.getElementById("locality").value.trim(),
+
+        society:
+            document.getElementById("society").value.trim(),
+
+        address:
+            document.getElementById("address").value.trim(),
+
+        propertyType:
+            document.getElementById("propertyType").value,
+
+        bhk:
+            document.getElementById("bhk").value,
+
+        area:
+            document.getElementById("area").value,
+
+        areaUnit:
+            document.getElementById("areaUnit").value,
+
+        floor:
+            document.getElementById("floor").value,
+
+        furnishing:
+            document.getElementById("furnishing").value,
+
+        parking:
+            document.getElementById("parking").value,
+
+        price:
+            document.getElementById("price").value,
+
+        priceUnit:
+            document.getElementById("priceUnit").value,
+
+        maintenance:
+            document.getElementById("maintenance").value.trim(),
+
+        description:
+            document.getElementById("description").value.trim(),
+
+        availability:
+            document.getElementById("availability").value,
+
+        ownership:
+            document.getElementById("ownership").value,
+
+        photos:
+            selectedFiles.map(file => file.name).join(", ")
+
+    };
 
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+    /* BUTTON STATE */
+
+    submitBtn.disabled = true;
+
+    submitBtn.textContent =
+        "SUBMITTING...";
+
+    successMessage.style.display =
+        "none";
+
+    errorMessage.style.display =
+        "none";
 
 
-    /*
-       DATABASE CONNECTION WILL BE ADDED
-       IN THE NEXT DEVELOPMENT STEP.
-    */
+    try {
+
+        await fetch(
+            GOOGLE_SCRIPT_URL,
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "text/plain;charset=utf-8"
+                },
+
+                body:
+                    JSON.stringify(propertyData)
+            }
+        );
 
 
-    console.log("Property submitted");
+        /* SUCCESS */
 
+        successMessage.style.display =
+            "block";
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+
+        form.reset();
+
+        selectedFiles = [];
+
+        photoPreview.innerHTML = "";
+
+
+        submitBtn.disabled = false;
+
+        submitBtn.textContent =
+            "SUBMIT PROPERTY";
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        errorMessage.style.display =
+            "block";
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+
+        submitBtn.disabled = false;
+
+        submitBtn.textContent =
+            "SUBMIT PROPERTY";
+
+    }
 
 });
 
@@ -1619,9 +1425,7 @@ document.getElementById("propertyForm")
    WHATSAPP SUBMISSION
    ===================================================== */
 
-
 function sendToWhatsApp() {
-
 
     const name =
         document.getElementById("name").value.trim();
@@ -1676,9 +1480,16 @@ function sendToWhatsApp() {
         document.getElementById("description").value;
 
 
-    if (!name || !mobile || !city ||
-        !locality || !propertyType ||
-        !area || !price || !description) {
+    if (
+        !name ||
+        !mobile ||
+        !city ||
+        !locality ||
+        !propertyType ||
+        !area ||
+        !price ||
+        !description
+    ) {
 
         alert(
             "Please fill all required fields before sending."
@@ -1736,13 +1547,6 @@ ${description}
 Please contact me regarding this property listing.`;
 
 
-    /*
-       IMPORTANT:
-       Replace 919999999999 with
-       YOUR REALTYADDA WHATSAPP NUMBER.
-    */
-
-
     const whatsappNumber =
         "919540205941";
 
@@ -1761,9 +1565,7 @@ Please contact me regarding this property listing.`;
 
 }
 
-
 </script>
-
 
 </body>
 
