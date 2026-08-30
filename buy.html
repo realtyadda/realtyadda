@@ -699,26 +699,25 @@
 </footer>
 
 
+```html
 <script>
 
 function searchProperties() {
 
-    const location =
-        document.getElementById("location").value;
+    const selectedLocation =
+        document.getElementById("location").value.trim();
 
-    const propertyType =
-        document.getElementById("propertyType").value;
+    const selectedType =
+        document.getElementById("propertyType").value.trim();
 
-    const bhk =
-        document.getElementById("bhk").value;
+    const selectedBhk =
+        document.getElementById("bhk").value.trim();
 
-    const budget =
-        document.getElementById("budget").value;
-
+    const selectedBudget =
+        document.getElementById("budget").value.trim();
 
     const properties =
-        document.querySelectorAll(".property");
-
+        document.querySelectorAll("#propertyList .property");
 
     let visibleCount = 0;
 
@@ -726,91 +725,139 @@ function searchProperties() {
     properties.forEach(function(property) {
 
         const propertyLocation =
-            property.dataset.location;
+            property.getAttribute("data-location");
 
-        const propertyTypeValue =
-            property.dataset.type;
+        const propertyType =
+            property.getAttribute("data-type");
 
         const propertyBhk =
-            parseInt(property.dataset.bhk);
+            property.getAttribute("data-bhk");
 
         const propertyPrice =
-            parseFloat(property.dataset.price);
+            parseFloat(property.getAttribute("data-price"));
 
 
-        let matchesLocation =
-            !location ||
-            propertyLocation === location;
+        /* LOCATION */
+
+        let locationMatch =
+            selectedLocation === "" ||
+            propertyLocation === selectedLocation;
 
 
-        let matchesType =
-            !propertyType ||
-            propertyTypeValue === propertyType;
+        /* PROPERTY TYPE */
+
+        let typeMatch =
+            selectedType === "" ||
+            propertyType === selectedType;
 
 
-        let matchesBhk =
-            !bhk ||
-            (bhk === "5"
-                ? propertyBhk >= 5
-                : propertyBhk === parseInt(bhk));
+        /* BHK */
 
+        let bhkMatch = true;
 
-        let matchesBudget = true;
+        if (selectedBhk !== "") {
 
+            if (selectedBhk === "5") {
 
-        if (budget === "under50") {
-            matchesBudget = propertyPrice < 50;
+                bhkMatch = propertyBhk >= 5;
+
+            } else {
+
+                bhkMatch =
+                    propertyBhk === selectedBhk;
+
+            }
+
         }
 
-        else if (budget === "50to100") {
-            matchesBudget =
+
+        /* BUDGET */
+
+        let budgetMatch = true;
+
+
+        if (selectedBudget === "under50") {
+
+            budgetMatch =
+                propertyPrice < 50;
+
+        }
+
+
+        if (selectedBudget === "50to100") {
+
+            budgetMatch =
                 propertyPrice >= 50 &&
                 propertyPrice <= 100;
+
         }
 
-        else if (budget === "100to200") {
-            matchesBudget =
+
+        if (selectedBudget === "100to200") {
+
+            budgetMatch =
                 propertyPrice > 100 &&
                 propertyPrice <= 200;
+
         }
 
-        else if (budget === "above200") {
-            matchesBudget = propertyPrice > 200;
+
+        if (selectedBudget === "above200") {
+
+            budgetMatch =
+                propertyPrice > 200;
+
         }
 
+
+        /* FINAL MATCH */
 
         if (
-            matchesLocation &&
-            matchesType &&
-            matchesBhk &&
-            matchesBudget
+            locationMatch &&
+            typeMatch &&
+            bhkMatch &&
+            budgetMatch
         ) {
 
-            property.classList.remove("hidden");
+            property.style.display = "";
 
             visibleCount++;
 
-        }
+        } else {
 
-        else {
-
-            property.classList.add("hidden");
+            property.style.display = "none";
 
         }
 
     });
 
 
+    /* RESULT COUNT */
+
     document.getElementById("resultCount").textContent =
         "Showing " +
         visibleCount +
-        " propert" +
-        (visibleCount === 1 ? "y" : "ies");
+        (visibleCount === 1
+            ? " property"
+            : " properties");
 
 
-    document.getElementById("noResults").style.display =
-        visibleCount === 0 ? "block" : "none";
+    /* NO RESULTS */
 
+    if (visibleCount === 0) {
+
+        document.getElementById("noResults").style.display =
+            "block";
+
+    } else {
+
+        document.getElementById("noResults").style.display =
+            "none";
+
+    }
+
+
+    /* RESET BUTTON */
 
     document.getElementById("resetBox").style.display =
         "block";
@@ -827,12 +874,12 @@ function resetSearch() {
 
 
     const properties =
-        document.querySelectorAll(".property");
+        document.querySelectorAll("#propertyList .property");
 
 
     properties.forEach(function(property) {
 
-        property.classList.remove("hidden");
+        property.style.display = "";
 
     });
 
@@ -851,6 +898,9 @@ function resetSearch() {
 }
 
 </script>
+```
+
+
 
 </body>
 </html>
