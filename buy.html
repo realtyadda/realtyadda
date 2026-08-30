@@ -11,6 +11,7 @@
           content="Find apartments, villas, plots and residential properties for sale in Noida, Greater Noida and Greater Noida West.">
 
     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -18,183 +19,409 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background: #f7f7f7;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fb;
             color: #222;
             line-height: 1.6;
         }
 
+        /* HEADER */
+
         header {
-            background: white;
-            padding: 18px 6%;
+            background: #ffffff;
+            padding: 16px 6%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .logo {
-            font-size: 28px;
-            font-weight: bold;
+            font-size: 30px;
+            font-weight: 800;
+            color: #e85d04;
+            letter-spacing: -1px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 22px;
         }
 
         nav a {
             text-decoration: none;
-            color: #222;
-            margin-left: 18px;
+            color: #333;
+            font-size: 15px;
             font-weight: 600;
+            transition: 0.2s;
         }
 
+        nav a:hover {
+            color: #e85d04;
+        }
+
+        /* HERO */
+
         .hero {
-            background: #eeeeee;
-            padding: 60px 6%;
+            background:
+                linear-gradient(135deg, #fff4eb, #fffdf9);
+            padding: 65px 6% 75px;
             text-align: center;
+            border-bottom: 1px solid #eee;
         }
 
         .hero h1 {
-            font-size: 40px;
-            margin-bottom: 12px;
+            font-size: 44px;
+            line-height: 1.2;
+            color: #222;
+            margin-bottom: 15px;
         }
 
+        .hero h1 span {
+            color: #e85d04;
+        }
+
+        .hero p {
+            max-width: 750px;
+            margin: auto;
+            color: #666;
+            font-size: 17px;
+        }
+
+        /* SEARCH BOX */
+
         .filters {
-            max-width: 1000px;
-            margin: 30px auto;
-            background: white;
+            max-width: 1100px;
+            margin: 35px auto 0;
+            background: #ffffff;
             padding: 20px;
-            border-radius: 10px;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
+            border-radius: 14px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr) 140px;
+            gap: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.10);
         }
 
         .filters select,
-        .filters input,
-        .filters button {
-            padding: 13px;
+        .filters input {
+            width: 100%;
+            padding: 14px;
             border: 1px solid #ddd;
-            border-radius: 6px;
-            flex: 1;
-            min-width: 150px;
+            border-radius: 8px;
+            background: #fff;
+            color: #333;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .filters select:focus,
+        .filters input:focus {
+            border-color: #e85d04;
         }
 
         .filters button {
-            background: #111;
+            padding: 14px;
+            background: #e85d04;
             color: white;
-            cursor: pointer;
             border: none;
-            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 14px;
+            transition: 0.2s;
         }
+
+        .filters button:hover {
+            background: #c94d00;
+        }
+
+        /* MAIN SECTION */
 
         section {
-            padding: 50px 6%;
+            padding: 55px 6%;
         }
 
-        section h2 {
-            margin-bottom: 30px;
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 28px;
         }
+
+        .section-heading h2 {
+            font-size: 30px;
+            color: #222;
+        }
+
+        .section-heading p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* PROPERTY GRID */
 
         .properties {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
         }
 
         .property {
-            background: white;
-            border-radius: 10px;
+            background: #ffffff;
+            border-radius: 14px;
             overflow: hidden;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+            transition: transform 0.25s, box-shadow 0.25s;
         }
 
         .property:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+            transform: translateY(-6px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.13);
         }
 
+        /* PROPERTY IMAGE */
+
         .property-image {
-            height: 180px;
-            background: #ddd;
+            height: 210px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f2f2f2, #ddd);
+        }
+
+        .property-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .image-placeholder {
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #666;
-            font-size: 16px;
+            flex-direction: column;
+            color: #777;
+            font-size: 15px;
         }
+
+        .image-placeholder strong {
+            font-size: 35px;
+            margin-bottom: 5px;
+        }
+
+        .tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #e85d04;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* PROPERTY CONTENT */
 
         .property-content {
             padding: 20px;
         }
 
         .property-content h3 {
+            font-size: 20px;
+            margin-bottom: 7px;
+            color: #222;
+        }
+
+        .location {
+            color: #e85d04;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 7px;
+        }
+
+        .details {
+            color: #666;
+            font-size: 14px;
             margin-bottom: 8px;
         }
 
         .price {
-            font-size: 20px;
-            font-weight: bold;
-            margin: 10px 0;
+            font-size: 21px;
+            font-weight: 800;
+            color: #222;
+            margin: 12px 0;
         }
 
-        .property a {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 15px;
-            background: #111;
+        .view-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 11px 15px;
+            background: #e85d04;
             color: white;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 7px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .view-btn:hover {
+            background: #c94d00;
+        }
+
+        /* CTA */
+
+        .cta {
+            margin: 10px 6% 60px;
+            padding: 40px;
+            background: #222;
+            color: white;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .cta p {
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+
+        .cta a {
+            display: inline-block;
+            background: #e85d04;
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 7px;
             font-weight: bold;
         }
 
-        .property a:hover {
-            background: #333;
-        }
+        /* FOOTER */
 
         footer {
-            background: #111;
+            background: #171717;
             color: white;
             text-align: center;
-            padding: 35px;
+            padding: 40px 20px;
         }
 
         footer h3 {
-            margin-bottom: 8px;
+            color: #e85d04;
+            font-size: 25px;
+            margin-bottom: 7px;
         }
 
         footer p {
+            color: #bbb;
             margin: 5px 0;
+            font-size: 14px;
         }
 
-        @media(max-width:768px) {
+        /* MOBILE */
 
-            header {
-                flex-direction: column;
-                gap: 15px;
-            }
+        @media(max-width: 900px) {
 
-            nav a {
-                display: inline-block;
-                margin: 5px;
-            }
-
-            .hero h1 {
-                font-size: 30px;
+            .properties {
+                grid-template-columns: repeat(2, 1fr);
             }
 
             .filters {
-                flex-direction: column;
+                grid-template-columns: repeat(2, 1fr);
             }
 
-            .filters select,
             .filters button {
                 width: 100%;
             }
+
+            nav {
+                gap: 12px;
+            }
+
         }
+
+        @media(max-width: 650px) {
+
+            header {
+                flex-direction: column;
+                gap: 14px;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+
+            nav a {
+                font-size: 13px;
+            }
+
+            .hero {
+                padding: 45px 5% 55px;
+            }
+
+            .hero h1 {
+                font-size: 31px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .filters {
+                grid-template-columns: 1fr;
+                padding: 15px;
+            }
+
+            section {
+                padding: 40px 5%;
+            }
+
+            .section-heading {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+
+            .section-heading h2 {
+                font-size: 26px;
+            }
+
+            .properties {
+                grid-template-columns: 1fr;
+            }
+
+            .property-image {
+                height: 220px;
+            }
+
+            .cta {
+                margin: 0 5% 40px;
+                padding: 30px 20px;
+            }
+
+            .cta h2 {
+                font-size: 23px;
+            }
+
+        }
+
     </style>
 </head>
 
 <body>
+
+<!-- HEADER -->
 
 <header>
 
@@ -212,19 +439,26 @@
 </header>
 
 
+<!-- HERO -->
+
 <div class="hero">
 
-    <h1>Buy Property in NCR</h1>
+    <h1>
+        Buy Property in <span>NCR</span>
+    </h1>
 
     <p>
-        Find apartments, villas, plots and properties for sale
-        in Noida, Greater Noida and Greater Noida West.
+        Discover apartments, villas, plots and residential properties
+        for sale in Noida, Greater Noida and Greater Noida West.
     </p>
+
+
+    <!-- SEARCH -->
 
     <div class="filters">
 
-        <select>
-            <option>Location</option>
+        <select id="location">
+            <option value="">Location</option>
             <option>Noida</option>
             <option>Greater Noida</option>
             <option>Greater Noida West</option>
@@ -232,16 +466,16 @@
             <option>Yamuna Expressway</option>
         </select>
 
-        <select>
-            <option>Property Type</option>
+        <select id="propertyType">
+            <option value="">Property Type</option>
             <option>Apartment</option>
             <option>Villa</option>
             <option>Plot</option>
             <option>Commercial</option>
         </select>
 
-        <select>
-            <option>BHK</option>
+        <select id="bhk">
+            <option value="">BHK</option>
             <option>1 BHK</option>
             <option>2 BHK</option>
             <option>3 BHK</option>
@@ -249,48 +483,73 @@
             <option>5+ BHK</option>
         </select>
 
-        <select>
-            <option>Budget</option>
+        <select id="budget">
+            <option value="">Budget</option>
             <option>Under ₹50 Lakh</option>
             <option>₹50 Lakh - ₹1 Crore</option>
             <option>₹1 - ₹2 Crore</option>
             <option>Above ₹2 Crore</option>
         </select>
 
-        <button onclick="searchProperties()">SEARCH</button>
+        <button onclick="searchProperties()">
+            SEARCH
+        </button>
 
     </div>
 
 </div>
 
 
+<!-- PROPERTIES -->
+
 <section>
 
-    <h2>Properties for Sale</h2>
+    <div class="section-heading">
+
+        <div>
+            <h2>Properties for Sale</h2>
+            <p>Explore selected properties available through RealtyAdda</p>
+        </div>
+
+    </div>
+
 
     <div class="properties">
+
 
         <!-- PROPERTY 1 -->
 
         <div class="property">
 
             <div class="property-image">
-                Property Image
+
+                <span class="tag">FOR SALE</span>
+
+                <div class="image-placeholder">
+                    <strong>🏠</strong>
+                    Property Image
+                </div>
+
             </div>
 
             <div class="property-content">
 
                 <h3>2 BHK Apartment</h3>
 
-                <p>Greater Noida West</p>
+                <div class="location">
+                    Greater Noida West
+                </div>
 
-                <p>Approx. 1050 sq.ft.</p>
+                <div class="details">
+                    Approx. 1050 sq.ft. • Residential Apartment
+                </div>
 
                 <div class="price">
                     ₹80 Lakh onwards
                 </div>
 
-                <a href="property.html?id=buy-2bhk-greater-noida-west">
+                <a class="view-btn"
+                   href="property.html?id=buy-2bhk-greater-noida-west">
                     View Property
                 </a>
 
@@ -304,22 +563,34 @@
         <div class="property">
 
             <div class="property-image">
-                Property Image
+
+                <span class="tag">FOR SALE</span>
+
+                <div class="image-placeholder">
+                    <strong>🏢</strong>
+                    Property Image
+                </div>
+
             </div>
 
             <div class="property-content">
 
                 <h3>3 BHK Apartment</h3>
 
-                <p>Noida</p>
+                <div class="location">
+                    Noida
+                </div>
 
-                <p>Approx. 1450 sq.ft.</p>
+                <div class="details">
+                    Approx. 1450 sq.ft. • Residential Apartment
+                </div>
 
                 <div class="price">
                     ₹1.10 Crore onwards
                 </div>
 
-                <a href="property.html?id=buy-3bhk-noida">
+                <a class="view-btn"
+                   href="property.html?id=buy-3bhk-noida">
                     View Property
                 </a>
 
@@ -333,22 +604,34 @@
         <div class="property">
 
             <div class="property-image">
-                Property Image
+
+                <span class="tag">FOR SALE</span>
+
+                <div class="image-placeholder">
+                    <strong>🏙️</strong>
+                    Property Image
+                </div>
+
             </div>
 
             <div class="property-content">
 
                 <h3>3 BHK Apartment</h3>
 
-                <p>Greater Noida</p>
+                <div class="location">
+                    Greater Noida
+                </div>
 
-                <p>Approx. 1600 sq.ft.</p>
+                <div class="details">
+                    Approx. 1600 sq.ft. • Residential Apartment
+                </div>
 
                 <div class="price">
                     ₹1.20 Crore onwards
                 </div>
 
-                <a href="property.html?id=buy-3bhk-greater-noida">
+                <a class="view-btn"
+                   href="property.html?id=buy-3bhk-greater-noida">
                     View Property
                 </a>
 
@@ -356,10 +639,30 @@
 
         </div>
 
+
     </div>
 
 </section>
 
+
+<!-- POST PROPERTY CTA -->
+
+<div class="cta">
+
+    <h2>Have a Property to Sell?</h2>
+
+    <p>
+        List your property on RealtyAdda and connect with genuine buyers.
+    </p>
+
+    <a href="post-property.html">
+        Post Your Property
+    </a>
+
+</div>
+
+
+<!-- FOOTER -->
 
 <footer>
 
@@ -367,7 +670,9 @@
 
     <p>Find. Compare. Connect.</p>
 
-    <p>© 2026 RealtyAdda. All Rights Reserved.</p>
+    <p>
+        © 2026 RealtyAdda. All Rights Reserved.
+    </p>
 
 </footer>
 
@@ -376,7 +681,34 @@
 
 function searchProperties() {
 
-    alert("Property search functionality will be connected in the next step.");
+    const location =
+        document.getElementById("location").value;
+
+    const propertyType =
+        document.getElementById("propertyType").value;
+
+    const bhk =
+        document.getElementById("bhk").value;
+
+    const budget =
+        document.getElementById("budget").value;
+
+
+    if (!location && !propertyType && !bhk && !budget) {
+
+        alert("Please select at least one search option.");
+
+        return;
+    }
+
+
+    alert(
+        "Search selected:\n\n" +
+        "Location: " + (location || "Any") + "\n" +
+        "Property Type: " + (propertyType || "Any") + "\n" +
+        "BHK: " + (bhk || "Any") + "\n" +
+        "Budget: " + (budget || "Any")
+    );
 
 }
 
