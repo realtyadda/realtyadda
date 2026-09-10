@@ -2,343 +2,202 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Post Property | RealtyAdda</title>
-
 <meta name="description"
-content="Post your property for sale or rent on RealtyAdda. Owners, agents and builders can submit listings in Noida, Greater Noida, Ghaziabad, Meerut, Delhi and NCR.">
+content="Post your property for sale or rent on RealtyAdda. For owners, agents and builders across Delhi NCR and Meerut.">
 
 <style>
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f5f6f8;
-    color: #222;
-    line-height: 1.6;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f3f6fb;
+  color: #182338;
+  line-height: 1.5;
 }
 
 header {
-    background: white;
-    padding: 18px 6%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+  background: #ffffff;
+  border-bottom: 1px solid #e1e7ef;
+  padding: 18px 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .logo {
-    font-size: 29px;
-    font-weight: bold;
-    color: #e63946;
-    text-decoration: none;
+  color: #1458bb;
+  font-size: 25px;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 nav a {
-    text-decoration: none;
-    color: #222;
-    font-weight: bold;
+  color: #27364d;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 nav a:hover {
-    color: #e63946;
+  color: #1458bb;
 }
 
-nav .post-btn {
-    background: #e63946;
-    color: white;
-    padding: 9px 14px;
-    border-radius: 6px;
+main {
+  max-width: 860px;
+  margin: 32px auto;
+  padding: 0 16px;
 }
 
-.hero {
-    background: #1d3557;
-    color: white;
-    text-align: center;
-    padding: 38px 18px;
+.card {
+  background: #ffffff;
+  padding: 28px;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(22, 53, 91, 0.06);
 }
 
-.hero h1 {
-    margin: 0 0 8px;
-    font-size: 36px;
+h1 {
+  margin: 0 0 8px;
 }
 
-.hero p {
-    margin: 0;
-}
-
-.container {
-    width: 92%;
-    max-width: 950px;
-    margin: 30px auto 50px;
-}
-
-.form-box {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,.08);
+.intro {
+  margin: 0 0 26px;
+  color: #53627a;
 }
 
 fieldset {
-    border: 0;
-    padding: 0;
-    margin: 0 0 30px;
-    min-width: 0;
-}
-
-legend {
-    width: 100%;
-    font-size: 21px;
-    font-weight: bold;
-    color: #1d3557;
-    padding-bottom: 10px;
-    margin-bottom: 18px;
-    border-bottom: 2px solid #eee;
-}
-
-.options {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-}
-
-.choice {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex: 1;
-    min-width: 130px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    padding: 14px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.choice:has(input:checked) {
-    border-color: #e63946;
-    background: #fff4f5;
-    color: #e63946;
-}
-
-.choice input {
-    width: auto;
-    margin: 0;
-    accent-color: #e63946;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
 }
 
 .grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
-}
-
-.field {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.field > label {
-    font-weight: bold;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
 }
 
 .full {
-    grid-column: 1 / -1;
+  grid-column: 1 / -1;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 7px;
 }
 
 input,
 select,
 textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 7px;
-    font: inherit;
-    font-size: 16px;
-    background: white;
+  display: block;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #b9c5d6;
+  border-radius: 8px;
+  font: inherit;
+  background: #ffffff;
+  color: #182338;
 }
 
 input:focus,
 select:focus,
 textarea:focus {
-    outline: 2px solid #1d3557;
-    outline-offset: 1px;
+  outline: 3px solid #dbeafe;
+  border-color: #1458bb;
 }
 
 textarea {
-    min-height: 125px;
-    resize: vertical;
+  min-height: 120px;
+  resize: vertical;
 }
 
-.pair {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 130px;
-    gap: 10px;
+.hint {
+  display: block;
+  color: #59677c;
+  font-size: 13px;
+  margin-top: 5px;
 }
 
-.required {
-    color: #e63946;
+button {
+  width: 100%;
+  padding: 15px;
+  margin-top: 24px;
+  border: 0;
+  border-radius: 9px;
+  background: #1458bb;
+  color: #ffffff;
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-.notice {
-    background: #fff8e6;
-    border-left: 4px solid #e6a700;
-    padding: 12px;
-    border-radius: 5px;
-    font-size: 14px;
+button:hover {
+  background: #104a9e;
 }
 
-.photo-preview {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 15px;
+button:disabled {
+  opacity: 0.65;
+  cursor: wait;
 }
 
-.photo-item {
-    position: relative;
-    width: 120px;
-    height: 100px;
+#message {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 9px;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
 }
 
-.photo-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 7px;
+#message:empty {
+  display: none;
 }
 
-.remove-photo {
-    position: absolute;
-    top: 4px;
-    right: 4px;
-    border: 0;
-    border-radius: 50%;
-    width: 26px;
-    height: 26px;
-    background: #222;
-    color: white;
-    cursor: pointer;
+#message.info {
+  background: #eaf2ff;
+  color: #16488c;
 }
 
-.terms {
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
+#message.success {
+  background: #e5f7ec;
+  color: #17623a;
 }
 
-.terms input {
-    width: auto;
-    margin-top: 7px;
-}
-
-.submit-btn,
-.whatsapp-btn {
-    width: 100%;
-    padding: 15px;
-    border: 0;
-    border-radius: 7px;
-    color: white;
-    font-size: 17px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 18px;
-}
-
-.submit-btn {
-    background: #e63946;
-}
-
-.whatsapp-btn {
-    background: #168b46;
-    margin-top: 12px;
-}
-
-.submit-btn:disabled {
-    background: #888;
-    cursor: wait;
-}
-
-.message {
-    padding: 18px;
-    border-radius: 8px;
-    margin-bottom: 22px;
-    overflow-wrap: anywhere;
-}
-
-.message[hidden] {
-    display: none;
-}
-
-.message.success {
-    background: #e8f8ee;
-    color: #216b38;
-    border: 1px solid #9bd5ae;
-}
-
-.message.error {
-    background: #fdecec;
-    color: #a32929;
-    border: 1px solid #e2a3a3;
-}
-
-.message.pending {
-    background: #eef4ff;
-    color: #1d3557;
-    border: 1px solid #bccfea;
+#message.error {
+  background: #fff0e8;
+  color: #8a350b;
 }
 
 footer {
-    background: #1d3557;
-    color: white;
-    text-align: center;
-    padding: 25px;
+  text-align: center;
+  color: #627087;
+  padding: 24px 16px;
 }
 
-footer p {
-    margin: 4px 0;
-}
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
 
-@media (max-width: 700px) {
-    header {
-        flex-direction: column;
-    }
+  .card {
+    padding: 20px;
+  }
 
-    nav {
-        justify-content: center;
-        gap: 12px;
-        font-size: 14px;
-    }
-
-    .hero h1 {
-        font-size: 28px;
-    }
-
-    .form-box {
-        padding: 22px 16px;
-    }
-
-    .grid {
-        grid-template-columns: 1fr;
-    }
-
-    .full {
-        grid-column: auto;
-    }
+  h1 {
+    font-size: 27px;
+  }
 }
 </style>
 </head>
@@ -346,671 +205,415 @@ footer p {
 <body>
 
 <header>
-    <a class="logo" href="index.html">RealtyAdda</a>
+  <a class="logo" href="index.html">RealtyAdda</a>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="buy.html">Buy</a>
-        <a href="rent.html">Rent</a>
-        <a href="projects.html">Projects</a>
-        <a href="societies.html">Societies</a>
-        <a class="post-btn" href="post-property.html">
-            Post Property
-        </a>
-    </nav>
+  <nav aria-label="Main navigation">
+    <a href="index.html">Home</a>
+    <a href="buy.html">Buy</a>
+    <a href="rent.html">Rent</a>
+    <a href="projects.html">Projects</a>
+  </nav>
 </header>
 
-<section class="hero">
-    <h1>Post Your Property</h1>
-    <p>Sell or rent your property with RealtyAdda</p>
-</section>
+<main>
+  <div class="card">
+    <h1>Post your property</h1>
 
-<main class="container">
-<div class="form-box">
-
-    <div id="statusMessage"
-         class="message"
-         role="status"
-         aria-live="polite"
-         tabindex="-1"
-         hidden>
-    </div>
-
-    <noscript>
-        <p class="notice">
-            Please enable JavaScript to submit this form.
-        </p>
-    </noscript>
+    <p class="intro">
+      Share your property details for sale or rent.
+      Fields marked * are required.
+    </p>
 
     <form id="propertyForm">
+      <fieldset id="fields">
+        <div class="grid">
 
-        <fieldset>
-            <legend>1. Listing Type</legend>
+          <div>
+            <label for="purpose">I want to *</label>
+            <select id="purpose" name="purpose" required>
+              <option value="">Select Sale or Rent</option>
+              <option value="Sale">Sell my property</option>
+              <option value="Rent">Rent out my property</option>
+            </select>
+          </div>
 
-            <div class="options">
-                <label class="choice">
-                    <input type="radio"
-                           name="listingType"
-                           value="Sell"
-                           checked>
-                    Sell Property
-                </label>
+          <div>
+            <label for="postedBy">Posted by *</label>
+            <select id="postedBy" name="postedBy" required>
+              <option value="">Select Owner, Agent or Builder</option>
+              <option value="Owner">Owner</option>
+              <option value="Agent">Agent</option>
+              <option value="Builder">Builder</option>
+            </select>
+          </div>
 
-                <label class="choice">
-                    <input type="radio"
-                           name="listingType"
-                           value="Rent">
-                    Rent Property
-                </label>
-            </div>
-        </fieldset>
+          <div>
+            <label for="name">Full name *</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              autocomplete="name"
+              maxlength="100"
+              required>
+          </div>
 
-        <fieldset>
-            <legend>2. You Are</legend>
+          <div>
+            <label for="mobile">Mobile number *</label>
+            <input
+              id="mobile"
+              name="mobile"
+              type="tel"
+              inputmode="numeric"
+              autocomplete="tel-national"
+              pattern="[6-9][0-9]{9}"
+              minlength="10"
+              maxlength="10"
+              title="Enter a 10-digit Indian mobile number without +91"
+              placeholder="10-digit mobile number"
+              required>
+          </div>
 
-            <div class="options">
-                <label class="choice">
-                    <input type="radio"
-                           name="sellerType"
-                           value="Owner"
-                           checked>
-                    Owner
-                </label>
+          <div>
+            <label for="city">City *</label>
+            <select id="city" name="city" required>
+              <option value="">Select city</option>
+              <option>Noida</option>
+              <option>Greater Noida</option>
+              <option>Greater Noida West</option>
+              <option>Ghaziabad</option>
+              <option>Delhi</option>
+              <option>Meerut</option>
+              <option>Yamuna Expressway</option>
+              <option>Gurugram</option>
+              <option>Faridabad</option>
+              <option>Other NCR</option>
+            </select>
+          </div>
 
-                <label class="choice">
-                    <input type="radio"
-                           name="sellerType"
-                           value="Agent">
-                    Agent
-                </label>
+          <div>
+            <label for="locality">Locality / Society *</label>
+            <input
+              id="locality"
+              name="locality"
+              type="text"
+              placeholder="Society, sector or area"
+              maxlength="200"
+              required>
+          </div>
 
-                <label class="choice">
-                    <input type="radio"
-                           name="sellerType"
-                           value="Builder">
-                    Builder
-                </label>
-            </div>
-        </fieldset>
+          <div>
+            <label for="propertyType">Property type *</label>
+            <select id="propertyType" name="propertyType" required>
+              <option value="">Select property type</option>
+              <option>Apartment / Flat</option>
+              <option>Independent House</option>
+              <option>Villa</option>
+              <option>Builder Floor</option>
+              <option>Residential Plot</option>
+              <option>Shop / Showroom</option>
+              <option>Office</option>
+              <option>Commercial Land</option>
+              <option>Warehouse</option>
+              <option>Other</option>
+            </select>
+          </div>
 
-        <fieldset>
-            <legend>3. Contact Details</legend>
+          <div>
+            <label for="bhk">BHK</label>
+            <select id="bhk" name="bhk">
+              <option value="">Select if applicable</option>
+              <option>Studio</option>
+              <option>1 BHK</option>
+              <option>2 BHK</option>
+              <option>3 BHK</option>
+              <option>4 BHK</option>
+              <option>5+ BHK</option>
+              <option>Not Applicable</option>
+            </select>
+          </div>
 
-            <div class="grid">
-                <div class="field">
-                    <label for="name">
-                        Name <span class="required">*</span>
-                    </label>
-                    <input id="name"
-                           type="text"
-                           autocomplete="name"
-                           maxlength="100"
-                           required>
-                </div>
+          <div>
+            <label for="area">Area in sq ft</label>
+            <input
+              id="area"
+              name="area"
+              type="number"
+              min="1"
+              step="any"
+              placeholder="Example: 1450">
+          </div>
 
-                <div class="field">
-                    <label for="mobile">
-                        Mobile Number <span class="required">*</span>
-                    </label>
-                    <input id="mobile"
-                           type="tel"
-                           inputmode="numeric"
-                           autocomplete="tel-national"
-                           maxlength="10"
-                           pattern="[0-9]{10}"
-                           placeholder="10 digit mobile number"
-                           title="Enter a 10 digit mobile number"
-                           required>
-                </div>
-
-                <div class="field">
-                    <label for="email">Email</label>
-                    <input id="email"
-                           type="email"
-                           autocomplete="email">
-                </div>
-
-                <div class="field">
-                    <label for="preferredContact">
-                        Preferred Contact
-                    </label>
-                    <select id="preferredContact">
-                        <option>Phone Call</option>
-                        <option>WhatsApp</option>
-                        <option>Email</option>
-                    </select>
-                </div>
-            </div>
-        </fieldset>
-
-        <fieldset>
-            <legend>4. Property Location</legend>
-
-            <div class="grid">
-                <div class="field">
-                    <label for="city">
-                        City <span class="required">*</span>
-                    </label>
-                    <select id="city" required>
-                        <option value="">Select City</option>
-                        <option>Noida</option>
-                        <option>Greater Noida</option>
-                        <option>Greater Noida West</option>
-                        <option>Ghaziabad</option>
-                        <option>Meerut</option>
-                        <option>Delhi</option>
-                        <option>Yamuna Expressway</option>
-                        <option>Other NCR</option>
-                    </select>
-                </div>
-
-                <div class="field">
-                    <label for="locality">
-                        Locality / Sector
-                        <span class="required">*</span>
-                    </label>
-                    <input id="locality"
-                           type="text"
-                           placeholder="Example: Sector 137"
-                           required>
-                </div>
-
-                <div class="field">
-                    <label for="society">Society / Project</label>
-                    <input id="society"
-                           type="text"
-                           placeholder="Society or project name">
-                </div>
-
-                <div class="field">
-                    <label for="address">Property Address</label>
-                    <input id="address"
-                           type="text"
-                           placeholder="Tower / Block / Street">
-                </div>
-            </div>
-        </fieldset>
-
-        <fieldset>
-            <legend>5. Property Details</legend>
-
-            <div class="grid">
-                <div class="field">
-                    <label for="propertyType">
-                        Property Type
-                        <span class="required">*</span>
-                    </label>
-                    <select id="propertyType" required>
-                        <option value="">Select Property Type</option>
-                        <option>Apartment</option>
-                        <option>Villa</option>
-                        <option>Independent House</option>
-                        <option>Plot</option>
-                        <option>Builder Floor</option>
-                        <option>Commercial</option>
-                        <option>Office</option>
-                        <option>Shop</option>
-                    </select>
-                </div>
-
-                <div class="field">
-                    <label for="bhk">BHK</label>
-                    <select id="bhk">
-                        <option>Not Applicable</option>
-                        <option>1 BHK</option>
-                        <option>2 BHK</option>
-                        <option>3 BHK</option>
-                        <option>4 BHK</option>
-                        <option>5+ BHK</option>
-                    </select>
-                </div>
-
-                <div class="field">
-                    <label for="area">
-                        Area <span class="required">*</span>
-                    </label>
-                    <div class="pair">
-                        <input id="area"
-                               type="number"
-                               min="0.01"
-                               step="any"
-                               placeholder="1050"
-                               required>
-
-                        <select id="areaUnit" aria-label="Area unit">
-                            <option>sq.ft.</option>
-                            <option>sq.yd.</option>
-                            <option>sq.m.</option>
-                            <option>acres</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="field">
-                    <label for="floor">Floor</label>
-                    <select id="floor">
-                        <option value="">Select Floor</option>
-                        <option>Ground Floor</option>
-                        <option>1st Floor</option>
-                        <option>2nd Floor</option>
-                        <option>3rd Floor</option>
-                        <option>4th Floor</option>
-                        <option>5th Floor</option>
-                        <option>6th Floor</option>
-                        <option>7th Floor</option>
-                        <option>8th Floor</option>
-                        <option>9th Floor</option>
-                        <option>10th Floor+</option>
-                    </select>
-                </div>
-
-                <div class="field">
-                    <label for="furnishing">Furnishing</label>
-                    <select id="furnishing">
-                        <option>Unfurnished</option>
-                        <option>Semi Furnished</option>
-                        <option>Fully Furnished</option>
-                    </select>
-                </div>
-
-                <div class="field">
-                    <label for="parking">Parking</label>
-                    <select id="parking">
-                        <option>No Parking</option>
-                        <option>1 Parking</option>
-                        <option>2 Parking</option>
-                        <option>Multiple Parking</option>
-                    </select>
-                </div>
-            </div>
-        </fieldset>
-
-        <fieldset>
-            <legend>6. Price / Rent</legend>
-
-            <div class="grid">
-                <div class="field">
-                    <label for="price">
-                        Expected Price / Monthly Rent
-                        <span class="required">*</span>
-                    </label>
-                    <input id="price"
-                           type="number"
-                           min="0.01"
-                           step="any"
-                           placeholder="Enter amount"
-                           required>
-                </div>
-
-                <div class="field">
-                    <label for="priceUnit">Price Unit</label>
-                    <select id="priceUnit">
-                        <option>₹</option>
-                        <option>₹ Lakh</option>
-                        <option>₹ Crore</option>
-                        <option>₹ / Month</option>
-                    </select>
-                </div>
-
-                <div class="field full">
-                    <label for="maintenance">
-                        Maintenance Charges
-                    </label>
-                    <input id="maintenance"
-                           type="text"
-                           placeholder="Example: ₹3,000 per month">
-                </div>
-            </div>
-        </fieldset>
-
-        <fieldset>
-            <legend>7. Property Description</legend>
-
-            <div class="field">
-                <label for="description">
-                    Description <span class="required">*</span>
-                </label>
-                <textarea id="description"
-                          placeholder="Describe the property, amenities and nearby facilities."
-                          required></textarea>
-            </div>
-        </fieldset>
-
-        <fieldset>
-            <legend>8. Property Photos</legend>
-
-            <label for="propertyPhotos">Select up to 10 photos</label>
-
-            <input id="propertyPhotos"
-                   type="file"
-                   accept="image/*"
-                   multiple>
-
-            <div id="photoPreview" class="photo-preview"></div>
-
-            <p class="notice">
-                Photos are previewed on this device only.
-                This form sends photo filenames, not image files.
-                Share the actual photos separately through WhatsApp.
-            </p>
-        </fieldset>
-
-        <fieldset>
-            <legend>9. Additional Information</legend>
-
-            <div class="grid">
-                <div class="field">
-                    <label for="availability">
-                        Property Availability
-                    </label>
-                    <select id="availability">
-                        <option>Immediately Available</option>
-                        <option>Available Soon</option>
-                        <option>Currently Occupied</option>
-                        <option>Under Construction</option>
-                    </select>
-                </div>
-
-                <div class="field">
-                    <label for="ownership">Ownership</label>
-                    <select id="ownership">
-                        <option>Freehold</option>
-                        <option>Leasehold</option>
-                        <option>Builder / Developer</option>
-                        <option>Not Sure</option>
-                    </select>
-                </div>
-            </div>
-        </fieldset>
-
-        <label class="terms">
-            <input id="terms" type="checkbox" required>
-            <span>
-                I confirm that the information provided is correct
-                and agree to be contacted by RealtyAdda regarding
-                this property.
+          <div>
+            <label id="priceLabel" for="price">
+              Expected price (₹) *
+            </label>
+            <input
+              id="price"
+              name="price"
+              type="number"
+              min="1"
+              step="1"
+              placeholder="Example: 8000000"
+              required>
+            <span class="hint">
+              Enter the full amount in rupees.
             </span>
-        </label>
+          </div>
 
-        <button id="submitBtn"
-                class="submit-btn"
-                type="submit"
-                disabled>
-            SUBMIT PROPERTY
-        </button>
+          <div class="full">
+            <label for="description">Property description</label>
+            <textarea
+              id="description"
+              name="description"
+              maxlength="3000"
+              placeholder="Floor, furnishing, parking, availability and other details"></textarea>
+          </div>
 
-        <button id="whatsappBtn"
-                class="whatsapp-btn"
-                type="button"
-                disabled>
-            SEND DETAILS THROUGH WHATSAPP
-        </button>
+        </div>
+      </fieldset>
 
+      <button id="submitButton" type="submit" disabled>
+        Submit property
+      </button>
+
+      <div id="message" role="status" aria-live="polite"></div>
     </form>
-</div>
+
+    <noscript>
+      Please enable JavaScript in your browser to submit this form.
+    </noscript>
+  </div>
 </main>
 
 <footer>
-    <p><strong>RealtyAdda</strong></p>
-    <p>Find. Compare. Connect.</p>
-    <p>© 2026 RealtyAdda. All Rights Reserved.</p>
+  RealtyAdda · Property in Delhi NCR &amp; Meerut
 </footer>
 
 <script>
 "use strict";
 
-const GOOGLE_SCRIPT_URL =
-"https://script.google.com/macros/s/AKfycbx5bibvXrCBKZ9LsSdIHEaLD5u7UH5m4FPf7IH9nOijFNlEOPVYbFVH-AZu9oxLyT6u/exec";
-
-const WHATSAPP_NUMBER = "919540205941";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx5bibvXrCBKZ9LsSdIHEaLD5u7UH5m4FPf7IH9nOijFNlEOPVYbFVH-AZu9oxLyT6u/exec";
 
 const form = document.getElementById("propertyForm");
-const submitBtn = document.getElementById("submitBtn");
-const whatsappBtn = document.getElementById("whatsappBtn");
-const statusMessage = document.getElementById("statusMessage");
-const photoInput = document.getElementById("propertyPhotos");
-const photoPreview = document.getElementById("photoPreview");
+const fields = document.getElementById("fields");
+const button = document.getElementById("submitButton");
+const message = document.getElementById("message");
+const purpose = document.getElementById("purpose");
+const price = document.getElementById("price");
 
-let selectedFiles = [];
-let previewURLs = [];
-let submitting = false;
+let busy = false;
+let retryId = "";
+let retryPayload = "";
 
-function valueOf(id) {
-    return document.getElementById(id).value.trim();
+function showMessage(text, type) {
+  message.textContent = text;
+  message.className = type;
 }
 
-function selectedValue(name) {
-    return form.querySelector(
-        'input[name="' + name + '"]:checked'
-    ).value;
+function updatePriceLabel() {
+  const renting = purpose.value === "Rent";
+
+  document.getElementById("priceLabel").textContent = renting
+    ? "Expected monthly rent (₹) *"
+    : "Expected price (₹) *";
+
+  price.placeholder = renting
+    ? "Example: 22000"
+    : "Example: 8000000";
 }
 
-function showMessage(type, message) {
-    statusMessage.className = "message " + type;
-    statusMessage.textContent = message;
-    statusMessage.hidden = false;
+purpose.addEventListener("change", updatePriceLabel);
 
-    statusMessage.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-    });
+function newSubmissionId() {
+  if (
+    window.crypto &&
+    typeof window.crypto.randomUUID === "function"
+  ) {
+    return window.crypto.randomUUID();
+  }
 
-    statusMessage.focus({ preventScroll: true });
+  return "ra-" + Date.now() + "-" +
+    Math.random().toString(36).slice(2);
 }
 
-function displayPhotos() {
-    previewURLs.forEach(function(url) {
-        URL.revokeObjectURL(url);
-    });
+function checkSaved(id) {
+  return new Promise(function(resolve, reject) {
+    const callback = "ra_" + Date.now() + "_" +
+      Math.random().toString(36).slice(2);
 
-    previewURLs = [];
-    photoPreview.replaceChildren();
+    const script = document.createElement("script");
+    let timer;
 
-    selectedFiles.forEach(function(file, index) {
-        const item = document.createElement("div");
-        item.className = "photo-item";
+    function cleanup() {
+      clearTimeout(timer);
+      script.remove();
 
-        const img = document.createElement("img");
-        const url = URL.createObjectURL(file);
-        previewURLs.push(url);
+      window[callback] = function() {};
 
-        img.src = url;
-        img.alt = "Property photo " + (index + 1);
-
-        const remove = document.createElement("button");
-        remove.type = "button";
-        remove.className = "remove-photo";
-        remove.textContent = "×";
-        remove.setAttribute("aria-label", "Remove " + file.name);
-
-        remove.addEventListener("click", function() {
-            selectedFiles.splice(index, 1);
-            displayPhotos();
-        });
-
-        item.append(img, remove);
-        photoPreview.appendChild(item);
-    });
-}
-
-photoInput.addEventListener("change", function() {
-    const files = Array.from(photoInput.files);
-
-    if (selectedFiles.length + files.length > 10) {
-        alert("Please select a maximum of 10 photos in total.");
-        photoInput.value = "";
-        return;
+      setTimeout(function() {
+        delete window[callback];
+      }, 60000);
     }
 
-    if (files.some(function(file) {
-        return !file.type.startsWith("image/");
-    })) {
-        alert("Please select image files only.");
-        photoInput.value = "";
-        return;
-    }
-
-    selectedFiles = selectedFiles.concat(files);
-    photoInput.value = "";
-    displayPhotos();
-});
-
-function collectData() {
-    return {
-        name: valueOf("name"),
-        phone: valueOf("mobile"),
-        email: valueOf("email"),
-        listingType: selectedValue("listingType"),
-        sellerType: selectedValue("sellerType"),
-        preferredContact: valueOf("preferredContact"),
-        city: valueOf("city"),
-        locality: valueOf("locality"),
-        society: valueOf("society"),
-        address: valueOf("address"),
-        propertyType: valueOf("propertyType"),
-        bhk: valueOf("bhk"),
-        area: valueOf("area"),
-        areaUnit: valueOf("areaUnit"),
-        floor: valueOf("floor"),
-        furnishing: valueOf("furnishing"),
-        parking: valueOf("parking"),
-        price: valueOf("price"),
-        priceUnit: valueOf("priceUnit"),
-        maintenance: valueOf("maintenance"),
-        description: valueOf("description"),
-        availability: valueOf("availability"),
-        ownership: valueOf("ownership"),
-        photos: selectedFiles.map(function(file) {
-            return file.name;
-        }).join(", ")
+    window[callback] = function(data) {
+      cleanup();
+      resolve(data);
     };
+
+    script.onerror = function() {
+      cleanup();
+      reject(new Error("Could not verify submission."));
+    };
+
+    const url = new URL(SCRIPT_URL);
+    url.searchParams.set("action", "status");
+    url.searchParams.set("submissionId", id);
+    url.searchParams.set("callback", callback);
+    url.searchParams.set("_", Date.now());
+
+    timer = setTimeout(function() {
+      cleanup();
+      reject(new Error("Verification timed out."));
+    }, 10000);
+
+    script.src = url.toString();
+    document.head.appendChild(script);
+  });
 }
 
-function validateForm() {
-    if (!form.reportValidity()) {
-        return false;
-    }
-
-    if (!valueOf("name") ||
-        !valueOf("locality") ||
-        !valueOf("description")) {
-        showMessage(
-            "error",
-            "Please enter your name, locality and property description."
-        );
-        return false;
-    }
-
-    if (!/^[0-9]{10}$/.test(valueOf("mobile"))) {
-        showMessage(
-            "error",
-            "Please enter a valid 10 digit mobile number."
-        );
-        return false;
-    }
-
-    return true;
+function pause(ms) {
+  return new Promise(function(resolve) {
+    setTimeout(resolve, ms);
+  });
 }
 
 form.addEventListener("submit", async function(event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    if (submitting || !validateForm()) {
-        return;
-    }
+  if (busy || !form.reportValidity()) {
+    return;
+  }
 
-    if (!window.confirm(
-        "Submit these property details to RealtyAdda for review?"
-    )) {
-        return;
-    }
+  const params = new URLSearchParams();
 
-    const propertyData = collectData();
+  for (const [key, value] of new FormData(form).entries()) {
+    params.append(key, String(value).trim());
+  }
 
-    submitting = true;
-    submitBtn.disabled = true;
-    submitBtn.textContent = "SUBMITTING...";
-
+  if (!params.get("name") || !params.get("locality")) {
     showMessage(
-        "pending",
-        "Submitting your property. Please wait for confirmation."
+      "Please enter your name and locality.",
+      "error"
     );
+    return;
+  }
 
-    const payload = new URLSearchParams();
-    payload.append("data", JSON.stringify(propertyData));
+  const payload = params.toString();
 
+  // Reuse the submission ID when retrying unchanged details.
+  if (!retryId || payload !== retryPayload) {
+    retryId = newSubmissionId();
+    retryPayload = payload;
+  }
+
+  const id = retryId;
+  params.set("submissionId", id);
+
+  busy = true;
+  fields.disabled = true;
+  button.disabled = true;
+  button.textContent = "Submitting...";
+
+  showMessage(
+    "Sending your details. Please keep this page open.",
+    "info"
+  );
+
+  try {
     const controller = new AbortController();
 
-    const timer = window.setTimeout(function() {
-        controller.abort();
-    }, 60000);
+    const timer = setTimeout(function() {
+      controller.abort();
+    }, 15000);
 
     try {
-        const response = await fetch(GOOGLE_SCRIPT_URL, {
-            method: "POST",
-            body: payload,
-            signal: controller.signal
-        });
-
-        const responseText = await response.text();
-
-        if (!response.ok) {
-            throw new Error("Server response: HTTP " + response.status);
-        }
-
-        let result;
-
-        try {
-            result = JSON.parse(responseText);
-        } catch (error) {
-            throw new Error(
-                "The server did not return a valid confirmation."
-            );
-        }
-
-        if (!result || result.status !== "success") {
-            throw new Error(
-                result && result.message
-                    ? String(result.message)
-                    : "The server did not confirm that the property was saved."
-            );
-        }
-
-        showMessage(
-            "success",
-            "Property submitted successfully! " +
-            "Your details have been received for review."
-        );
-
-        alert(
-            "Property submitted successfully!\n\n" +
-            "Your details have been received for review."
-        );
-
-        form.reset();
-        selectedFiles = [];
-        displayPhotos();
-
+      await fetch(SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        credentials: "omit",
+        body: params,
+        signal: controller.signal
+      });
     } catch (error) {
-        const detail = error.name === "AbortError"
-            ? "The request timed out."
-            : error.message;
-
-        showMessage(
-            "error",
-            "Submission could not be confirmed. " +
-            "Your entered details have been kept. " +
-            "The request may have reached the server; please check " +
-            "before submitting again. " + detail
-        );
-
+      // Verify the sheet even if the POST response is unavailable.
     } finally {
-        window.clearTimeout(timer);
-        submitting = false;
-        submitBtn.disabled = false;
-        submitBtn.textContent = "SUBMIT PROPERTY";
+      clearTimeout(timer);
     }
+
+    showMessage(
+      "Checking that your entry was saved in Google Sheets...",
+      "info"
+    );
+
+    let saved = false;
+
+    for (let attempt = 0; attempt < 5; attempt++) {
+      try {
+        const result = await checkSaved(id);
+
+        if (result.status === "saved") {
+          saved = true;
+          break;
+        }
+      } catch (error) {
+        // Retry temporary connection failures.
+      }
+
+      if (attempt < 4) {
+        await pause(1500);
+      }
+    }
+
+    if (!saved) {
+      throw new Error(
+        "We could not confirm saving. Your details have been kept here. " +
+        "Please retry. If this continues, check the Apps Script deployment " +
+        "uses the new version and allows access to Anyone."
+      );
+    }
+
+    form.reset();
+    updatePriceLabel();
+
+    retryId = "";
+    retryPayload = "";
+
+    showMessage(
+      "Property submitted successfully!\n" +
+      "Your details have been saved for review.\n" +
+      "Reference: " + id,
+      "success"
+    );
+
+    window.alert(
+      "Property submitted successfully! Your details have been saved."
+    );
+  } catch (error) {
+    showMessage(
+      error.message || "Please try again.",
+      "error"
+    );
+  } finally {
+    busy = false;
+    fields.disabled = false;
+    button.disabled = false;
+    button.textContent = "Submit property";
+  }
 });
 
-form.querySelectorAll(
-    'input[name="
+button.disabled = false;
+</script>
+
+</body>
+</html>
