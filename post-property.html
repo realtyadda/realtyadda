@@ -552,7 +552,7 @@ form.addEventListener("submit", async function(event) {
     }
 
     showMessage(
-      "Checking that your entry was saved in Google Sheets...",
+      "Confirming your submission...",
       "info"
     );
 
@@ -578,8 +578,7 @@ form.addEventListener("submit", async function(event) {
     if (!saved) {
       throw new Error(
         "We could not confirm saving. Your details have been kept here. " +
-        "Please retry. If this continues, check the Apps Script deployment " +
-        "uses the new version and allows access to Anyone."
+        "Please retry shortly or contact RealtyAdda for help."
       );
     }
 
@@ -617,3 +616,4 @@ button.disabled = false;
 
 </body>
 </html>
+
