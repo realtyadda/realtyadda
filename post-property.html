@@ -200,6 +200,7 @@ footer {
   }
 }
 </style>
+<link rel="stylesheet" href="photos.css">
 </head>
 
 <body>
@@ -370,6 +371,20 @@ footer {
               placeholder="Floor, furnishing, parking, availability and other details"></textarea>
           </div>
 
+          <div class="full photo-picker">
+            <label for="propertyPhotos">Property photos</label>
+            <input id="propertyPhotos" type="file" disabled accept="image/jpeg,image/png,image/webp" multiple aria-describedby="photoHint photoMessage">
+            <span id="photoHint" class="hint">Add up to 10 JPG, PNG or WebP photos, up to 12 MB each. Photos are resized before upload. The first photo is the cover.</span>
+            <span class="hint">Photos are saved with your listing and appear publicly after RealtyAdda reviews and publishes it.</span>
+            <p id="photoCount">0 / 10 photos</p>
+            <div id="photoPreview" class="photo-preview"></div>
+            <p id="photoMessage" class="photo-message" role="status" aria-live="polite">Checking photo upload availability…</p>
+            <div id="photoFallback" hidden>
+              <p>You can submit your property details now and send photos to RealtyAdda on WhatsApp.</p>
+              <a href="https://wa.me/919540205941?text=Hello%20RealtyAdda%2C%20I%20would%20like%20to%20share%20photos%20of%20my%20property." target="_blank" rel="noopener">Share photos on WhatsApp</a>
+              <button id="checkPhotoAvailability" type="button" class="photo-action">Check upload availability</button>
+            </div>
+          </div>
         </div>
       </fieldset>
 
@@ -386,234 +401,17 @@ footer {
   </div>
 </main>
 
+<dialog id="photoDialog" class="photo-dialog" aria-label="Selected property photo">
+  <div class="dialog-actions"><button type="button" id="closePhotoDialog">Close</button></div>
+  <img id="dialogImage" alt="Selected property photo">
+  <p id="dialogCaption"></p>
+</dialog>
 <footer>
   RealtyAdda · Property in Delhi NCR &amp; Meerut
 </footer>
 
-<script>
-"use strict";
-
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx5bibvXrCBKZ9LsSdIHEaLD5u7UH5m4FPf7IH9nOijFNlEOPVYbFVH-AZu9oxLyT6u/exec";
-
-const form = document.getElementById("propertyForm");
-const fields = document.getElementById("fields");
-const button = document.getElementById("submitButton");
-const message = document.getElementById("message");
-const purpose = document.getElementById("purpose");
-const price = document.getElementById("price");
-
-let busy = false;
-let retryId = "";
-let retryPayload = "";
-
-function showMessage(text, type) {
-  message.textContent = text;
-  message.className = type;
-}
-
-function updatePriceLabel() {
-  const renting = purpose.value === "Rent";
-
-  document.getElementById("priceLabel").textContent = renting
-    ? "Expected monthly rent (₹) *"
-    : "Expected price (₹) *";
-
-  price.placeholder = renting
-    ? "Example: 22000"
-    : "Example: 8000000";
-}
-
-purpose.addEventListener("change", updatePriceLabel);
-
-function newSubmissionId() {
-  if (
-    window.crypto &&
-    typeof window.crypto.randomUUID === "function"
-  ) {
-    return window.crypto.randomUUID();
-  }
-
-  return "ra-" + Date.now() + "-" +
-    Math.random().toString(36).slice(2);
-}
-
-function checkSaved(id) {
-  return new Promise(function(resolve, reject) {
-    const callback = "ra_" + Date.now() + "_" +
-      Math.random().toString(36).slice(2);
-
-    const script = document.createElement("script");
-    let timer;
-
-    function cleanup() {
-      clearTimeout(timer);
-      script.remove();
-
-      window[callback] = function() {};
-
-      setTimeout(function() {
-        delete window[callback];
-      }, 60000);
-    }
-
-    window[callback] = function(data) {
-      cleanup();
-      resolve(data);
-    };
-
-    script.onerror = function() {
-      cleanup();
-      reject(new Error("Could not verify submission."));
-    };
-
-    const url = new URL(SCRIPT_URL);
-    url.searchParams.set("action", "status");
-    url.searchParams.set("submissionId", id);
-    url.searchParams.set("callback", callback);
-    url.searchParams.set("_", Date.now());
-
-    timer = setTimeout(function() {
-      cleanup();
-      reject(new Error("Verification timed out."));
-    }, 10000);
-
-    script.src = url.toString();
-    document.head.appendChild(script);
-  });
-}
-
-function pause(ms) {
-  return new Promise(function(resolve) {
-    setTimeout(resolve, ms);
-  });
-}
-
-form.addEventListener("submit", async function(event) {
-  event.preventDefault();
-
-  if (busy || !form.reportValidity()) {
-    return;
-  }
-
-  const params = new URLSearchParams();
-
-  for (const [key, value] of new FormData(form).entries()) {
-    params.append(key, String(value).trim());
-  }
-
-  if (!params.get("name") || !params.get("locality")) {
-    showMessage(
-      "Please enter your name and locality.",
-      "error"
-    );
-    return;
-  }
-
-  const payload = params.toString();
-
-  // Reuse the submission ID when retrying unchanged details.
-  if (!retryId || payload !== retryPayload) {
-    retryId = newSubmissionId();
-    retryPayload = payload;
-  }
-
-  const id = retryId;
-  params.set("submissionId", id);
-
-  busy = true;
-  fields.disabled = true;
-  button.disabled = true;
-  button.textContent = "Submitting...";
-
-  showMessage(
-    "Sending your details. Please keep this page open.",
-    "info"
-  );
-
-  try {
-    const controller = new AbortController();
-
-    const timer = setTimeout(function() {
-      controller.abort();
-    }, 15000);
-
-    try {
-      await fetch(SCRIPT_URL, {
-        method: "POST",
-        mode: "no-cors",
-        credentials: "omit",
-        body: params,
-        signal: controller.signal
-      });
-    } catch (error) {
-      // Verify the sheet even if the POST response is unavailable.
-    } finally {
-      clearTimeout(timer);
-    }
-
-    showMessage(
-      "Confirming your submission...",
-      "info"
-    );
-
-    let saved = false;
-
-    for (let attempt = 0; attempt < 5; attempt++) {
-      try {
-        const result = await checkSaved(id);
-
-        if (result.status === "saved") {
-          saved = true;
-          break;
-        }
-      } catch (error) {
-        // Retry temporary connection failures.
-      }
-
-      if (attempt < 4) {
-        await pause(1500);
-      }
-    }
-
-    if (!saved) {
-      throw new Error(
-        "We could not confirm saving. Your details have been kept here. " +
-        "Please retry shortly or contact RealtyAdda for help."
-      );
-    }
-
-    form.reset();
-    updatePriceLabel();
-
-    retryId = "";
-    retryPayload = "";
-
-    showMessage(
-      "Property submitted successfully!\n" +
-      "Your details have been saved for review.\n" +
-      "Reference: " + id,
-      "success"
-    );
-
-    window.alert(
-      "Property submitted successfully! Your details have been saved."
-    );
-  } catch (error) {
-    showMessage(
-      error.message || "Please try again.",
-      "error"
-    );
-  } finally {
-    busy = false;
-    fields.disabled = false;
-    button.disabled = false;
-    button.textContent = "Submit property";
-  }
-});
-
-button.disabled = false;
-</script>
+<script src="realtyadda-api.js"></script>
+<script src="photo-form.js"></script>
 
 </body>
 </html>
-

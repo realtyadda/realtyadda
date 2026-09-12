@@ -361,6 +361,7 @@
 
     </style>
 
+<link rel="stylesheet" href="photos.css">
 </head>
 
 
@@ -411,6 +412,7 @@
     </a>
 
 
+    <p id="pageMessage" role="status" aria-live="polite"></p>
     <div class="property-grid">
 
 
@@ -424,20 +426,20 @@
                 <img
                     id="mainPropertyImage"
                     class="main-property-image"
-                    src=""
+
                     alt="Property Image">
 
 
                 <button
                     class="gallery-btn prev-btn"
-                    onclick="previousImage()">
+                    aria-label="Previous photo" type="button" aria-label="Previous photo">
                     ‹
                 </button>
 
 
                 <button
                     class="gallery-btn next-btn"
-                    onclick="nextImage()">
+                    aria-label="Next photo" type="button" aria-label="Next photo">
                     ›
                 </button>
 
@@ -451,6 +453,9 @@
             </div>
 
 
+            <p id="galleryStatus" role="status"></p>
+            <p id="sampleNotice" class="sample-notice" hidden>Illustrative photos for this sample listing. Contact RealtyAdda for actual property photos and availability.</p>
+            <button type="button" id="openGallery">View full photo</button>
             <div
                 class="thumbnails"
                 id="thumbnails">
@@ -566,7 +571,7 @@
 
 
                 <a
-                    href="contact.html"
+                    href="tel:+919540205941"
                     class="contact-btn">
 
                     Contact
@@ -578,7 +583,7 @@
                     href="#"
                     id="whatsappButton"
                     class="whatsapp-btn"
-                    target="_blank">
+                    target="_blank" rel="noopener">
 
                     WhatsApp
 
@@ -676,6 +681,11 @@
 </section>
 
 
+<dialog id="galleryDialog" class="photo-dialog" aria-label="Property photo gallery">
+ <div class="dialog-actions"><button id="lightboxPrevious" class="lightbox-nav" type="button">Previous</button><button id="closeGallery" type="button">Close</button><button id="lightboxNext" class="lightbox-nav" type="button">Next</button></div>
+ <img id="largeGalleryImage" alt="Property photo">
+ <p id="galleryCaption"></p>
+</dialog>
 <!-- FOOTER -->
 
 <footer>
@@ -978,317 +988,11 @@ const properties = {
 };
 
 
-/* =====================================================
-   LOAD PROPERTY
-   ===================================================== */
-
-
-const params =
-    new URLSearchParams(window.location.search);
-
-const propertyId =
-    params.get("id");
-
-const property =
-    properties[propertyId];
-
-
-let currentImage = 0;
-
-
-if (property) {
-
-
-    document.title =
-        property.title + " | RealtyAdda";
-
-
-    document.getElementById("propertyTitle").innerText =
-        property.title;
-
-
-    document.getElementById("propertyLocation").innerText =
-        property.location;
-
-
-    document.getElementById("propertyPrice").innerText =
-        property.price;
-
-
-    document.getElementById("propertyType").innerText =
-        property.type;
-
-
-    document.getElementById("propertyBhk").innerText =
-        property.bhk;
-
-
-    document.getElementById("propertyArea").innerText =
-        property.area;
-
-
-    document.getElementById("propertyFloor").innerText =
-        property.floor;
-
-
-    document.getElementById("propertyParking").innerText =
-        property.parking;
-
-
-    document.getElementById("propertyFurnishing").innerText =
-        property.furnishing;
-
-
-    document.getElementById("propertyDescription").innerText =
-        property.description;
-
-
-    document.getElementById("locationText").innerText =
-        property.location;
-
-
-    /* BREADCRUMB */
-
-
-    if (propertyId.startsWith("rent")) {
-
-        document.getElementById("breadcrumb").innerText =
-            "Home / Rent / Property Details";
-
-        document.getElementById("backButton").href =
-            "rent.html";
-
-    } else {
-
-        document.getElementById("breadcrumb").innerText =
-            "Home / Buy / Property Details";
-
-        document.getElementById("backButton").href =
-            "buy.html";
-
-    }
-
-
-    /* AMENITIES */
-
-
-    const amenitiesList =
-        document.getElementById("amenitiesList");
-
-
-    property.amenities.forEach(function(amenity) {
-
-        const div =
-            document.createElement("div");
-
-        div.className =
-            "amenity";
-
-        div.innerText =
-            amenity;
-
-        amenitiesList.appendChild(div);
-
-    });
-
-
-    /* WHATSAPP */
-
-
-    const whatsappText =
-        "Hello RealtyAdda, I am interested in " +
-        property.title +
-        " at " +
-        property.location +
-        ". Please share more details.";
-
-
-    document.getElementById("whatsappButton").href =
-        "https://wa.me/?text=" +
-        encodeURIComponent(whatsappText);
-
-
-    /* GALLERY */
-
-
-    const mainImage =
-        document.getElementById("mainPropertyImage");
-
-    const thumbnails =
-        document.getElementById("thumbnails");
-
-
-    property.images.forEach(function(image, index) {
-
-
-        const thumbnail =
-            document.createElement("div");
-
-        thumbnail.className =
-            "thumbnail";
-
-
-        if (index === 0) {
-
-            thumbnail.classList.add("active");
-
-        }
-
-
-        const img =
-            document.createElement("img");
-
-        img.src =
-            image;
-
-        img.alt =
-            property.title;
-
-
-        thumbnail.appendChild(img);
-
-
-        thumbnail.onclick =
-            function() {
-
-                currentImage = index;
-
-                updateGallery();
-
-            };
-
-
-        thumbnails.appendChild(thumbnail);
-
-    });
-
-
-    updateGallery();
-
-}
-
-
-/* =====================================================
-   GALLERY FUNCTIONS
-   ===================================================== */
-
-
-function updateGallery() {
-
-
-    if (!property) {
-        return;
-    }
-
-
-    const mainImage =
-        document.getElementById("mainPropertyImage");
-
-
-    mainImage.src =
-        property.images[currentImage];
-
-
-    document.getElementById("imageCounter").innerText =
-        (currentImage + 1) +
-        " / " +
-        property.images.length;
-
-
-    const thumbnails =
-        document.querySelectorAll(".thumbnail");
-
-
-    thumbnails.forEach(function(thumbnail, index) {
-
-        thumbnail.classList.remove("active");
-
-
-        if (index === currentImage) {
-
-            thumbnail.classList.add("active");
-
-        }
-
-    });
-
-}
-
-
-function nextImage() {
-
-
-    if (!property) {
-        return;
-    }
-
-
-    currentImage++;
-
-
-    if (currentImage >= property.images.length) {
-
-        currentImage = 0;
-
-    }
-
-
-    updateGallery();
-
-}
-
-
-function previousImage() {
-
-
-    if (!property) {
-        return;
-    }
-
-
-    currentImage--;
-
-
-    if (currentImage < 0) {
-
-        currentImage =
-            property.images.length - 1;
-
-    }
-
-
-    updateGallery();
-
-}
-
-
-/* KEYBOARD NAVIGATION */
-
-
-document.addEventListener("keydown", function(event) {
-
-
-    if (event.key === "ArrowRight") {
-
-        nextImage();
-
-    }
-
-
-    if (event.key === "ArrowLeft") {
-
-        previousImage();
-
-    }
-
-});
-
-
 </script>
+<script src="realtyadda-api.js"></script>
+<script src="property-gallery.js"></script>
 
 
 </body>
 
 </html>
-
-

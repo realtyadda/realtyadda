@@ -1,0 +1,26 @@
+[hidden] { display: none !important; }
+.photo-picker { border: 1px dashed #8aabc9; padding: 18px; border-radius: 10px; background: #f6faff; }
+.photo-preview { display: grid; grid-template-columns: repeat(auto-fit,minmax(125px,1fr)); gap: 12px; margin-top: 14px; }
+.photo-card { min-width: 0; border: 1px solid #dae1eb; border-radius: 8px; padding: 7px; background: white; }
+.photo-card span { display: block; font-size: 13px; margin: 7px 0; }
+.photo-view { padding: 0; margin: 0; width: 100%; background: #e8eef4; border: 0; border-radius: 6px; cursor: pointer; }
+.photo-view img { display: block; width: 100%; height: 115px; object-fit: cover; border-radius: 6px; }
+.photo-action { padding: 7px; margin: 3px 0; width: 100%; background: white; color: #16488c; border: 1px solid #9fb4cc; border-radius: 5px; cursor: pointer; }
+.photo-action:hover { background: #eaf2ff; }
+.photo-message { margin-top: 10px; font-size: 14px; }
+.photo-dialog { margin: auto; padding: 16px; width: min(94vw,1100px); max-height: 94vh; border: 0; border-radius: 12px; background: #fff; }
+.photo-dialog::backdrop { background: rgba(0,0,0,.8); }
+.photo-dialog img { width: 100%; max-height: 70vh; object-fit: contain; display: block; }
+.dialog-actions { display: flex; justify-content: space-between; gap: 12px; margin: 12px 0; }
+.dialog-actions button, #openGallery { width: auto; padding: 10px 16px; margin: 0; border: 1px solid #a5b5c9; border-radius: 6px; cursor: pointer; background: #16488c; color: white; font: inherit; }
+#openGallery { margin-top: 12px; }
+.main-property-image { object-fit: contain; }
+.thumbnail { padding: 0; background: transparent; }
+.thumbnail:focus-visible, button:focus-visible { outline: 3px solid #1458bb; outline-offset: 3px; }
+#pageMessage:not(:empty), #galleryStatus:not(:empty) { padding: 18px; line-height: 1.5; background: #f0f5fb; border-radius: 8px; }
+#galleryCaption, #dialogCaption { text-align: center; margin: 8px; }
+@media(max-width:600px) { .photo-preview { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+
+.sample-notice { margin-top: 12px; padding: 12px; background: #fff4df; color: #634710; font-size: 14px; line-height: 1.5; border-radius: 6px; }
+#photoFallback p { font-size: 14px; }
+#photoFallback a { display: inline-block; color: #1458bb; margin-bottom: 10px; font-weight: bold; }
