@@ -78,7 +78,7 @@ async function preparePhoto(file) {
 }
 
 photoInput.addEventListener('change', async () => {
-  if (busy || preparing || !photoServiceReady) return;
+  if (busy || preparing) return;
   const selected = Array.from(photoInput.files); photoInput.value = '';
   if (photos.length + selected.length > 10) { photoMessage.textContent = 'You can select up to 10 photos. Remove a photo before adding more.'; return; }
   preparing = true; fields.disabled = true; button.disabled = true;
@@ -140,22 +140,24 @@ form.addEventListener('submit', async event => {
 window.addEventListener('beforeunload', event => { if (busy || photos.length) { event.preventDefault(); event.returnValue = ''; } });
 button.disabled = false;
 
+// Selecting and previewing local photos does not require the upload service.
+photoInput.disabled = false;
 let photoServiceReady = false;
 async function checkPhotoAvailability() {
   const refresh = document.getElementById('checkPhotoAvailability');
   refresh.disabled = true;
-  photoMessage.textContent = 'Checking photo upload availability…';
+  if (!preparing) photoMessage.textContent = 'You can choose photos now. Checking upload availability…';
   try {
     const result = await RealtyAddaAPI.read({action: 'capabilities'}, 12000);
     photoServiceReady = result.apiVersion === 2 && result.photos === true;
-    photoMessage.textContent = photoServiceReady
-      ? 'Photo upload is ready. Choose your property photos.'
-      : 'Photo upload is being enabled. Property details can still be submitted.';
+    if (!preparing) photoMessage.textContent = photoServiceReady
+      ? (photos.length ? 'Your selected photos are ready to upload.' : 'Photo upload is ready. Choose your property photos.')
+      : 'You can select and preview photos, but uploading is not available yet. Selected photos stay on this page.';
   } catch (_) {
     photoServiceReady = false;
-    photoMessage.textContent = 'Photo upload is temporarily unavailable. You can still submit your property details.';
+    if (!preparing) photoMessage.textContent = 'You can select and preview photos. We could not reach the upload service; submission will check again. Keep this page open to retain selected photos.';
   } finally {
-    photoInput.disabled = !photoServiceReady;
+    photoInput.disabled = false;
     document.getElementById('photoFallback').hidden = photoServiceReady;
     refresh.disabled = false;
   }
