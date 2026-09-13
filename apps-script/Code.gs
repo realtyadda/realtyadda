@@ -72,6 +72,8 @@ function doGet(e) {
   const p = (e && e.parameter) || {};
   try {
     if (p.action === 'capabilities') return raReply_({status: 'success', apiVersion: 2, photos: raReady_(), maxPhotos: RA.maxPhotos}, p.callback);
+    if (p.action === 'listings') return raReply_(raListings_(p), p.callback);
+    if (p.action === 'cover') return raReply_(raCover_(p.id), p.callback);
     if (p.action === 'status') {
       const row = raFind_(raSheet_(), p.submissionId);
       return raReply_({status: row ? 'saved' : 'not_found', apiVersion: 2, photoCount: row ? Number(row[15] || 0) : 0}, p.callback);
@@ -191,4 +193,46 @@ function doPost(e) {
     }
     return raReply_({status: 'error', message: 'Submission could not be completed. Please retry or contact RealtyAdda.'});
   } finally { if (lock && lock.hasLock()) lock.releaseLock(); }
+}
+
+/* Only explicitly Published rows enter the public catalogue. */
+function raPublicListing_(row) {
+  return {
+    id: String(row[0]), title: [row[9], row[8]].filter(Boolean).join(' '),
+    location: row[7] + ', ' + row[6], city: String(row[6]),
+    locality: String(row[7]), purpose: row[2], price: Number(row[11]),
+    type: row[8], bhk: row[9], area: row[10],
+    hasPhoto: Number(row[15] || 0) > 0
+  };
+}
+function raListings_(p) {
+  if (['Sale', 'Rent'].indexOf(p.purpose) < 0) throw new Error('Invalid purpose.');
+  const sheet = raSheet_();
+  const rows = sheet.getLastRow() < 2 ? [] : sheet.getRange(2, 1, sheet.getLastRow() - 1, RA.headers.length).getValues();
+  const query = String(p.q || '').trim().toLowerCase().slice(0, 200);
+  const listings = rows.filter(function(row) {
+    return String(row[16]).trim() === 'Published' && row[2] === p.purpose && raValidId_(String(row[0]));
+  }).reverse().map(raPublicListing_).filter(function(item) {
+    if (p.city && item.city !== p.city) return false;
+    if (p.type && item.type !== p.type) return false;
+    if (p.bhk && (p.bhk === '5+' ? parseInt(item.bhk, 10) < 5 || !Number.isFinite(parseInt(item.bhk, 10)) : item.bhk !== p.bhk)) return false;
+    if (query && (item.title + ' ' + item.location).toLowerCase().indexOf(query) < 0) return false;
+    if (p.maxPrice && item.price > Number(p.maxPrice)) return false;
+    return true;
+  });
+  const page = Math.max(1, Math.floor(Number(p.page) || 1));
+  const size = 12;
+  return {status: 'success', apiVersion: 2, listings: listings.slice((page - 1) * size, page * size), total: listings.length, page: page, pageSize: size};
+}
+function raCover_(id) {
+  const row = raFind_(raSheet_(), id);
+  if (!row || String(row[16]).trim() !== 'Published') return {status: 'not_found'};
+  const ids = JSON.parse(row[14] || '[]');
+  if (!Array.isArray(ids) || ids.length > RA.maxPhotos) throw new Error('Invalid gallery.');
+  if (!ids.length) return {status: 'success', image: ''};
+  const file = DriveApp.getFileById(ids[0]);
+  if (file.isTrashed() || file.getSize() > RA.maxPhotoBytes) throw new Error('Photo unavailable.');
+  const blob = file.getBlob();
+  if (blob.getContentType() !== 'image/jpeg') throw new Error('Invalid photo.');
+  return {status: 'success', image: 'data:image/jpeg;base64,' + Utilities.base64Encode(blob.getBytes())};
 }
