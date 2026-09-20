@@ -1,0 +1,23 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict'),crypto=require('node:crypto');
+const source=fs.readFileSync('admin-app/Code.gs','utf8');
+let email='shekhar.ch90@gmail.com',effective=email,reads=0,writes=0,releases=0;
+const headers=['Submission ID','Date','Purpose','Posted By','Name','Mobile','City','Locality / Society','Property Type','BHK','Area (sq ft)','Price / Monthly Rent (INR)','Description','Photo Folder','Photo IDs','Photo Count','Publication Status','Listing URL','Request Hash'];
+const original=['genuine-listing-1234567890','date','Sale','Owner','Example Owner','9000000000','Meerut','Example locality','Independent House','3 BHK',1200,7500000,'Description','private-folder','["photo-one"]',1,'Pending','public-url','original-hash'];
+let row=original.slice();
+const sheet={getLastRow:()=>2,getRange:(r,c,h,w)=>({getValues:()=>r===1?[headers]:[row.slice(c-1,c-1+w)],createTextFinder:id=>{const f={matchEntireCell:()=>f,matchCase:()=>f,useRegularExpression:()=>f,findAll:()=>id===row[0]?[{getRow:()=>2}]:[]};return f;},setValues:values=>{writes++;values[0].forEach((v,i)=>row[c-1+i]=v);}})};
+const ctx=vm.createContext({Session:{getActiveUser:()=>({getEmail:()=>email}),getEffectiveUser:()=>({getEmail:()=>effective})},SpreadsheetApp:{openById:()=>{reads++;return{getSheetByName:()=>sheet}},flush:()=>{}},LockService:{getScriptLock:()=>({waitLock:()=>{},releaseLock:()=>releases++})},Utilities:{DigestAlgorithm:{SHA_256:'sha256'},Charset:{UTF_8:'utf8'},computeDigest:(a,s)=>crypto.createHash('sha256').update(s).digest(),base64EncodeWebSafe:b=>Buffer.from(b).toString('base64url'),base64Encode:b=>Buffer.from(b).toString('base64')},DriveApp:{getFileById:id=>{assert.equal(id,'photo-one');reads++;return{isTrashed:()=>false,getSize:()=>4,getBlob:()=>({getContentType:()=> 'image/jpeg',getBytes:()=>[255,216,255,217]})}}},HtmlService:{createHtmlOutput:html=>({html})}});
+vm.runInContext(source,ctx);
+const edits={purpose:'Sale',postedBy:'Owner',name:'Example Owner',mobile:'9000000000',city:'Meerut',locality:'Example locality',type:'Independent House',bhk:'3 BHK',area:'1200',price:'7500000',description:'Updated description'};
+for(const actor of ['', 'intruder@example.com']){email=actor;const before=reads;for(const call of [()=>ctx.adminList(),()=>ctx.adminDetail(row[0]),()=>ctx.adminPhoto(row[0],0),()=>ctx.adminSave(row[0],'',edits,'Published')])assert.throws(call,/Access denied/);assert.equal(reads,before);assert.match(ctx.doGet().html,/Access denied/);}
+email='shekhar.ch90@gmail.com';effective='other@example.com';assert.throws(()=>ctx.adminList(),/Access denied/);effective=email;
+assert.equal(ctx.adminList().listings[0].status,'Pending');assert.match(ctx.adminPhoto(row[0],0),/^data:image\/jpeg;base64,/);
+assert.throws(()=>ctx.adminPhoto(row[0],-1),/Photo not found/);assert.throws(()=>ctx.adminPhoto('arbitrary-drive-id',0),/Invalid property reference/);
+let detail=ctx.adminDetail(row[0]);ctx.adminSave(row[0],detail.version,edits,'Published');assert.equal(row[16],'Published');assert.equal(row[12],'Updated description');for(const i of [0,1,13,14,15,17,18])assert.equal(row[i],original[i]);
+assert.throws(()=>ctx.adminSave(row[0],detail.version,edits,'Rejected'),/listing changed/);
+detail=ctx.adminDetail(row[0]);const before=writes;assert.throws(()=>ctx.adminSave(row[0],detail.version,{...edits,price:'NaN'},'Published'),/valid price/);assert.throws(()=>ctx.adminSave(row[0],detail.version,edits,'Arbitrary'),/Invalid status/);assert.equal(writes,before);
+ctx.adminSave(row[0],detail.version,{...edits,description:'=IMPORTXML("example", "//")'},'Pending');assert.equal(row[16],'Pending');assert.ok(row[12].startsWith("'="));
+detail=ctx.adminDetail(row[0]);ctx.adminSave(row[0],detail.version,edits,'Rejected');assert.equal(row[16],'Rejected');
+row[4]='TEST ONLY - dummy';detail=ctx.adminDetail(row[0]);assert.throws(()=>ctx.adminSave(row[0],detail.version,edits,'Published'),/Test submissions/);
+headers[0]='Unexpected';assert.throws(()=>ctx.adminList(),/columns have changed/);assert.ok(releases>0);
+const html=fs.readFileSync('admin-app/Dashboard.html','utf8');new vm.Script(html.match(/<script>([\s\S]*)<\/script>/)[1]);assert.ok(!html.includes('innerHTML'));JSON.parse(fs.readFileSync('admin-app/appsscript.json','utf8'));
+console.log('PASS: anonymous/wrong-account denial before reads; owner access; photo isolation; publish/reject/unpublish; preserved private columns; stale edits; invalid data; formula escaping; test-entry block; schema guard; UI syntax.');
