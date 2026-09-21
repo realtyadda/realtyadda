@@ -5,6 +5,15 @@ let property = null, currentImage = 0;
 const galleryStatus = document.getElementById('galleryStatus');
 const photoDialog = document.getElementById('galleryDialog');
 const mainImage = document.getElementById('mainPropertyImage');
+const retryProperty = document.createElement('button');
+retryProperty.id = 'retryProperty';
+retryProperty.type = 'button';
+retryProperty.className = 'back-btn';
+retryProperty.textContent = 'Try again';
+retryProperty.hidden = true;
+retryProperty.style.cssText = 'border:0;cursor:pointer;margin-top:16px';
+document.getElementById('pageMessage').after(retryProperty);
+let propertyLoading = false;
 
 function setText(id, text) { document.getElementById(id).textContent = text == null || text === '' ? 'Not provided' : text; }
 function showPageMessage(text) {
@@ -82,13 +91,31 @@ for (const el of [mainImage, document.getElementById('largeGalleryImage')]) {
     start = null;
   }, {passive: true});
 }
-(async function loadProperty() {
+async function readProperty() {
+  // Retry only read-only requests. A temporary timeout must not strand the visitor.
+  for (let attempt = 0; attempt < 2; attempt++) {
+    try {
+      const result = await RealtyAddaAPI.read(
+        {action: 'property', id: propertyId}, attempt === 0 ? 20000 : 40000
+      );
+      if (!result || result.status === 'error') throw new Error('Property unavailable.');
+      return result;
+    } catch (error) {
+      if (attempt === 1) throw error;
+      showPageMessage('The connection is taking longer than usual. Trying again…');
+    }
+  }
+}
+async function loadProperty() {
+  if (propertyLoading) return;
+  retryProperty.hidden = true;
   const key = aliases[propertyId] || propertyId;
   if (Object.prototype.hasOwnProperty.call(properties, key)) { renderProperty(properties[key]); document.getElementById('sampleNotice').hidden = false; return; }
   if (!/^[A-Za-z0-9_-]{20,100}$/.test(propertyId)) { showPageMessage('Property not found. Please return to Buy or Rent.'); return; }
+  propertyLoading = true;
   showPageMessage('Loading property and photos…');
   try {
-    const result = await RealtyAddaAPI.read({action: 'property', id: propertyId}, 60000);
+    const result = await readProperty();
     if (result.status === 'not_found') { showPageMessage('This property is not published or is no longer available.'); return; }
     if (result.status !== 'success' || !result.property) throw new Error('Property unavailable.');
     const value = result.property;
@@ -97,5 +124,10 @@ for (const el of [mainImage, document.getElementById('largeGalleryImage')]) {
     value.area = value.area ? Number(value.area).toLocaleString('en-IN') + ' sq.ft.' : '';
     value.amenities = [];
     renderProperty(value);
-  } catch (_) { showPageMessage('We could not load this property. Please reload the page to try again.'); }
-})();
+  } catch (_) {
+    showPageMessage('We could not load this property. Please try again.');
+    retryProperty.hidden = false;
+  } finally { propertyLoading = false; }
+}
+retryProperty.addEventListener('click', loadProperty);
+loadProperty();
