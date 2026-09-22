@@ -9,6 +9,27 @@ const prev = document.getElementById('previousPage');
 const next = document.getElementById('nextPage');
 const purpose = document.body.dataset.purpose;
 let page = 1, generation = 0, activeFilters = {};
+const filterNames = ['q', 'city', 'type', 'bhk', 'maxPrice'];
+function restoreFilters() {
+  const params = new URLSearchParams(location.search);
+  form.reset(); activeFilters = {};
+  filterNames.forEach(name => {
+    const field = form.elements.namedItem(name);
+    const value = (params.get(name) || '').slice(0, 200);
+    field.value = value;
+    if (field.value) activeFilters[name] = field.value;
+  });
+  const requestedPage = Number(params.get('page'));
+  page = Number.isSafeInteger(requestedPage) && requestedPage > 0 ? requestedPage : 1;
+}
+function saveFilters() {
+  const url = new URL(location.href);
+  url.search = '';
+  Object.entries(activeFilters).forEach(([key, value]) => { if (value) url.searchParams.set(key, value); });
+  if (page > 1) url.searchParams.set('page', page);
+  history.replaceState(null, '', url);
+}
+restoreFilters();
 function node(tag, className, text) {
   const el = document.createElement(tag);
   if (className) el.className = className;
@@ -30,7 +51,7 @@ function card(item) {
   content.append(node('p', 'details', [item.bhk, item.type, item.area ? Number(item.area).toLocaleString('en-IN') + ' sq.ft.' : ''].filter(Boolean).join(' • ')));
   content.append(node('p', 'price', '₹' + Number(item.price).toLocaleString('en-IN') + (purpose === 'Rent' ? ' / Month' : '')));
   const view = node('a', 'view-btn', 'View Property');
-  view.href = 'property.html?id=' + encodeURIComponent(item.id);
+  view.href = 'property.html?id=' + encodeURIComponent(item.id) + '&returnTo=' + encodeURIComponent(location.pathname.split('/').pop() + location.search);
   content.append(view);
   article.append(media, content);
   list.append(article);
@@ -52,6 +73,7 @@ async function loadCover(job, token) {
   } catch (_) { if (token === generation) job.placeholder.textContent = 'Photo unavailable — open property to retry'; }
 }
 async function load() {
+  saveFilters();
   const token = ++generation;
   status.textContent = 'Loading properties…';
   retry.hidden = true; prev.disabled = true; next.disabled = true;
@@ -76,11 +98,12 @@ async function load() {
   } finally { if (token === generation) list.setAttribute('aria-busy', 'false'); }
 }
 form.addEventListener('submit', event => {
-  event.preventDefault(); activeFilters = Object.fromEntries(new FormData(form)); page = 1; load();
+  event.preventDefault(); activeFilters = Object.fromEntries(Array.from(new FormData(form), ([key, value]) => [key, value.trim()])); page = 1; load();
 });
 document.getElementById('resetFilters').addEventListener('click', () => { form.reset(); activeFilters = {}; page = 1; load(); });
-prev.addEventListener('click', () => { if (page > 1) { page--; load(); } });
-next.addEventListener('click', () => { page++; load(); });
+prev.addEventListener('click', () => { if (!prev.disabled && page > 1) { page--; load(); } });
+next.addEventListener('click', () => { if (!next.disabled) { page++; load(); } });
 retry.addEventListener('click', load);
+window.addEventListener('popstate', () => { restoreFilters(); load(); });
 load();
 })();

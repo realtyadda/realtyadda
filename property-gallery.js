@@ -31,6 +31,20 @@ function renderProperty(value) {
   const renting = property.purpose === 'Rent' || propertyId.startsWith('rent');
   setText('breadcrumb', 'Home / ' + (renting ? 'Rent' : 'Buy') + ' / Property Details');
   document.getElementById('backButton').href = renting ? 'rent.html' : 'buy.html';
+  const returnTo = new URLSearchParams(location.search).get('returnTo');
+  if (returnTo) {
+    try {
+    const back = new URL(returnTo, location.href);
+    const expected = new URL(renting ? 'rent.html' : 'buy.html', location.href);
+    if (back.origin === expected.origin && back.pathname === expected.pathname) {
+      document.getElementById('backButton').href = back.href;
+    }
+    } catch (_) { /* Keep the default catalogue link for invalid URLs. */ }
+  }
+  document.getElementById('backButton').textContent = renting ? '← Back to rental properties' : '← Back to properties for sale';
+  const mapLink = document.getElementById('mapLink');
+  mapLink.hidden = !property.location;
+  if (property.location) mapLink.href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(property.location);
   const amenities = document.getElementById('amenitiesList'); amenities.replaceChildren();
   (property.amenities || []).forEach(text => { const el = document.createElement('div'); el.className = 'amenity'; el.textContent = text; amenities.appendChild(el); });
   amenities.closest('.section-box').hidden = !(property.amenities || []).length;
@@ -131,3 +145,4 @@ async function loadProperty() {
 }
 retryProperty.addEventListener('click', loadProperty);
 loadProperty();
+

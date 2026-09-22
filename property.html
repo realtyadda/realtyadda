@@ -359,6 +359,15 @@
 
         }
 
+        .property-grid{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr)}
+        .details-box,.section-box,.info{min-width:0;overflow-wrap:anywhere}
+        #propertyDescription{white-space:pre-line;line-height:1.7}
+        .map-note{font-size:14px;color:#666;line-height:1.6}
+        #mapLink{margin-top:16px;margin-bottom:10px}
+        a:focus-visible,button:focus-visible{outline:3px solid #c94d00;outline-offset:3px}
+        .buttons{flex-wrap:wrap}.buttons a{min-width:140px;min-height:44px}
+        @media(max-width:800px){.property-grid{grid-template-columns:minmax(0,1fr)}}
+        @media(max-width:380px){.details-box{padding:18px}.property-info{grid-template-columns:1fr}.buttons{flex-direction:column}}
     </style>
 
 <link rel="stylesheet" href="photos.css">
@@ -432,14 +441,14 @@
 
                 <button
                     class="gallery-btn prev-btn"
-                    aria-label="Previous photo" type="button" aria-label="Previous photo">
+                    aria-label="Previous photo" type="button">
                     ‹
                 </button>
 
 
                 <button
                     class="gallery-btn next-btn"
-                    aria-label="Next photo" type="button" aria-label="Next photo">
+                    aria-label="Next photo" type="button">
                     ›
                 </button>
 
@@ -574,7 +583,7 @@
                     href="tel:+919540205941"
                     class="contact-btn">
 
-                    Contact
+                    Call RealtyAdda
 
                 </a>
 
@@ -585,7 +594,7 @@
                     class="whatsapp-btn"
                     target="_blank" rel="noopener">
 
-                    WhatsApp
+                    WhatsApp RealtyAdda
 
                 </a>
 
@@ -639,21 +648,8 @@
         <p id="locationText">
         </p>
 
-        <div style="
-            margin-top:20px;
-            height:220px;
-            background:#ddd;
-            border-radius:8px;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            color:#666;
-            text-align:center;
-        ">
-
-            Google Maps location will be connected later.
-
-        </div>
+        <a id="mapLink" class="back-btn" target="_blank" rel="noopener" hidden>Search locality on Google Maps</a>
+        <p class="map-note">Locality search only. Confirm the exact property address with RealtyAdda.</p>
 
     </div>
 
@@ -990,9 +986,10 @@ const properties = {
 
 </script>
 <script src="realtyadda-api.js"></script>
-<script src="property-gallery.js?v=20260921-retry"></script>
+<script src="property-gallery.js?v=20260922"></script>
 
 
 </body>
 
 </html>
+

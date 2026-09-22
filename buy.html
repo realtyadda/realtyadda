@@ -21,11 +21,13 @@ section{max-width:1300px;margin:auto;padding:28px 6% 45px}h2{margin-bottom:8px}#
 footer{text-align:center;padding:26px;color:#666}[hidden]{display:none!important}
 @media(max-width:900px){.properties{grid-template-columns:repeat(2,minmax(0,1fr))}.filters{grid-template-columns:repeat(2,1fr)}header{flex-direction:column}}
 @media(max-width:600px){.properties,.filters{grid-template-columns:1fr}.hero h1{font-size:30px}nav{justify-content:center;gap:12px;font-size:14px}.actions button{flex:1}}
+/* Keep long listing text and form controls inside narrow screens. */
+.filters>*{min-width:0}input,select{min-width:0}.property-content{overflow-wrap:anywhere;display:flex;flex-direction:column;flex:1}.property{display:flex;flex-direction:column}.property-image{flex:none}.property-content .view-btn{margin-top:auto}nav a{display:inline-flex;align-items:center;min-height:44px}button,.view-btn{min-height:44px}
 </style>
 </head>
 <body data-purpose="Sale">
 <header><a class="logo" href="index.html">RealtyAdda</a><nav aria-label="Main navigation">
-<a href="index.html">Home</a><a href="buy.html" aria-current="page">Buy</a><a href="rent.html">Rent</a><a href="projects.html">Projects</a><a href="societies.html">Societies</a><a href="post-property.html">Post Property</a></nav></header>
+<a href="index.html">Home</a><a href="buy.html" aria-current="page">Buy</a><a href="rent.html">Rent</a><a href="projects.html">Projects</a><a href="societies.html">Societies</a><a href="post-property.html">Post Property</a><a href="contact.html">Contact</a></nav></header>
 <main>
 <div class="hero"><h1>Buy Property in NCR</h1><p>Find your next property in Noida, Greater Noida, Delhi, Meerut and beyond.</p>
 <form class="filters" id="listingFilters">
@@ -45,5 +47,6 @@ footer{text-align:center;padding:26px;color:#666}[hidden]{display:none!important
 <div class="cta"><h2>Have a property to sell?</h2><a class="view-btn" href="post-property.html">Post Your Property</a><a href="https://wa.me/919540205941" target="_blank" rel="noopener">Contact RealtyAdda on WhatsApp</a></div>
 </main><footer>© 2026 RealtyAdda · Find. Compare. Connect.</footer>
 <script src="realtyadda-api.js?v=2"></script>
-<script src="property-listings.js?v=1"></script>
+<script src="property-listings.js?v=20260922"></script>
 </body></html>
+
