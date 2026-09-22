@@ -48,7 +48,36 @@ function renderProperty(value) {
   const amenities = document.getElementById('amenitiesList'); amenities.replaceChildren();
   (property.amenities || []).forEach(text => { const el = document.createElement('div'); el.className = 'amenity'; el.textContent = text; amenities.appendChild(el); });
   amenities.closest('.section-box').hidden = !(property.amenities || []).length;
-  document.getElementById('whatsappButton').href = 'https://wa.me/919540205941?text=' + encodeURIComponent('Hello RealtyAdda, I am interested in ' + property.title + ' at ' + property.location + '. ' + location.href);
+  const propertyLink = 'https://www.realtyadda.in/property.html?id=' + encodeURIComponent(propertyId);
+  const enquiryText = 'Hello RealtyAdda, I am interested in ' + property.title + ' at ' + property.location + '. Please confirm availability and price. ' + propertyLink;
+  const enquiryLink = 'https://wa.me/919540205941?text=' + encodeURIComponent(enquiryText);
+  document.getElementById('whatsappButton').href = enquiryLink;
+  const enquiryCTA = document.querySelector('.cta a');
+  if (enquiryCTA) {
+    enquiryCTA.href = enquiryLink;
+    enquiryCTA.textContent = 'Enquire on WhatsApp';
+    enquiryCTA.target = '_blank';
+    enquiryCTA.rel = 'noopener';
+  }
+  let visitLink = document.getElementById('siteVisitLink');
+  if (!visitLink) {
+    visitLink = document.createElement('a');
+    visitLink.id = 'siteVisitLink';
+    visitLink.className = 'contact-btn';
+    visitLink.style.cssText = 'display:block;margin-top:12px';
+    visitLink.textContent = 'Request a Site Visit on WhatsApp';
+    visitLink.target = '_blank';
+    visitLink.rel = 'noopener';
+    document.querySelector('.details-box .buttons').after(visitLink);
+    const note = document.createElement('p');
+    note.style.cssText = 'margin-top:10px;font-size:13px;line-height:1.5;color:#555';
+    note.textContent = 'Opens a WhatsApp draft. Tap Send in WhatsApp to contact us. A site visit is confirmed only after our team replies.';
+    visitLink.after(note);
+  }
+  visitLink.href = 'https://wa.me/919540205941?text=' + encodeURIComponent(
+    'Hello RealtyAdda, I would like to request a site visit for ' + property.title + ' at ' + property.location +
+    '. ' + propertyLink + '\nPreferred date: \nPreferred time: \nPlease confirm availability and the visit schedule.'
+  );
   const thumbnails = document.getElementById('thumbnails'); thumbnails.replaceChildren();
   property.images.forEach((image, index) => {
     const thumb = document.createElement('button'); thumb.type = 'button'; thumb.className = 'thumbnail';
