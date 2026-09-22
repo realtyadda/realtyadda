@@ -120,17 +120,27 @@ async function readProperty() {
     }
   }
 }
+
+function setPropertySEO(sample) {
+  let robots = document.querySelector('meta[name="robots"]');
+  if (sample) { if (!robots) { robots = document.createElement('meta'); robots.name = 'robots'; document.head.appendChild(robots); } robots.content = 'noindex, follow'; return; }
+  let canonical = document.querySelector('link[rel="canonical"]');
+  if (!canonical) { canonical = document.createElement('link'); canonical.rel = 'canonical'; document.head.appendChild(canonical); }
+  canonical.href = 'https://www.realtyadda.in/property.html?id=' + encodeURIComponent(propertyId);
+  document.querySelector('meta[name="description"]').content = (property.title + ' in ' + property.location + '. ' + property.price + '. View supplied property details and photos; contact RealtyAdda to confirm availability.').slice(0, 300);
+}
+
 async function loadProperty() {
   if (propertyLoading) return;
   retryProperty.hidden = true;
   const key = aliases[propertyId] || propertyId;
-  if (Object.prototype.hasOwnProperty.call(properties, key)) { renderProperty(properties[key]); document.getElementById('sampleNotice').hidden = false; return; }
-  if (!/^[A-Za-z0-9_-]{20,100}$/.test(propertyId)) { showPageMessage('Property not found. Please return to Buy or Rent.'); return; }
+  if (Object.prototype.hasOwnProperty.call(properties, key)) { renderProperty(properties[key]); setPropertySEO(true); document.getElementById('sampleNotice').hidden = false; return; }
+  if (!/^[A-Za-z0-9_-]{20,100}$/.test(propertyId)) { setPropertySEO(true); showPageMessage('Property not found. Please return to Buy or Rent.'); return; }
   propertyLoading = true;
   showPageMessage('Loading property and photos…');
   try {
     const result = await readProperty();
-    if (result.status === 'not_found') { showPageMessage('This property is not published or is no longer available.'); return; }
+    if (result.status === 'not_found') { setPropertySEO(true); showPageMessage('This property is not published or is no longer available.'); return; }
     if (result.status !== 'success' || !result.property) throw new Error('Property unavailable.');
     const value = result.property;
     if (!Array.isArray(value.images) || value.images.length > 10 || value.images.some(url => !/^data:image\/jpeg;base64,[A-Za-z0-9+/]+=*$/.test(url))) throw new Error('Gallery unavailable.');
@@ -138,6 +148,7 @@ async function loadProperty() {
     value.area = value.area ? Number(value.area).toLocaleString('en-IN') + ' sq.ft.' : '';
     value.amenities = [];
     renderProperty(value);
+    setPropertySEO(false);
   } catch (_) {
     showPageMessage('We could not load this property. Please try again.');
     retryProperty.hidden = false;
@@ -145,4 +156,5 @@ async function loadProperty() {
 }
 retryProperty.addEventListener('click', loadProperty);
 loadProperty();
+
 
