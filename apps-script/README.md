@@ -44,3 +44,22 @@ Changing the status to Pending withdraws it on the next request.
 Validation: simulated Apps Script checks cover publication gating, excluded private
 fields, Sale/Rent separation, filters and pagination. JavaScript syntax checked.
 Live browser and deployed Apps Script validation remain required.
+
+## Buyer enquiry activation
+
+The website now includes a contact form gated by the deployed Apps Script `capabilities`
+response (`apiVersion: 3`, `enquiries: true`). Until the new backend is deployed,
+visitors see the existing call and WhatsApp routes.
+
+Replace the complete editor `Code.gs` with this repository's `Code.gs`, save,
+then update the **existing** web app deployment to a New version. Do not change
+its URL or access settings. The first enquiry creates a private `Buyer Enquiries`
+sheet with reference, time, name, mobile, property link, message and status.
+The public status check returns only whether a random reference was saved.
+An online enquiry is acknowledged on the site only after that check succeeds.
+
+After deployment, open Contact and send one clearly marked internal test
+enquiry. Confirm its reference appears once in the Buyer Enquiries sheet and
+the property link matches the intended published listing. Test mobile layout.
+Delete the test row only after recording the result. The current deployed
+script and live end-to-end enquiry flow have not yet been verified.
