@@ -52,6 +52,13 @@ function card(item) {
   content.append(node('p', 'price', '₹' + Number(item.price).toLocaleString('en-IN') + (purpose === 'Rent' ? ' / Month' : '')));
   const view = node('a', 'view-btn', 'View Property');
   view.href = 'property.html?id=' + encodeURIComponent(item.id) + '&returnTo=' + encodeURIComponent(location.pathname.split('/').pop() + location.search);
+  const warm = () => RealtyAddaAPI.prefetch({action: 'property', id: item.id});
+  view.addEventListener('pointerenter', warm, {once: true});
+  view.addEventListener('focus', warm, {once: true});
+  view.addEventListener('touchstart', warm, {once: true, passive: true});
+  view.addEventListener('click', () => {
+    try { sessionStorage.setItem('ra-property-preview', JSON.stringify({at: Date.now(), item})); } catch (_) {}
+  });
   content.append(view);
   article.append(media, content);
   list.append(article);
@@ -59,7 +66,10 @@ function card(item) {
 }
 async function loadCover(job, token) {
   try {
-    const result = await RealtyAddaAPI.read({action: 'cover', id: job.item.id}, 45000);
+    const details = RealtyAddaAPI.peek({action: 'property', id: job.item.id});
+    const result = details && details.property && Array.isArray(details.property.images)
+      ? {status: 'success', image: details.property.images[0] || ''}
+      : await RealtyAddaAPI.read({action: 'cover', id: job.item.id}, 45000);
     if (token !== generation) return;
     if (result.status === 'not_found') { job.placeholder.textContent = 'Listing unavailable'; return; }
     if (result.status !== 'success' || !/^data:image\/jpeg;base64,[A-Za-z0-9+/]+={0,2}$/.test(result.image || '') || result.image.length > 334000) throw new Error('No cover');
@@ -72,14 +82,27 @@ async function loadCover(job, token) {
     job.media.prepend(img);
   } catch (_) { if (token === generation) job.placeholder.textContent = 'Photo unavailable — open property to retry'; }
 }
-async function load() {
+function fromCatalogue() {
+  const all = RealtyAddaAPI.peek({action: 'listings', purpose, page: 1});
+  if (!all || !Array.isArray(all.listings) || all.total !== all.listings.length) return null;
+  const f = activeFilters;
+  const items = all.listings.filter(item => {
+    if (f.city && item.city !== f.city) return false;
+    if (f.type && item.type !== f.type) return false;
+    if (f.bhk && (f.bhk === '5+' ? !(parseInt(item.bhk,10) >= 5) : item.bhk !== f.bhk)) return false;
+    if (f.maxPrice && Number(item.price) > Number(f.maxPrice)) return false;
+    return !f.q || (item.title + ' ' + item.location).toLowerCase().includes(f.q.toLowerCase());
+  });
+  return {status:'success', listings:items.slice((page-1)*all.pageSize,page*all.pageSize), total:items.length, pageSize:all.pageSize};
+}
+async function load(fresh = false) {
   saveFilters();
   const token = ++generation;
   status.textContent = 'Loading properties…';
   retry.hidden = true; prev.disabled = true; next.disabled = true;
   list.replaceChildren(); list.setAttribute('aria-busy', 'true');
   try {
-    const result = await RealtyAddaAPI.read(Object.assign({action: 'listings', purpose, page}, activeFilters), 45000);
+    const result = (!fresh && fromCatalogue()) || await RealtyAddaAPI.read(Object.assign({action: 'listings', purpose, page}, activeFilters), 45000, {fresh});
     if (token !== generation) return;
     if (result.status !== 'success' || !Array.isArray(result.listings) || !Number.isInteger(result.total) || result.total < 0 || !Number.isInteger(result.pageSize) || result.pageSize < 1) throw new Error('Catalogue unavailable');
     if (page > 1 && !result.listings.length) { page = 1; return load(); }
@@ -103,7 +126,8 @@ form.addEventListener('submit', event => {
 document.getElementById('resetFilters').addEventListener('click', () => { form.reset(); activeFilters = {}; page = 1; load(); });
 prev.addEventListener('click', () => { if (!prev.disabled && page > 1) { page--; load(); } });
 next.addEventListener('click', () => { if (!next.disabled) { page++; load(); } });
-retry.addEventListener('click', load);
+retry.addEventListener('click', () => load(true));
+document.getElementById('refreshListings').addEventListener('click', () => load(true));
 window.addEventListener('popstate', () => { restoreFilters(); load(); });
 load();
 })();

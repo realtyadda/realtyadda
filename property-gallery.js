@@ -167,6 +167,18 @@ async function loadProperty() {
   if (!/^[A-Za-z0-9_-]{20,100}$/.test(propertyId)) { setPropertySEO(true); showPageMessage('Property not found. Please return to Buy or Rent.'); return; }
   propertyLoading = true;
   showPageMessage('Loading property and photos…');
+  // Show the just-selected public card while the complete details are fetched.
+  // Photos and description are never invented from the card summary.
+  try {
+    const preview = JSON.parse(sessionStorage.getItem('ra-property-preview') || 'null');
+    if (preview && preview.item.id === propertyId && Date.now() >= preview.at && Date.now() - preview.at < 60000) {
+      const value = preview.item;
+      renderProperty({...value, price: '₹' + Number(value.price).toLocaleString('en-IN') + (value.purpose === 'Rent' ? ' / Month' : ''), area: value.area ? Number(value.area).toLocaleString('en-IN') + ' sq.ft.' : '', description: 'Loading full description…', amenities: [], images: []});
+      galleryStatus.textContent = value.hasPhoto ? 'Loading property photos…' : 'No photos provided for this property.';
+      document.getElementById('pageMessage').textContent = 'Checking latest property details…';
+    }
+  } catch (_) {}
+
   try {
     const result = await readProperty();
     if (result.status === 'not_found') { setPropertySEO(true); showPageMessage('This property is not published or is no longer available.'); return; }

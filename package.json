@@ -1,0 +1,6 @@
+{
+  "name": "realtyadda",
+  "private": true,
+  "scripts": {"test": "node tests/performance.cjs"},
+  "devDependencies": {"jsdom": "30.0.1"}
+}
