@@ -54,10 +54,9 @@ function renderProperty(value) {
   document.getElementById('whatsappButton').href = enquiryLink;
   const enquiryCTA = document.querySelector('.cta a');
   if (enquiryCTA) {
-    enquiryCTA.href = enquiryLink;
-    enquiryCTA.textContent = 'Enquire on WhatsApp';
-    enquiryCTA.target = '_blank';
-    enquiryCTA.rel = 'noopener';
+    enquiryCTA.href = 'contact.html?id=' + encodeURIComponent(propertyId);
+    enquiryCTA.textContent = 'Send Property Enquiry';
+    enquiryCTA.removeAttribute('target');
   }
   let visitLink = document.getElementById('siteVisitLink');
   if (!visitLink) {
