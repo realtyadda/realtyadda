@@ -71,7 +71,8 @@ function raFind_(sheet, id) {
 function doGet(e) {
   const p = (e && e.parameter) || {};
   try {
-    if (p.action === 'capabilities') return raReply_({status: 'success', apiVersion: 2, photos: raReady_(), maxPhotos: RA.maxPhotos}, p.callback);
+    if (p.action === 'capabilities') return raReply_({status: 'success', apiVersion: 3, photos: raReady_(), maxPhotos: RA.maxPhotos, enquiries: true}, p.callback);
+    if (p.action === 'enquiryStatus') return raReply_({status: raEnquiryFound_(p.id) ? 'saved' : 'not_found'}, p.callback);
     if (p.action === 'listings') return raReply_(raListings_(p), p.callback);
     if (p.action === 'cover') return raReply_(raCover_(p.id), p.callback);
     if (p.action === 'status') {
@@ -151,6 +152,7 @@ function doPost(e) {
     if (!e || !e.postData || e.postData.length > 4500000) throw new Error('Request is too large.');
     const p = String(e.postData.type || '').indexOf('application/json') === 0
       ? JSON.parse(e.postData.contents) : (e.parameter || {});
+    if (p.action === 'enquiry') return raSaveEnquiry_(p);
     input = raInput_(p);
     const fingerprint = Object.assign({}, input, {photos: input.photos.map(function(photo) { return photo.data; })});
     const hash = Utilities.base64EncodeWebSafe(Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, JSON.stringify(fingerprint), Utilities.Charset.UTF_8));
@@ -235,4 +237,60 @@ function raCover_(id) {
   const blob = file.getBlob();
   if (blob.getContentType() !== 'image/jpeg') throw new Error('Invalid photo.');
   return {status: 'success', image: 'data:image/jpeg;base64,' + Utilities.base64Encode(blob.getBytes())};
+}
+
+/* Buyer enquiries are kept in a separate private tab. No enquiry details are served publicly. */
+function raEnquirySheet_() {
+  const book = SpreadsheetApp.openById(RA.sheetId);
+  const name = 'Buyer Enquiries';
+  let sheet = book.getSheetByName(name);
+  if (!sheet) {
+    sheet = book.insertSheet(name);
+    sheet.getRange(1, 1, 1, 8).setValues([['Reference', 'Received At', 'Name', 'Mobile', 'Property ID', 'Property URL', 'Message', 'Status']]);
+    sheet.setFrozenRows(1);
+  }
+  return sheet;
+}
+function raEnquiryFound_(id) {
+  if (!raValidId_(id)) return false;
+  const sheet = raEnquirySheet_();
+  if (sheet.getLastRow() < 2) return false;
+  return Boolean(sheet.getRange(2, 1, sheet.getLastRow() - 1, 1)
+    .createTextFinder(id).matchEntireCell(true).matchCase(true).findNext());
+}
+function raSaveEnquiry_(p) {
+  let lock;
+  try {
+    const id = raText_(p, 'id', 100, true);
+    if (!raValidId_(id)) throw new Error('Invalid reference.');
+    const name = raText_(p, 'name', 100, true);
+    const mobile = raText_(p, 'mobile', 10, true);
+    if (!/^[6-9][0-9]{9}$/.test(mobile)) throw new Error('Invalid mobile.');
+    const propertyId = raText_(p, 'propertyId', 100, false);
+    if (propertyId && !raValidId_(propertyId)) throw new Error('Invalid property.');
+    const message = raText_(p, 'message', 1000, true);
+    if (message.length < 10) throw new Error('Message is too short.');
+    lock = LockService.getScriptLock();
+    lock.waitLock(30000);
+    const sheet = raEnquirySheet_();
+    if (raEnquiryFound_(id)) return raReply_({status: 'success', reference: id});
+    const props = PropertiesService.getScriptProperties();
+    const day = Utilities.formatDate(new Date(), 'Asia/Kolkata', 'yyyy-MM-dd');
+    const count = props.getProperty('RA_ENQUIRY_DAY') === day ? Number(props.getProperty('RA_ENQUIRY_COUNT') || 0) : 0;
+    if (count >= 150) throw new Error('Daily enquiry limit.');
+    let propertyUrl = '';
+    if (propertyId) {
+      const row = raFind_(raSheet_(), propertyId);
+      if (!row || String(row[16]).trim() !== 'Published') throw new Error('Property unavailable.');
+      propertyUrl = 'https://www.realtyadda.in/property.html?id=' + encodeURIComponent(propertyId);
+    }
+    sheet.appendRow([raCell_(id), new Date(), raCell_(name), mobile, propertyId,
+      propertyUrl, raCell_(message), 'New']);
+    SpreadsheetApp.flush();
+    props.setProperties({RA_ENQUIRY_DAY: day, RA_ENQUIRY_COUNT: String(count + 1)});
+    return raReply_({status: 'success', reference: id});
+  } catch (error) {
+    console.error(error);
+    return raReply_({status: 'error', message: 'Enquiry could not be saved. Please contact RealtyAdda.'});
+  } finally { if (lock && lock.hasLock()) lock.releaseLock(); }
 }
