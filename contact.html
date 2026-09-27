@@ -313,7 +313,16 @@
 
             <h2>Send Us an Enquiry</h2>
 
-            <p>Call or WhatsApp RealtyAdda with the property link, preferred location and budget. Online enquiry saving is not yet available.</p><p style="margin-top:20px"><a href="tel:+919540205941">Call +91 9540205941</a></p><p style="margin-top:20px"><a href="https://wa.me/919540205941" target="_blank" rel="noopener">Open WhatsApp</a></p>
+            <p id="enquiryAvailability">Checking online enquiry availability…</p>
+            <form id="enquiryForm" hidden>
+                <div class="form-group"><label for="enquiryName">Your name</label><input id="enquiryName" name="name" autocomplete="name" maxlength="100" required></div>
+                <div class="form-group"><label for="enquiryMobile">Mobile number</label><input id="enquiryMobile" name="mobile" type="tel" inputmode="numeric" autocomplete="tel" pattern="[6-9][0-9]{9}" maxlength="10" required></div>
+                <div class="form-group"><label for="enquiryMessage">Requirement or question</label><textarea id="enquiryMessage" name="message" minlength="10" maxlength="1000" required placeholder="Tell us the location, budget and property type you want."></textarea></div>
+                <button class="submit-btn" type="submit">Send Enquiry</button>
+            </form>
+            <p id="enquiryResult" role="status" aria-live="polite" style="margin-top:14px"></p>
+            <p style="margin-top:20px"><a href="tel:+919540205941">Call +91 9540205941</a></p>
+            <p style="margin-top:20px"><a id="enquiryWhatsApp" href="https://wa.me/919540205941" target="_blank" rel="noopener">Open WhatsApp</a></p>
 
         </div>
 
@@ -347,6 +356,8 @@
 
 </footer>
 
+<script src="realtyadda-api.js?v=20260928-enquiry"></script>
+<script src="enquiry.js?v=20260928-enquiry"></script>
 </body>
 </html>
 
